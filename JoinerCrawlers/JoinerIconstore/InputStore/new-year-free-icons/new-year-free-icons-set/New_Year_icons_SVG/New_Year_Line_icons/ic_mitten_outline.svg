@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="90px" height="90px" viewBox="0 0 90 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.3 (16044) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_mitten_outline</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="ic_mitten_outline" sketch:type="MSArtboardGroup" stroke="#FFFFFF" stroke-width="4">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(16.000000, 13.000000)">
+                <path d="M41.1748255,51 C43.8323111,48.8061553 45.64843,45.5989671 45.9241826,42.0263272 L47.4244153,22.5893712 C48.2169312,12.3215667 40.6140619,2.71714944 30.4441573,1.12142192 L27.3156083,0.630531205 C17.1441447,-0.965440948 9.50794351,6.06721882 10.2561933,16.33787 L11.0676314,27.4758583 L8.97926654,26.7907547 C8.10144799,26.2876302 7.08431381,26 6,26 C2.6862915,26 0,28.6862915 0,32 C0,34.3006897 1.29491315,36.2989363 3.19567295,37.3056732 L12.4462203,44.0563758 C13.0538802,46.5510587 14.4170579,48.7824422 16.261824,50.4961883 L16.1734108,51.0855571 C16.2169433,51.0763791 16.2607319,51.0679134 16.3047635,51.0601728 C16.3354231,50.9215632 16.3658001,50.7732725 16.3943239,50.6176385 C16.5399466,50.7493378 16.6884579,50.8778528 16.8397279,51.0030631 C16.891909,51.0010273 16.9443395,51 16.9970002,51 L41.1748255,51 Z" id="Oval-49-Copy" sketch:type="MSShapeGroup"></path>
+                <rect id="Rectangle-34" sketch:type="MSShapeGroup" x="13" y="51" width="33" height="11" rx="4"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

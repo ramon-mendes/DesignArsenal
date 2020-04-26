@@ -1,0 +1,263 @@
+<!-- OmniView:on -->
+<html window-resizable>
+<head>
+    <script type="text/tiscript">
+		include "tis/consts.tis";
+
+		var dic_font = view.parameters;
+		if(!dic_font)
+		{
+			dic_font = { family: "Open Sans", variant: "Regular" };
+			$(h1).text = "In Debug";
+		}
+
+		view.windowMaximizable = true;
+
+		// H1
+		$(h1).draw_size = 44;
+		$(h1).draw_center = true;
+		$(h1).draw_family = true;
+		$(h1).@#variant = dic_font.variant;
+		$(h1).@#family = dic_font.family;
+
+		var ivariant = dic_font.ivariant;
+		var variant = dic_font.variant;
+
+		// Table mode
+		var aa_map = ["Aa", "Bb", "Cc", "Dd", "Ee", "Ff", "Gg", "Hh", "Ii", "Jj", "Kk", "Ll", "Mm", "Nn", "Oo", "Pp", "Qq", "Rr", "Ss", "Tt", "Uu", "Vv", "Ww", "Xx", "Yy", "Zz", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+		var ascii_map = [];
+		for(var i = 33; i < 126; i++)
+			ascii_map.push(String.fromCharCode(i));
+
+		function SetListTable(arr_table)
+		{
+			self#list.clear();
+			for(var txt in arr_table)
+			{
+				var el_box = self#list.$append(<div .box />);
+				el_box.@#char = txt;
+				el_box.@#variant = variant;
+				el_box.@#family = dic_font.family;
+				el_box.$append(<span>{txt}</span>);
+			}
+		}
+		SetListTable(aa_map);
+
+
+		// Style
+		var file_dir = Consts.DIR_SHARED;
+
+		function SetStyle(style)
+		{
+			var clr_h1, clr_tbl;
+			var bg_file;
+			var bg_blur = true;
+
+			switch(style)
+			{
+			case "None":
+				bg_file = undefined;
+				bg_blur = undefined;
+				clr_h1 = color(0,0,0);
+				clr_tbl = color(0,0,0);
+				break;
+
+			case "Forest":
+				bg_file = file_dir + "bgs/" + style + ".jpg";
+				clr_h1 = color(117,251,251);
+				clr_tbl = color(117,251,251);
+				break;
+
+			case "Black":
+			case "Infinity":
+			case "Polygons":
+				bg_blur = false;
+			case "Sand":
+			case "Mountain":
+			case "Ocean":
+				bg_file = file_dir + "bgs/" + style + ".jpg";
+				clr_h1 = color(255,255,255);
+				clr_tbl = color(255,255,255);
+				break;
+
+			case "Grunge":
+			case "Math":
+				bg_blur = false;
+				bg_file = file_dir + "bgs/" + style + ".jpg";
+				clr_h1 = color(0,0,0);
+				clr_tbl = color(0,0,0);
+				break;
+			}
+
+			$(bg).style#background-image = bg_file ? ("url(file://" + bg_file + ")") : undefined;
+
+			if(bg_blur != !!self#mi-blur.state.checked)
+			{
+				self#mi-blur.state.checked = bg_blur;
+				self.@#no-blur = bg_blur ? undefined : "true";
+			}
+
+			clr_h1 = clr_h1.toInteger();
+			clr_tbl = clr_tbl.toInteger();
+
+			$(h1).Host_SetColor(clr_h1);
+			for(var el in $$(.box))
+				el.Host_SetColor(clr_tbl);
+		}
+
+		// UI events
+		self.on("keydown", function(evt) {
+			var ctrl;
+			if(Utils.IsWindows)
+				ctrl = evt.ctrlKey && !evt.shiftKey && !evt.altKey;
+			else
+				ctrl = evt.commandKey && !evt.shiftKey && !evt.altKey;
+			
+			if(evt.keyCode == Event.VK_ESCAPE)
+			{
+				view.close();
+				return true;
+			}
+			if(ctrl)
+			{
+				if(evt.keyCode == Event.VK_W)
+				{
+					view.close();
+					return true;
+				}
+			}
+		});
+
+		self#btn-export.onClick = function() {
+			var (w,h) = $(main).box(#dimension, #margin);
+			var img = new Image(w, h, $(main));
+			var bytes = img.toBytes();
+			var path = view.selectFile(#save, "PNG Files (*.png)|*.png|All Files (*.*)|*.*", "png");
+			if(path)
+				bytes.save(path);
+		}
+
+		var table_cycle = true;
+		self#btn-table.onClick = function() {
+			table_cycle = !table_cycle;
+			if(table_cycle)
+				SetListTable(aa_map);
+			else
+				SetListTable(ascii_map);
+		};
+
+		/*self#btn-style.onClick = ::this.popup(self#menu-style, Utils.popupAttachment());
+		self#btn-style.on("click", "li.radio", ::SetStyle(this.text));
+
+		self#mi-blur.onClick = ::self.@#no-blur = this.state.checked ? undefined : "true";
+		self#mi-hairlines.onClick = ::self.@#no-hairline = this.state.checked ? "true" : undefined
+		self#mi-legends.onClick = ::self.@#no-legends = this.state.checked ? "true" : undefined*/
+    </script>
+
+	<style>
+        @import url(css/global.css);
+		@import url(lib_menu/menu-chrome.css);
+
+		body
+		{
+			font-family: system;
+			margin: 0;
+		}
+
+		header
+		{
+			flow: horizontal;
+			vertical-align: middle;
+			border-spacing: 4px;
+			padding: 8px;
+			background: url(img/grain.png);
+			border-bottom: solid 1px silver;
+		}
+
+		header #styles
+		{
+			cursor: pointer;
+			display: block;
+			margin-left: *;
+			border-bottom: dotted 1px;
+			color: #222222;
+		}
+
+		section { size: *; overflow-y: auto; }
+		section bg
+		{
+			display: block; size: *;
+			background-position: top center;
+			filter: blur(6px);
+		}
+
+		main { size: *; padding-bottom: 50px; }
+		main h1 { text-align: center; margin: 50px 0; padding: 1px; }// 1px to trigger OnDraw
+		main h1[family] { behavior: UIFontPreview; }
+
+		#list
+		{
+			flow: horizontal-flow;
+			horizontal-align: center;
+			border-spacing: 1px;
+		}
+		.box
+		{
+			size: 130px;
+			padding: 4px;
+			outline: solid 1px silver;
+
+			color: gray;
+			font-size: 14px;
+		}
+		.box[family] { behavior: UICharDraw; }
+
+		[no-blur] section bg { filter: blur(0px); }
+		[no-hairline] .box { outline: none; }
+		[no-legends] .box span { visibility: none; }
+	</style>
+	
+	<menu .menu-chromed.margin-move #menu-style .outline>
+		<div .inner>
+			<caption>Visualization background</caption>
+			
+			<ul>
+				<li .radio checked>None</li>
+				<li .radio>Black</li>
+				<li .radio>Sand</li>
+				<li .radio>Mountain</li>
+				<li .radio>Infinity</li>
+				<li .radio>Ocean</li>
+				<li .radio>Math</li>
+				<li .radio>Polygons</li>
+				<li .radio>Grunge</li>
+				<li .radio>Forest</li>
+				<hr />
+				<li .check #mi-blur checked .hide-osx>Blur</li>
+				<li .check #mi-hairlines>No hairlines</li>
+				<li .check #mi-legends>No letters legend</li>
+			</ul>
+		</div>
+	</menu>
+</head>
+
+<body>
+	<header>
+		<button .std-btn #btn-export>Export image..</button>
+		<button .std-btn #btn-table>Table</button>
+		<!--<button .std-btn #btn-style>Background</button>-->
+
+		<span #styles />
+	</header>
+
+	<section>
+		<sflow>
+			<bg />
+			<main>
+				<h1 />
+				<div #list />
+			</main>
+		</sflow>
+	</section>
+</body>
+</html>

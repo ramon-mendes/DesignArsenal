@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="44px" height="64px" viewBox="0 0 44 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.3 (7891) - http://www.bohemiancoding.com/sketch -->
+    <title>Pawn</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M41,1 L39,1 C37.9,1 37,1.9 37,3 L37,6 L31,6 L31,3 C31,1.9 30.1,1 29,1 L27,1 C25.9,1 25,1.9 25,3 L25,6 L19,6 L19,3 C19,1.9 18.1,1 17,1 L15,1 C13.9,1 13,1.9 13,3 L13,6 L7,6 L7,3 C7,1.9 6.1,1 5,1 L3,1 C1.9,1 1,1.9 1,3 L1,14 C1,15.1 1.9,16 3,16 L11,20 L11,46 L3,54 C1.9,54 1,54.9 1,56 L1,61 C1,62.1 1.9,63 3,63 L41,63 C42.1,63 43,62.1 43,61 L43,56 C43,54.9 42.1,54 41,54 L33,47 L33,20 L41,16 C42.1,16 43,15.1 43,14 L43,3 C43,1.9 42.1,1 41,1 L41,1 Z" id="Pawn" stroke="#6B6C6E" stroke-width="2" sketch:type="MSShapeGroup"></path>
+    </g>
+</svg>

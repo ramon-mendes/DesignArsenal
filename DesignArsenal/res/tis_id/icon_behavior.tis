@@ -1,0 +1,92 @@
+﻿class IconBehavior : Element
+{
+	var captured = false;
+
+	function Create(obj_icon)
+	{
+		var el_icon = self#list.$append(<icn><svg /></icn>);
+		var url = isource.IconTranslateURL(obj_icon.hash);
+
+		el_icon.icon = obj_icon;
+		el_icon.$(svg).style#foreground-image = "url(" + url + ")";
+
+		if(obj_icon.colored)
+			el_icon.@.addClass("colored");
+		
+		var checked = UI.Proj._active && UI.Proj.IconIsChecked(obj_icon.hash);
+		el_icon.state.checked = checked;
+		if(checked)
+			el_icon.$prepend(<btn .rmv><icon .icon-minus-1 /></btn>);
+		else
+			el_icon.$prepend(<btn .add><icon .icon-plus /></btn>);
+		return el_icon;
+	}
+
+	function attached()
+	{
+		this.on("click", "btn.add", function() {
+			var el_icon = this.parent;
+			if(UI.Proj.IconAddRmv(true, el_icon.icon))
+			{
+				el_icon[0].$replace(<btn .rmv><icon .icon-minus-1 /></btn>);
+				el_icon.state.checked = true;
+				IconInfo.RefreshForIcon(el_icon.icon.hash);
+			}
+			return true;
+		});
+		this.on("click", "btn.rmv", function() {
+			var el_icon = this.parent;
+			if(UI.Proj.IconAddRmv(false, el_icon.icon))
+			{
+				el_icon[0].$replace(<btn .add><icon .icon-plus /></btn>);
+				el_icon.state.checked = false;
+				IconInfo.RefreshForIcon(el_icon.icon.hash);
+			}
+			return true;
+		});
+		this.on("mousedown", function(evt) {
+			if(evt.propButton)
+			{
+				this.popup(self#menu-icon, evt.xView, evt.yView);
+			}
+		});
+
+		this.onControlEvent = function(evt) {
+			if(evt.type == Event.MENU_ITEM_CLICK)
+			{
+				view.Host_CopySkiaCode(this.icon.hash);
+			}
+		};
+	}
+
+	function onMouse(evt)
+	{
+		if(evt.type == Event.MOUSE_DRAG_REQUEST)
+		{
+			var el_this = this;
+			var icon = this.icon;
+			var hash = icon.hash;
+			var path = view.Host_SaveTempSVG(hash, !!self.@#black);
+			PerformFileDrag(path, hash, function(res) {
+				el_this.state.hover = false;
+			}, el_this.$(svg));
+
+			return true;
+		}
+	}
+
+	function PerformFileDrag(path, hash, on_complete, el)
+	{
+		var (x, y) = view.cursorLocation();
+
+		if(Utils.IsWindows)
+		{
+			var res = view.performDrag(el, { file: path }, #any);
+			on_complete(res);
+		} else {
+			view.Host_StartDnD(path, x, y, undefined, function() {
+				on_complete(true);
+			});
+		}
+	}
+}

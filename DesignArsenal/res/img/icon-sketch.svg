@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="41px" height="35px" viewBox="0 0 41 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>LogoSketch</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Desktop-HD" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-924.000000, -303.000000)">
+        <g id="LogoSketch" transform="translate(924.000000, 303.000000)">
+            <g>
+                <polygon id="Shape" fill="#FDB300" fill-rule="nonzero" points="8.72181821 1.15234375 19.9875 0 31.2531818 1.15234375 39.975 12.4804687 19.9875 35 0 12.4804687"></polygon>
+                <g id="Group" transform="translate(0.000000, 12.638889)" fill-rule="nonzero">
+                    <polygon id="Shape" fill="#EA6C00" points="8.25653684 0 20.3839053 22.3611111 0 0"></polygon>
+                    <polygon id="Shape" fill="#EA6C00" transform="translate(30.575542, 11.180556) scale(-1, 1) translate(-30.575542, -11.180556) " points="28.6401262 0 40.7674946 22.3611111 20.3835893 0"></polygon>
+                    <polygon id="Shape" fill="#FDAD00" points="8.25653684 0 32.5112737 0 20.3839053 22.3611111"></polygon>
+                </g>
+                <g id="Group" fill-rule="nonzero">
+                    <polygon id="Shape" fill="#FDD231" points="20.3839053 0 8.89484211 1.14728495 8.25653684 12.4272894"></polygon>
+                    <polygon id="Shape" fill="#FDD231" transform="translate(26.447342, 6.213645) scale(-1, 1) translate(-26.447342, -6.213645) " points="32.511026 0 21.0219628 1.14728495 20.3836575 12.4272894"></polygon>
+                    <polygon id="Shape" fill="#FDAD00" transform="translate(36.320061, 6.787287) scale(-1, 1) translate(-36.320061, -6.787287) " points="31.8726404 12.4272894 40.7674825 1.14728495 40.1291773 12.4272894"></polygon>
+                    <polygon id="Shape" fill="#FDAD00" points="0 12.4272894 8.89484211 1.14728495 8.25653684 12.4272894"></polygon>
+                    <polygon id="Shape" fill="#FEEEB7" points="20.3839053 0 8.25653684 12.4272894 32.5112737 12.4272894"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,38 @@
+﻿<!-- OmniView:on -->
+<html>
+<head>
+	<script type="text/tiscript">
+		$(#pick-bg-clr).onClick = function() {
+			var el_frm = $(div);
+			this.popup(el_frm, Utils.popupAttachment());
+		};
+	</script>
+
+	<style>
+		#clr-popup
+		{
+			visibility: none;
+			size: max-content;
+		}
+		#pick-bg-clr
+		{
+			display: block;
+			size: 22px;
+			background: #fff;
+			border-radius: 50%;
+			border: solid 1px gray;
+		}
+		div
+		{
+			visibility: none;
+			size: 200px;
+			background: red;
+		}
+	</style>
+</head>
+
+<body>
+	<span #pick-bg-clr />
+	<div>asdasdasd</div>
+</body>
+</html>

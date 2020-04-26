@@ -1,0 +1,72 @@
+﻿namespace Store
+{
+	var _font2store = {};
+
+	function Setup()
+	{
+		var bulk_pos = 0;
+		var arr_store;
+		var arr_listed;
+
+		function BulkLoad()
+		{
+			for(var i = 0; i < 12; i++)
+			{
+				if(bulk_pos == arr_listed.length)
+				{
+					self#btn-store-load.hide();
+					return;
+				}
+
+				var entry = arr_listed[bulk_pos++];
+				var imgurl = Consts.SERVER_ASSETS + "cache_BF/" + URL.encodeParam(entry.title) + "/preview.jpg";
+				log(imgurl);
+				
+				var el_entry = self#store-list.$append(<img src="{imgurl}" />)
+				el_entry.entry = entry;
+			}
+			self#btn-store-load.show();
+		}
+
+		function ResetAndLoad()
+		{
+			bulk_pos = 0;
+			self#store-list.clear();
+			BulkLoad();
+		}
+
+		self#store-list.on("click", "img", function() {
+			var entry = this.entry;
+			assert(entry);
+
+			var el_div = this;
+			el_div.@.addClass("loading");
+
+			UIFont.ShowStoreFont(entry);
+		});
+
+		self#btn-store-load.onClick = ::BulkLoad();
+
+		self#ui-insta-search.OnChange = function(val) {
+			if(!val)
+				arr_listed = arr_store;
+			else
+				arr_listed = arr_store.filter(function(entry) {
+					return entry.title.toLowerCase().indexOf(val) != -1;
+				});
+			ResetAndLoad();
+		};
+		
+		var data = view.Host_FDStoreList();
+		//if(Utils.InDBGView)
+		//	data = JSON.parse(Utils.readFileText(Utils.IsOSX ? "/Users/midiway/Desktop/DesignArsenal/DesignArsenal/Shared/fd_store.json" : "D:/ProjetosSciter/DesignArsenal/DesignArsenal/Shared/fd_store.json"));
+
+		Utils.shuffle(data);
+		arr_store = arr_listed = data;
+
+		for(var dic_store in arr_store)
+			_font2store[dic_store.title] = dic_store;
+
+		ResetAndLoad();
+	}
+}

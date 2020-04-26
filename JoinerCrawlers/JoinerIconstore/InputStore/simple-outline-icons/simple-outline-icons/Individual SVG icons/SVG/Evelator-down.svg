@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="65px" height="41px"
+	 viewBox="0 0 65 41" enable-background="new 0 0 65 41" xml:space="preserve">
+<title>Evelator-down</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" sketch:type="MSPage">
+	<g id="Evelator-down" transform="translate(1.000000, 1.000000)" sketch:type="MSLayerGroup">
+		<g id="Group" sketch:type="MSShapeGroup">
+			<path id="Shape_1_" fill="none" stroke="#6B6C6E" stroke-width="2" d="M33.2,17.1c-0.4-3.3-1.5-6-3.7-6s-4.2,2.6-5.2,6
+				c0,0-0.5,2.8-0.9,6"/>
+			<circle id="Oval" fill="none" stroke="#6B6C6E" stroke-width="2" cx="30" cy="4" r="4"/>
+			<path id="Shape" fill="none" stroke="#6B6C6E" stroke-width="2" d="M58.2,8.1h-12L15.3,28l-11,2c-2.2,0-4,1.8-4,4v1
+				c0,2.2,1.8,4,4,4h11l30.9-19.9l12-2c2.2,0,4-1.8,4-4v-1C62.1,9.9,60.4,8.1,58.2,8.1L58.2,8.1z"/>
+		</g>
+		<path id="Shape_2_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" d="M48.2,28L39,36"/>
+		<path id="Shape_3_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" d="M45,37h-7v-7"/>
+	</g>
+</g>
+</svg>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="65px" height="51px" viewBox="0 0 65 51" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.3 (7891) - http://www.bohemiancoding.com/sketch -->
+    <title>Folder-checked</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Folder-checked" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)" stroke="#6B6C6E" stroke-width="2">
+            <path d="M41.2,43.9 L3,43.9 C1.4,43.9 0.1,42.6 0.1,41 L0.1,3 C0.1,1.4 1.4,0.1 3,0.1 L17.8,0.1 L27,9 L23,5 L58.6,5 C61.8,5 62.1,6.4 62.1,8 L62.1,29.9 L62.1,40.8 C62.1,42.5 61.8,43.8 58.6,43.8 L50.9,43.8" id="Shape" sketch:type="MSShapeGroup"></path>
+            <path d="M58.1,35.1 L55.3,32.3 C54.9,31.9 54.3,31.9 53.9,32.3 L46.1,40.1 L42.6,36.6 C42.2,36.2 41.6,36.2 41.2,36.6 L38.4,39.4 C38,39.8 38,40.4 38.4,40.8 L45.5,47.8 C45.9,48.2 46.5,48.2 46.9,47.8 L58.2,36.5 C58.5,36.1 58.5,35.5 58.1,35.1 L58.1,35.1 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

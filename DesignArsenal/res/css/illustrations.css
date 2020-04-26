@@ -1,0 +1,66 @@
+body
+{
+	margin: 0;
+	background: url(../img/grain.png);
+}
+
+header
+{
+	flow: horizontal;
+	height: 30px;
+	padding: 8px 13px;
+	background: url(../img/bg-site2.png);
+	color: white;
+	font-size: 20px;
+	horizontal-align: center;
+	border-spacing: 15px;
+	text-wrap: none;
+}
+header icon { size: 25px; margin-top: 2px; }
+
+#area-search
+{
+	padding: 3px;
+	height: 30px;
+}
+#area-search #ui-search
+{
+	margin: 0;
+	margin-left: *;
+}
+
+#list
+{
+	size: *;
+	overflow-y: scroll-indicator;
+	flow: horizontal-flow;
+	border-spacing: 10px;
+	padding: 10px;
+}
+
+#list div
+{
+	cursor: pointer;
+	flow: vertical;
+	border: 1px solid #f0f0f0;
+	size: 160px 180px;
+	background: #FCFCFC;
+}
+
+#list div > svg
+{
+	margin: 0 3px;
+	size: *;
+}
+#list div > label
+{
+	display: block;
+	text-align: center;
+}
+
+#area-search
+{
+	flow: horizontal;
+	vertical-align: middle;
+	horizontal-align: right;
+}

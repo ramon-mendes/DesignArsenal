@@ -1,0 +1,217 @@
+﻿<!-- OmniView:on -->
+<html>
+<head>
+	<style>
+		@import url(css/global.css);
+		@import url(css/index.css);
+		@import url(lib_poptip/lib_poptip.css);
+		@import url(lib_menu/menu-chrome.css);
+	</style>
+
+	<script type="text/tiscript">
+		include "tis/consts.tis";
+		include "tis/ion.tis";
+		include "tis/keyboard.tis";
+		include "tis/menu.tis";
+		include "lib_settings/settings.tis";
+		include "lib_hint/lib_hint.tis";
+		include "lib_growl/lib_growl.tis";
+
+		view.onRequestResponse = function(rq) {
+			if(rq.status != 0 && rq.status != 200) {
+				//stdout.println("ERROR LOADING: " + rq.requestUrl + " - " + rq.status);
+			}
+		};
+
+		self.timer(1000, function() {
+			ShowHint("homebtns", "Choose what resource you want to work with by clicking one of these buttons.<br><br>The shortcut is " + (Utils.IsOSX ? "⌘" : "CTRL") + " + 1, 2, 3, ..", self#btn-frames[1]);
+		});
+
+		self.closing = function() {
+			if(Utils.IsWindows && !Settings.ns_data.hint_closing)
+			{
+				Settings.ns_data.hint_closing = true;
+				Settings.StoreWork();
+				view.msgbox(#information, "HINT: closing Design Arsenal actually just minimizes it to\nyour tray as a 'sword' icon so you easily open it.\n\nTo terminate the app, right-click the icon and choose 'Quit'.\n\n", Consts.APPNAME);
+				view.msgbox(#information, "HINT:\nYou can open Design Arsenal with the global CTRL+SHIFT+D shortcut.\nFor remembering, the D letter comes from 'D'esign.", Consts.APPNAME);
+			}
+			if(Utils.IsOSX && !Settings.ns_data.hint_closing)
+			{
+				Settings.ns_data.hint_closing = true;
+				Settings.StoreWork();
+				//view.msgbox(#information, "HINT:\nYou can open Design Arsenal with the global CMD+SHIFT+D shortcut.\nFor remembering, the D letter comes from 'D'esign.", Consts.APPNAME);
+			}
+			view.windowState = View.WINDOW_HIDDEN;
+			return false;
+		};
+
+		function ShowFrame(idx)
+		{
+			self#btn-frames[idx].state.current = true;
+			var el_frm = $$(frame)[idx];
+			if(!el_frm.loaded)
+			{
+				el_frm.load(el_frm.@#data-src);
+				el_frm.loaded = true;
+			}
+
+			el_frm.state.current = true;
+
+			View_FocusIt();
+		}
+
+		self#btn-frames.on("click", "button", :evt:ShowFrame(this.index));
+
+		function View_FocusIt()
+		{
+			var el_frm = $(frame:current);
+			var el_search = el_frm[0].$(#ui-search widget);
+			if(el_search)
+			{
+				el_search.state.focus = true;
+				el_search.doSelectAll();
+			}
+			else
+				view.focus = el_frm[0].$(body);
+
+			var el_popup = el_frm[0].$(:popup);
+			if(el_popup)
+				el_popup.closePopup();
+		}
+
+		function View_ShowOSX(x, y, w, h, offx_arrow)
+		{
+			y = view.box(#top);
+			view.move(x, y, w, h);
+			view.windowState = View.WINDOW_SHOWN;
+			self#osx-arrow.style#margin-left = px(offx_arrow*2);
+			
+			View_FocusIt();
+		}
+
+		function View_ConvertImage(path)
+		{
+			var buffer = Bytes.load(path);
+
+			var img = Image.fromBytes(buffer);
+			buffer = img.toBytes(#png);
+			buffer.save(path);
+		}
+
+		function View_OnInternetFault(msg)
+		{
+			self.last_fault = System.ticks;
+			if(self.in_fault)
+				return;
+			self.in_fault = true;
+
+			var el_growl = Growl("<b>Check your internet connection.</b><br>" + msg, #error, false);
+			self.timer(3000, function() {
+				if(System.ticks - self.last_fault > 3000)
+				{
+					self.in_fault = false;
+					el_growl.fadeout();
+					return;
+				}
+				return true;
+			});
+		}
+
+		function View_Get(url, cbk)
+		{
+			view.request({
+				url: url,
+				output: #bytes,
+				success: function(data, status) {
+					log(data, data.length)
+					cbk(true, data);
+				},
+				error: function(err, status) {
+					log(err, status)
+					cbk(false, err);
+				},
+			});
+		}
+
+		if(Utils.IsOSX)
+		{
+			Utils.emulateResizeWnd(self#vresizer, 2);
+		}
+	
+</script>
+
+	<script type="text/tiscript">
+		ShowFrame(0);
+		if(!Utils.InDBGView)
+			Ion.Setup();
+	</script>
+
+	<menu .menu-chromed #menu-main .outline style="margin-top: -7px; margin-left: -2px;">
+		<div .inner style="min-width: 200px;">
+			<ul>
+				<li #mi-skiacode>Skia code</li>
+				<li #mi-quit>Quit<accesskey /></li>
+			</ul>
+
+			<hr />
+
+			<ul>
+				<li #mi-clearcache>Clear cache</li>
+				<li #mi-runstart .hide-osx>Run at startup<button|toggler2><label .true>On</label><label .false>Off</label></button></li>
+				<li #mi-license>Enter PRO license</li>
+				<li #mi-about>About</li>
+			</ul>
+
+			<footer #mi-gopro>
+				Trial version&nbsp;
+				<em />
+				<span #pro>GO PRO!</span>
+			</footer>
+		</div>
+	</menu>
+</head>
+
+<body>
+	<img src="img/arrow2.png" #osx-arrow />
+
+	<div #osx-wraper>
+		<overlay #overlay-activating>
+			<img src="img/loaders/loader.png" />
+			<h1>Starting you trial...</h1>
+		</overlay>
+
+		<overlay #overlay-expired>
+			<h1 />
+			<h3>You can <a href="http://designarsenal.co/Home/Pro">purchase a license</a> to continue usage.</h3>
+			<button #btn-ionlicense .std-btn.blue>Enter license</button>
+			<h4 .hide-win>Press CMD + Q to exit this app</h4>
+		</overlay>
+
+		<header>
+			<button #btn-menu><icon .icon-menu-1 /></button>
+			<div #info-update><div>Update is available: <span /></div></div>
+			<hspacer />
+			<hflow #btn-frames>
+				<button poptip="Fonts" popnow><icon .icon-fontsize-1 /></button>
+				<button poptip="Icons" popnow><icon .icon-flag-filled /></button>
+				<button poptip="Fills" popnow><icon .icon-picture /></button>
+				<!--<button poptip="Gradients" popnow><icon .icon-gradient_24px /></button>-->
+				<!--<button poptip="Illustrations" popnow><icon .icon-picture /></button>-->
+				<button poptip="Links" popnow><icon .icon-link /></button>
+			</hflow>
+		</header>
+
+		<frames #frames-tabs>
+			<frame data-src="inc_fd.html" />
+			<frame data-src="inc_id.html" />
+			<frame data-src="inc_pd.html" />
+			<!--<frame data-src="inc_grads.html" />-->
+			<!--<frame data-src="inc_photos.html" />-->
+			<!--<frame data-src="inc_illustrations.html" />-->
+			<frame data-src="inc_links.html" />
+		</frames>
+	</div>
+
+	<div #vresizer />
+</body>
+</html>

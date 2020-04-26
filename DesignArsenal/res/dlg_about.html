@@ -1,0 +1,79 @@
+<!-- OmniView:on, console:off -->
+<html>
+<head>
+	<title>About Design Arsenal</title>
+	
+	<style>
+		@import url(css/global.css);
+
+		html { size: 650px 430px; font-size: 14px; }
+		body { margin: 0; background: #f7f7f7; }
+
+		@media os-vendor=="Apple"
+		{
+			html { font-size: 13px; }
+		}
+
+		main
+		{
+			padding: 40px 20px;
+			flow: grid(1 2, 3 3);
+			border-spacing: 30px;
+		}
+
+		div { width: *; }
+		dl { flow: row(dt, dd); width: *; }
+		dt { width: 80px; }
+		dd { width: *; color: gray; }
+
+		p { color: gray; }
+	</style>
+
+	<script type="text/tiscript">
+		include "tis/utils.tis";
+
+		Utils.installLinkHandler(self);
+		Utils.EscClosesWindow();
+
+		if(!Utils.InDbgView)
+		{
+			self#sciter-ver.text = Utils.SciterVersion;
+			self#build-ver.text = view.parent.Host_AppVersion();
+			//var obj_build = view.parent.Host_AppVersion();
+			//self#build-ver.text = obj_build.ver;
+			//self#build-dt.text = obj_build.dt.toLocaleString();
+		}
+
+		if(Utils.IsWindows)
+		{
+			self#sciter-system.text = "Windows";
+		} else {
+			self#sciter-system.text = "OSX: " + view.parent.Host_GetDisplayData();
+		}
+	</script>
+</head>
+
+<body>
+	<img src="img/banner_activate.jpg" style="width: 650px" />
+
+	<main>
+		<dl>
+			<dt>Version:</dt>
+			<dd #build-ver>-</dd>
+			<!--<dt>Build date:</dt>
+			<dd #build-dt>-</dd>-->
+			<dt>Sciter lib:</dt>
+			<dd #sciter-ver>-</dd>
+			<dt>System:</dt>
+			<dd #sciter-system>-</dd>
+		</dl>
+
+		<div>
+			<img src="img/logo_mi.png" style="width: 237px" /><br />
+			Visit us at <a href="http://misoftware.com.br/">http://misoftware.com.br/</a>
+		</div>
+
+		<p>This Application uses <b>Sciter Engine</b>, copyright Terra Informatica Software, Inc. (<a href="http://sciter.com/">http://sciter.com/</a>).</p>
+	</main>
+</body>
+</html>

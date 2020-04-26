@@ -1,0 +1,33 @@
+﻿body
+{
+	margin: 0;
+	flow: vertical;
+	horizontal-align: center;
+}
+#osx-wraper { size: *; }
+#menu-main .inner { width: 180px !important; }
+
+header
+{
+	flow: horizontal;
+	vertical-align: middle;
+	border-spacing: 7px;
+	height: 30px;
+	padding: 8px;
+	background: url(../img/grain.png) #0F52BA;
+	text-wrap: none;
+}
+header icon:hover { fill: white; }
+
+header icon
+{
+	margin: * 5px;
+	size: 20px;
+	fill: rgba(255, 255, 255, 0.71);
+	cursor: pointer;
+}
+main
+{
+	size: *;
+	flow: vertical;
+}

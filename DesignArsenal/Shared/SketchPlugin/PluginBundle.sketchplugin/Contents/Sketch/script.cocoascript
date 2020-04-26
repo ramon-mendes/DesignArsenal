@@ -1,0 +1,179 @@
+const FillType = { Solid: 0, Gradient: 1, Pattern: 4, Noise: 5 };
+const PatternFillType = { Tile: 0, Fill: 1, Stretch: 2, Fit: 3 };
+
+function loadLocalImage(filePath) {
+  if(filePath.indexOf("file://")==0) {
+      filePath = filePath.substring(7);
+  }
+  if(!NSFileManager.defaultManager().fileExistsAtPath(filePath)) {
+      return null;
+  }
+
+  return NSImage.alloc().initWithContentsOfFile(filePath);
+}
+
+function getPasteboardText() {
+  var pasteBoard = NSPasteboard.generalPasteboard().stringForType(NSPasteboardTypeString);
+  return String(pasteBoard);
+}
+
+function centerCanvas(context, x, y) {
+  var canvasView;
+  if(MSApplicationMetadata.metadata().appVersion < 48)
+    canvasView = context.document.currentView();
+  else
+    canvasView = context.document.contentDrawView();
+  canvasView.centerRect_animated(CGRectMake(x,y,1,1), true);
+}
+
+function getCanvasCenter(context) {
+  var canvasView;
+  if(MSApplicationMetadata.metadata().appVersion < 48)
+    canvasView = context.document.currentView();
+  else
+    canvasView = context.document.contentDrawView();
+  var center = canvasView.viewCenterInAbsoluteCoordinatesForViewPort(canvasView.viewPort());
+  return center;// has .x and .y
+}
+
+var onDbg = function(context) {
+  context.document.showMessage("MEOW");
+};
+
+var onCreateFillRect = function(context) {
+  var imgData = NSPasteboard.generalPasteboard().dataForType(NSPasteboardTypePNG);
+  if(!imgData)
+  {
+    context.document.showMessage("[error] image not in clipboard");
+    return;
+  }
+
+  var image = NSImage.alloc().initWithData(imgData);
+  if(!image)
+  {
+    context.document.showMessage("[error] image not loaded");
+    return;
+  }
+
+  //var rect = MSRectangleShape.alloc().init();
+  var center = getCanvasCenter(context);
+  var nsrect = NSMakeRect(center.x - 125, center.y  - 125, 250, 250);
+  //rect.frame = MSRect.rectWithRect(nsrect);
+
+  var shapeGroup = MSShapeGroup.shapeWithRect(nsrect);
+  //shapeGroup.layers().addObject(rect);
+  var fill = shapeGroup.style().addStylePartOfType(0);
+  fill.fillType = FillType.Pattern;
+  fill.patternFillType = PatternFillType.Tile;
+  fill.patternTileScale = 1;
+  
+  if(MSApplicationMetadata.metadata().appVersion < 47)
+    fill.setImage(MSImageData.alloc().initWithImage_convertColorSpace(image, false));
+  else
+    fill.setImage(MSImageData.alloc().initWithImage(image));
+
+  context.document.currentPage().addLayers([shapeGroup]);
+
+  [shapeGroup select:true byExpandingSelection:false]
+  
+  context.document.showMessage("DONE - Filled rectangle created!!");
+};
+
+var onApplyFill = function(context) {
+  var selectedLayers = context.selection;
+  var layersIndex = selectedLayers.count();
+  if(layersIndex==0)
+  {
+      context.document.showMessage("[error] no layer selected");
+      return;
+  }
+  
+  var image;
+  var imgData;
+
+  var urlData = NSPasteboard.generalPasteboard().dataForType(NSPasteboardTypeFileURL);
+  var url = [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding] + "";
+  
+  if(url.length)
+  {
+    image = loadLocalImage(url);
+    if(!image)
+    {
+      context.document.showMessage("[error] failed to load image from clipboard");
+      return;
+    }
+  } else {
+    imgData = NSPasteboard.generalPasteboard().dataForType(NSPasteboardTypePNG);
+    if(!imgData)
+    {
+      imgData = NSPasteboard.generalPasteboard().dataForType(NSPasteboardTypeTIFF);
+      if(!imgData)
+      {
+        context.document.showMessage("[error] image not in clipboard");
+        return;
+      }
+    }
+
+    image = NSImage.alloc().initWithData(imgData);
+
+    if(!image)
+    {
+      context.document.showMessage("[error] image not loaded");
+      return;
+    }
+  }
+  
+  for(var i = 0; i < layersIndex; i++) {
+    var layer = selectedLayers[i];
+    var fill = layer.style().addStylePartOfType(0);
+    if(fill)
+    {
+      fill.fillType = FillType.Pattern;
+      fill.patternFillType = PatternFillType.Tile;
+      fill.patternTileScale = 1;
+
+      if(MSApplicationMetadata.metadata().appVersion < 47)
+        fill.setImage(MSImageData.alloc().initWithImage_convertColorSpace(image, false));
+      else
+        fill.setImage(MSImageData.alloc().initWithImage(image));
+    }
+  }
+
+  context.document.showMessage("DONE - Fill applied to selection!!");
+};
+
+var onDrawText = function(context) {
+  var psfont = getPasteboardText();
+  
+  var textLayer = MSTextLayer.new();
+  textLayer.stringValue = "The quick brown fox jumps over the lazy dog";
+  textLayer.setFontPostscriptName(psfont);
+  textLayer.fontSize = 46;
+  context.document.currentPage().addLayers([textLayer]);
+  centerCanvas(context, 0, 0);
+
+  context.document.showMessage("DONE - Text object created with success!!");
+};
+
+var onApplyText = function(context) {
+  var psfont = getPasteboardText();
+  var selectedLayers = context.selection;
+  
+  var cnt = 0;
+  for(var i = 0; i < selectedLayers.length; i++)
+  {
+    var textLayer = selectedLayers[i];
+    if(textLayer instanceof MSTextLayer)
+    {
+      textLayer.setFontPostscriptName(psfont);
+      cnt++;
+    }
+  }
+
+  if(cnt==0)
+    context.document.showMessage("ERROR - no text object selected.");
+  else if(cnt==1)
+    context.document.showMessage("DONE - Font applied to " + cnt + " text object!!");
+  else
+    context.document.showMessage("DONE - Font applied to " + cnt + " text objects!!");
+};

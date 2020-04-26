@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="64px" height="64px"
+	 viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+<title>Arrow-big-right-bottom</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" sketch:type="MSPage">
+	<g id="Arrow-big-right-bottom" transform="translate(1.000000, 1.000000)" sketch:type="MSLayerGroup">
+		<path id="Shape_1_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" d="M7.9,48V8h39.9"/>
+		<path id="Shape_2_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" d="M47.8,20H20.1H20v28"/>
+		<path id="Shape" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" d="M20.2,45.1h7
+			c0.4,0,0.8,0.3,0.8,0.7L15.2,61.3c0,0.4-0.4,0.7-0.8,0.7H14c-0.4,0-0.8-0.3-0.8-0.7L0,45.8c0-0.4,0.4-0.7,0.8-0.7H8"/>
+		<path id="Shape_3_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" d="M45,8V0.8C45,0.4,45.3,0,45.7,0
+			l15.5,12.7c0.4,0,0.7,0.4,0.7,0.8v0.4c0,0.4-0.3,0.8-0.7,0.8L45.7,27.8c-0.4,0-0.7-0.4-0.7-0.8v-7.2"/>
+	</g>
+</g>
+</svg>

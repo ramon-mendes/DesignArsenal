@@ -1,0 +1,22 @@
+header
+{
+	height: 30px;
+	padding: 8px 13px;
+
+	flow: horizontal;
+	vertical-align: middle;
+	border-spacing: 4px;
+	background: url(../img/grain.png) #0F52BA;
+
+	//box-shadow: 0 0 20px 0 rgba(145, 153, 158, .3);
+}
+
+main
+{
+	visibility: none;
+	size: *;
+}
+
+#overlay-msg { font-size: 24px; }
+#overlay-msg * { font-size: 24px; }// BUG in 4.0.8.x
+#overlay-msg span { color: #e98c2e; }

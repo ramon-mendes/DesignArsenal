@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="90px" height="90px" viewBox="0 0 90 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.3 (16044) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_candle</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="ic_candle" sketch:type="MSArtboardGroup">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(30.000000, 11.000000)">
+                <rect id="Rectangle-10" fill="#F4BB5F" sketch:type="MSShapeGroup" x="6" y="29" width="31" height="40" rx="4"></rect>
+                <rect id="Rectangle-10-Copy" stroke="#2B2D2B" stroke-width="4" sketch:type="MSShapeGroup" x="0" y="25" width="31" height="40" rx="4"></rect>
+                <path d="M25,12 C25,15.3137085 22.3137085,18 19,18 C15.6862915,18 13,15.3137085 13,12 C13,10.9698302 13.2596224,10.0002985 13.7170067,9.15326537 L17.9975174,1.73238427 C18.5484122,0.780386126 19.4478311,0.773517237 20.0002588,1.72769911 L24.3600914,9.30092382 C24.7694406,10.1122528 25,11.0292014 25,12 Z" id="Oval-21-Copy" fill="#FA5E38" sketch:type="MSShapeGroup"></path>
+                <path d="M19.9073694,8.54692483 C20.5957216,9.52338923 21,10.7144825 21,12 C21,15.3137085 18.3137085,18 15,18 C11.6862915,18 9,15.3137085 9,12 C9,11.073398 9.21004435,10.1958545 9.58511707,9.41238545 L9.5760498,9.41235352 L9.63744431,9.30581368 C9.73905044,9.10397114 9.85171701,8.90865232 9.97464817,8.72065307 L15,0 L19.9073694,8.54692483 Z" id="Oval-21-Copy-2" stroke="#2B2D2B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+                <path d="M23.5,51 L23.5,56" id="Path-34" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+                <path d="M23.5,42 L23.5,44" id="Path-34-Copy" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

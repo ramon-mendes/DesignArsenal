@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="96px"
+	 height="96px" viewBox="0 0 96 96" enable-background="new 0 0 96 96" xml:space="preserve">
+<g id="guides">
+</g>
+<g id="Darth-Vader">
+</g>
+<g id="Storm-Trooper">
+</g>
+<g id="Storm-Trooper-2">
+</g>
+<g id="Storm-Trooper-3">
+	
+		<ellipse transform="matrix(0.7071 -0.7071 0.7071 0.7071 -51.9031 44.6949)" fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="28" cy="85" rx="3" ry="3"/>
+	
+		<ellipse transform="matrix(0.7071 -0.7071 0.7071 0.7071 -40.1873 72.9792)" fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="68" cy="85" rx="3" ry="3"/>
+	
+		<polyline fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+		2.819,74 23,38 73,38 93.205,74 	"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="19.62" y1="44" x2="76.26" y2="44"/>
+	<path fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M87.701,64.194c-1.05,2.743-11.175,23.694-11.175,23.694C75.323,91.442,71.96,94,68,94c-3.286,0-6.161-1.761-7.732-4.391l0-0.004
+		C55.875,88.75,51.284,88,48,88c-3.266,0-8.275,0.397-12.266,1.605C34.164,92.237,31.288,94,28,94c-4.012,0-7.411-2.625-8.573-6.252
+		c0,0-9.99-20.938-11.04-23.681"/>
+	<path fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-miterlimit="10" d="M76.618,87.874
+		c5.946-0.964,11.365-2.325,14.998-4.217c3.343-1.74,2.781-6.532,1-11.314L82.959,45L83,32C83,15.5,69.5,2,53,2H43
+		C26.5,2,13,15.5,13,32l0.041,13L3.384,72.343c-1.781,4.782-2.343,9.574,1,11.314c3.663,1.907,9.089,3.275,15.092,4.241"/>
+	<path fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M11.917,57.941l10.631,19.898C24.06,76.685,25.95,76,28,76c3.424,0,6.401,1.912,7.922,4.726l-0.002-0.001
+		C36.297,80.625,48,79,60,80.875l-0.001,0C61.495,77.979,64.516,76,68,76c2.136,0,4.098,0.744,5.641,1.987l-0.004-0.002
+		l10.555-20.044"/>
+</g>
+<g id="Death-Star">
+</g>
+<g id="Falcon">
+</g>
+<g id="Kylo">
+</g>
+<g id="Boba-Fett">
+</g>
+<g id="R2D2">
+</g>
+<g id="Battle-Droid">
+</g>
+<g id="BB8">
+</g>
+<g id="C3PO">
+</g>
+<g id="BONUS">
+</g>
+</svg>

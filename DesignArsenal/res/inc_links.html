@@ -1,0 +1,404 @@
+﻿<!-- OmniView:on -->
+<html>
+<head>
+	<style>
+		@import	url(css/global.css);
+		@import	url(css/links.css);
+		@import url(lib_poptip/lib_poptip.css);
+		@import url(lib_menu/menu-chrome.css);
+
+		.btn-rmv { opacity: 0; }
+		.btn-rmv icon { size: 13px; }
+		#list div:hover .btn-rmv { opacity: 1; }
+	</style>
+
+	<script type="text/tiscript">
+		include "lib_settings/settings.tis";
+		include "tis/consts.tis";
+
+		if(!Settings.ns_data.arr_links)
+		{
+			Settings.ns_data.arr_links = [
+				{
+					cat: "generator",
+					arr_items: [
+						{
+							title: "Logojoy",
+							desc: "Uses artificial intelligence to instantly generate beautiful, unique logo ideas for your business",
+							link: "https://logojoy.com/"
+						}
+					]
+				},
+				{
+					cat: "sketch",
+					arr_items: [
+						{
+							title: "avataaars",
+							desc: "Mix & Match Avatars with a Sketch library",
+							link: "https://www.avataaars.com/"
+						}
+					]
+				},
+				{
+					cat: "typhography",
+					arr_items: [
+						{
+							title: "google-type",
+							desc: "Gorgeous pairing of Google Fonts types",
+							link: "https://femmebot.github.io/google-type/"
+						},
+						{
+							title: "Daily Drop Cap",
+							desc: "Initial caps to beautify your blog posts",
+							link: "http://www.dailydropcap.com/"
+						}
+					]
+				},
+				{
+					cat: "startup",
+					arr_items: [
+						{
+							title: "hunter.io",
+							desc: "Cold mailing finder",
+							link: "https://hunter.io/"
+						},
+						{
+							title: "Foculty.com",
+							desc: "Learn to build and grow your business with actionable guides",
+							link: "http://foculty.com/"
+						}
+					]
+				}
+			];
+			Settings.StoreWork();
+		}
+
+		const arr_store = Settings.ns_data.arr_links;
+		var cur_data = arr_store[0];
+
+		self#btn-add-link.on("click", function(evt) {
+			var url;
+			var res = view.msgbox(#information, "URL: <br><input !text />", "New link", [#ok, #cancel], function(el_root) { el_root.$(input).state.focus = true; }, function(el_root, id) {
+				if(id==#ok)
+				{
+					url = el_root.$(input).value;
+					if(url.trim().length==0)
+						return false;
+					AddLink(url);
+					return true;
+				}
+				return true;
+			});
+		});
+
+		var g_url;
+
+		function AddLink(url)
+		{
+			g_url = url;
+
+			self.post(function() {
+				var parsed = URL.parse(g_url);
+				if(parsed.protocol != "http" && parsed.protocol != "https")
+				{
+					view.msgbox(#alert, "Invalid URL.", Consts.APPNAME);
+					return;
+				}
+
+				self#overlay-adding.show();
+
+				function ShowEditOverlay(title = "", desc = "")
+				{
+					if(!title)
+						title = g_url;
+					if(!desc)
+						desc = "";
+
+					self#overlay-adding.hide();
+					self#overlay-link.$(.title).value = title;
+					self.post(::self#overlay-link.$(.title).state.focus = true);
+					self#overlay-link.$(.title).doSelectAll();
+					self#overlay-link.$(.desc).value = desc;
+					self#overlay-link.show();
+
+					if(!self#overlay-link.setup)
+					{
+						self#overlay-link.setup = true;
+						
+						self#overlay-link.$(form).on("~keydown", function(evt) {
+							if(evt.keyCode == Event.VK_RETURN)
+							{
+								this.submit();
+								return true;
+							}
+						});
+						self#overlay-link.$(form).on("submit", function(evt) {
+							if(!this.value.title)
+							{
+								$$(widget)[0].state.focus = true;
+								return true;
+							}
+
+							cur_data.arr_items.push({
+								title: this.value.title,
+								desc: this.value.desc,
+								link: g_url
+							});
+
+							Settings.StoreWork();
+
+							LoadList();
+
+							/*self#list.$(div).@#flash = true;
+							self.post(::self#list.$(div).@#flash = undefined);*/
+
+							self#overlay-link.hide();
+							return true;
+						});
+					}
+				}
+
+				/*view.request({
+					url: Consts.SERVER_APIGENERAL + "LinkData",
+					params: { url: g_url },
+					success: :data, status:ShowEditOverlay(data.title, data.desc),
+					//success: :data, status:data.show(),
+					error: ::ShowEditOverlay()
+				});*/
+			});
+		}
+
+		function LoadList()
+		{
+			self#list-cards.clear();
+
+			var arr = cur_data.arr_items.clone()
+			for(var data in arr)
+			{
+				// Card links
+				var el = self#list-cards.$append(<div .card.link />);
+				var el_top = el.$append(<div .top />);
+
+				el_top.$append(<h2>{data.title}</h2>);
+				el_top.$append(<div .desc>{data.desc}</text>);
+				var thumb_url = (Utils.InDBGView ? "https://api.thumbnail.ws/api/ab6abe6678e61197e47bc9db3a81a2f4ac04c3e95626/thumbnail/get?width=280&url=" : "thumb://")
+					+ URL.encodeParam(data.link);
+				el.$append(<img src="{thumb_url}" .thumb />);
+				el.$append(<button .btn-graybord.btn-rmvme><icon .icon-trash-2 /></span>);
+				el.data = data;
+
+				// List links
+				el = self#list-list.$append(<div .item.link />);
+			}
+		}
+
+		self#scroller.on("click", ".link", ::Sciter.launch(this.data.link));
+
+		self#list-cards.on("~click", ".btn-rmvme", function(evt) {
+			//var res = view.msgbox(#question, "Do you really want to remove this link?", Consts.APPNAME, [#yes, #no]);
+			//if(res == #yes)
+			{
+				var el_div = this.$p(div);
+				var res = cur_data.arr_items.splice(el_div.index, 1);
+				Settings.StoreWork();
+				el_div.remove();
+			}
+			return true;
+		});
+
+		function RefreshCats()
+		{
+			self#list-cats.clear();
+			for(var data in arr_store)
+			{
+				var el = self#list-cats.$append(<cat>{data.cat}</cat>);
+				self#list-cats.insert(el, data.order || 9999);
+				el.@#poptip = "<b>Right-click: </b>show options menu<br><b>Middle-click: </b> open all links in browser";
+				el.data = data;
+				if(cur_data == data)
+					el.state.current = true;
+			}
+		}
+		RefreshCats();
+
+		function SelectFirstCat()
+		{
+			if(arr_store.length)
+			{
+				self.post(::self#list-cats[0].sendEvent("click"));
+			} else {
+				self#list-list.clear();
+				self#list-cards.clear();
+			}
+		}
+		SelectFirstCat();
+	</script>
+
+	<script type="text/tiscript">
+		self#list-cats.on("click", "cat", function(evt) {
+			this.state.current = true;
+			cur_data = this.data;
+			LoadList();
+		});
+
+		self#list-cats.on("mousedown", "cat", function(evt) {
+			var data = this.data;
+			if(evt.mainButton)
+			{
+			}
+			else if(evt.propButton)
+			{
+				self#menu-cat.data = data;
+				this.popup(self#menu-cat, evt.xView, evt.yView);
+			}
+			else
+			{
+				// middle click
+				for(var item in data.arr_items)
+					Sciter.launch(item.link);
+			}
+		});
+
+		self#menu-cat.on("click", "li", function() {
+			var data = self#menu-cat.data;
+			this.closePopup();
+
+			if(this.@#cmd == "open")
+			{
+				for(var item in data.arr_items)
+					Sciter.launch(item.link);
+			}
+			else if(this.@#cmd == "rename")
+			{
+				var title;
+				var res = view.msgbox(#information, "New category name: <br><input !text  />", "Rename category", [#ok, #cancel], function(el_root) { el_root.$(input).state.focus = true; el_root.$(input).value = data.cat; }, function(el_root, id) {
+					if(id==#ok)
+					{
+						title = el_root.$(input).value;
+						if(title.trim().length==0)
+							return false;
+						data.cat = title;
+						
+						Settings.StoreWork();
+						RefreshCats();
+						return true;
+					}
+					return true;
+				});
+			}
+			else if(this.@#cmd == "rmv")
+			{
+				var res = view.msgbox(#question, "Do you really want to remove this category?", Consts.APPNAME, [#yes, #no]);
+				if(res == #yes)
+				{
+					var res = arr_store.removeByValue(data); assert(res);
+					Settings.StoreWork();
+					RefreshCats();
+					if(cur_data==data)
+						SelectFirstCat();
+				}
+				return true;
+			}
+		});
+
+		self#btn-add-cat.onClick = function() {
+			var title;
+			var res = view.msgbox(#information, "Category name: <br><input !text />", "New category", [#ok, #cancel], function(el_root) { el_root.$(input).state.focus = true; }, function(el_root, id) {
+				if(id==#ok)
+				{
+					title = el_root.$(input).value;
+					if(title.trim().length==0)
+						return false;
+					arr_store.push({
+						cat: title,
+						arr_items: []
+					});
+					Settings.StoreWork();
+					RefreshCats();
+					self#list-cats.last.sendEvent("click");
+
+					return true;
+				}
+				return true;
+			});
+		}
+	
+</script>
+
+	<script type="text/tiscript">		self.on("keydown", function(evt) {
+			var ctrl;
+			var none = !evt.commandKey && !evt.ctrlKey && !evt.shiftKey && !evt.altKey
+			if(Utils.IsWindows)
+				ctrl = evt.ctrlKey && !evt.shiftKey && !evt.altKey;
+			else
+				ctrl = evt.commandKey && !evt.shiftKey && !evt.altKey;
+			if(ctrl && evt.keyCode == Event.VK_V)
+			{
+				var url = view.clipboard(#get, #text);
+				if(url)
+					AddLink(url);
+			}
+		});
+	</script>
+
+	<menu .menu-chromed #menu-cat .outline>
+		<div .inner>
+			<ul>
+				<li cmd="open">Open all links</li>
+				<li cmd="rename">Rename category</li>
+				<li cmd="rmv">Remove category</li>
+			</ul>
+		</div>
+	</menu>
+</head>
+
+<body>
+	<overlay #overlay-adding>
+		<img src="img/loaders/loader.png" />
+		<h1>Getting link data...</h1>
+	</overlay>
+
+	<overlay #overlay-link>
+		<icon .icon-cancel-circled-outline .btn-cancel />
+
+		<vflow>
+			<h1>Add new link</h1>
+			<form>
+				Title
+				<widget !text name="title" .title />
+				Description <em>(optional)</em>
+				<widget !text name="desc" .desc />
+
+				<button .std-btn type="submit"><icon .icon-plus />Add</button>
+			</form>
+		</vflow>
+	</overlay>
+
+	<header>
+		<icon .icon-armoury-01 />Build your own arsenal of handful tools
+	</header>
+
+	<main>
+		<div #col-cats>
+			<div #list-cats />
+
+			<button #btn-add-cat .btn-graybord><icon .icon-plus-1 /> New category</button>
+		</div>
+
+		<div #col-links>
+			<div #addbar>
+				<span>
+					To add a link, just press <accesskey .hide-win>⌘+V</accesskey><accesskey .hide-osx>Ctrl+V</accesskey> if URL is already in your clipboard
+				</span>
+				<button #btn-add-link.btn-graybord poptip="Add new link"><icon .icon-playlist-plus style="size: 18px" /></button>
+				<!--<button #btn-toggle-view.btn-graybord poptip="Toggle list/card view"><icon .icon-th-thumb style="size: 11px; margin: 0" /></button>-->
+			</div>
+
+			<div #scroller style="size: *; overflow-y: auto">
+				<div #list-cards />
+				<div #list-list />
+			</div>
+		</div>
+	</main>
+</body>
+</html>

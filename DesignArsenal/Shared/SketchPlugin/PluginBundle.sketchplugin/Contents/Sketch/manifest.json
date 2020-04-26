@@ -1,0 +1,41 @@
+{
+  "commands" : [
+    {
+      "script" : "script.cocoascript",
+      "handler" : "onApplyFill",
+      "name" : "ApplyFill",
+      "identifier" : "ApplyFill"
+    },
+    {
+      "script" : "script.cocoascript",
+      "handler" : "onCreateFillRect",
+      "name" : "CreateFillRect",
+      "identifier" : "CreateFillRect"
+    },
+    {
+      "script" : "script.cocoascript",
+      "handler" : "onDrawText",
+      "name" : "DrawText",
+      "identifier" : "DrawText"
+    },
+    {
+      "script" : "script.cocoascript",
+      "handler" : "onApplyText",
+      "name" : "ApplyText",
+      "identifier" : "ApplyText"
+    },
+    {
+      "script" : "script.cocoascript",
+      "handler" : "onDbg",
+      "name" : "Dbg",
+      "identifier" : "Dbg"
+    },
+  ],
+  "author" : "-",
+  "homepage": "-",
+  "identifier" : "br.com.misoftware.7ee74bdc-1af8-4b23-bfc8-f051f8c64992",
+  "version" : "1.0",
+  "description" : "-",
+  "authorEmail" : "-",
+  "name" : "PluginBundle"
+}

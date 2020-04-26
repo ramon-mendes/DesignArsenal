@@ -1,0 +1,156 @@
+body
+{
+	margin: 0;
+	background: url(../img/grain.png);
+}
+
+header
+{
+	flow: horizontal;
+	height: 30px;
+	padding: 8px 13px;
+	background: url(../img/bg-site2.png);
+	color: white;
+	font-size: 20px;
+	horizontal-align: center;
+	border-spacing: 15px;
+	text-wrap: none;
+}
+header icon { size: 25px; margin-top: 2px; }
+
+main { size: *; flow: horizontal; }
+
+#col-cats
+{
+	flow: vertical;
+	size: 150px *;
+	border-right: 2px solid #B0D8EC;
+	padding: 3px;
+}
+
+#col-cats #btn-add-cat { margin-top: *; width: *; }
+
+#list-cats
+{
+	flow: vertical;
+	border-spacing: 3px;
+}
+
+#list-cats cat
+{
+	flow: horizontal;
+	display: block;
+	padding: 0px 6px;
+	padding-bottom: 1px;
+	transition: padding(cubic-out, 0.2s);
+
+	background: #e8e8e8;
+	color: #8e8e8e;
+	border: solid 1px #CED4D8;
+	border-radius: 2px;
+	cursor: pointer;
+	transition: padding(quad-out, 150ms)
+}
+#list-cats cat:current
+{
+	padding: 5px 6px;
+	
+	color: #3a87ad;
+	background: @TAG_COLOR;
+	border: solid 1px @TAG_COLOR_BORDER;
+}
+
+
+#col-links
+{
+	size: *;
+}
+
+#addbar
+{
+	flow: horizontal;
+	vertical-align: middle;
+	padding: 2px;
+	border-bottom: solid 1px #CED4D8;
+	text-wrap: none;
+}
+#addbar span
+{
+	margin-left: *;
+	margin-right: 6px;
+	visibility: hidden;
+	color: #8a8a8a;
+	font-size: 12px;
+}
+#addbar:hover span { visibility: visible; }
+#addbar button { height: 20px; }
+
+#list-cards
+{
+	margin: 10px;
+	flow: row(div, div, div);
+	border-spacing: 10px;
+}
+
+.card
+{
+	flow: vertical;
+	width: *;
+	position: relative;
+
+	background: white;
+	cursor: pointer;
+}
+.card:only-child { width: 200px; }
+
+@media width < 500px
+{
+	//.card { border: solid 3px; }
+}
+
+.card .top { padding: 5px 10px; }
+.card h2
+{
+	flow: horizontal;
+	vertical-align: middle;
+	margin: 0;
+	margin-bottom: 3px;
+	
+	font-weight: normal;
+	width: *;
+}
+
+.card .btn-rmvme
+{
+	visibility: none;
+	position: absolute;
+	right: 8px;
+	top: 8px;
+	padding: 4px;
+	z-index: 99;
+}
+
+.card img.thumb
+{
+	border: solid 1px #D9EDF7;
+	display: block;
+	margin-top: *;
+	width: *;
+}
+.card img.thumb:busy { foreground: url(../img/loaders/loading.png) center no-repeat; height: 150px; }
+
+
+.card:hover { background: #f5f5f5; }
+.card:hover .btn-rmvme { visibility: visible; }
+.card:hover img { outline: solid 8px -8px rgba(176, 216, 236, 0.8); }
+
+[flash]
+{
+	background: blue;
+	transition: background-color(none, linear, 1s);
+}
+
+#list-list
+{
+	flow: vertical;
+}

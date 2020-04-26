@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="90px" height="90px" viewBox="0 0 90 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.3 (16044) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_sock</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="ic_sock" sketch:type="MSArtboardGroup">
+            <g id="Rectangle-43-+-Rectangle-42" sketch:type="MSLayerGroup" transform="translate(47.661098, 51.086368) rotate(-340.000000) translate(-47.661098, -51.086368) translate(22.161098, 17.086368)">
+                <path d="M35.9801759,32.1568025 L35.9801759,12.8875718 L15.9792133,12.8875718 C13.2207604,12.8875718 10.9801759,15.1277849 10.9801759,17.8912279 L10.9801759,42.3857019 C10.9801759,49.288587 16.5766165,55.1114294 23.4801759,55.3875718 L30.9811384,55.6876103 C31.0543999,55.6905407 31.127296,55.6918789 31.1997946,55.6916556 L38.4371234,56.6273109 C45.3705731,57.5236801 50.9801759,52.587775 50.9801759,45.6044235 L50.9801759,42.8896168 C50.9801759,37.9103496 46.9741429,33.4253372 42.0324508,32.8551419 L35.9801759,32.1568025 Z" id="Rectangle-43" fill="#DE4424" sketch:type="MSShapeGroup"></path>
+                <path d="M18.2669711,56.2912619 C18.6227117,55.0106912 18.8128416,53.6611942 18.8128416,52.2672899 C18.8128416,43.9830187 12.0971128,37.2672899 3.81284156,37.2672899 L6.89563018,49.4527573" id="Oval-63" fill="#9ECF55" sketch:type="MSShapeGroup"></path>
+                <path d="M18.2669711,56.2912619 C18.6227117,55.0106912 18.8128416,53.6611942 18.8128416,52.2672899 C18.8128416,43.9830187 12.0971128,37.2672899 3.81284156,37.2672899" id="Oval-63-Copy" stroke="#2B2D2B" stroke-width="4" sketch:type="MSShapeGroup"></path>
+                <path d="M5,19.0036561 L5,42.9985678 C5,50.1821439 10.8202983,56.2238576 18,56.5 L24.9288668,56.7664949 L32.4569476,57.7397391 C39.3903972,58.6361083 45,53.7002032 45,46.7168517 L45,44.002045 C45,39.0227779 40.993967,34.5377654 36.0522749,33.9675702 L31,33.3846154 L31,33.3846154 L31,18.9957102 C31,16.2362996 28.7624662,14 26.0023284,14 L9.99767164,14" id="Rectangle-43-Copy" stroke="#2B2D2B" stroke-width="4" sketch:type="MSShapeGroup"></path>
+                <path d="M33.6404367,40.7083594 L28.8923876,40.14391" id="Rectangle-43-Copy-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" sketch:type="MSShapeGroup"></path>
+                <circle id="Oval-40" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="38.7556523" cy="44.2785946" r="1.5"></circle>
+                <rect id="Rectangle-42" fill="#9ECF55" sketch:type="MSShapeGroup" x="5.98017587" y="0.887571761" width="37.0198241" height="16.7704081" rx="5"></rect>
+                <rect id="Rectangle-42-Copy" stroke="#2B2D2B" stroke-width="4" sketch:type="MSShapeGroup" x="2.84217094e-14" y="2" width="36" height="16" rx="5"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

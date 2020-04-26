@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="30px" height="26px" viewBox="0 0 30 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.7.2 (28276) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons" transform="translate(-94.000000, -958.000000)" fill="#44484D">
+            <path d="M96,969 L122,969 L122,966 L96,966 L96,969 Z M120,980.948692 C120,981.504024 119.552,981.987928 119,981.987928 L99,981.987928 C98.448,981.987928 98,981.504024 98,980.948692 L98,970.921529 L120,970.921529 L120,980.948692 Z M118.014,964.006036 L113.559,958 L111.969,959.222334 L115,964.006036 L103,964.006036 L106.063,959.269618 L104.475,958.047284 L100.042,964 L94,964 L94,970.921529 L96,970.921529 L96,980.948692 C96,982.612676 97.346,984 99,984 L119,984 C120.654,984 122,982.612676 122,980.948692 L122,970.921529 L124,970.921529 L123.993,964.006036 L118.014,964.006036 Z M101,980 L103,980 L103,973 L101,973 L101,980 Z M115,980 L117,980 L117,973 L115,973 L115,980 Z M108,980 L110,980 L110,973 L108,973 L108,980 Z" id="Icon"></path>
+        </g>
+    </g>
+</svg>

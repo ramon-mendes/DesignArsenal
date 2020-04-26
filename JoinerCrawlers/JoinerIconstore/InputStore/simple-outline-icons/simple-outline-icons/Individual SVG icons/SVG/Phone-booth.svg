@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="52px" height="64px"
+	 viewBox="0 0 52 64" enable-background="new 0 0 52 64" xml:space="preserve">
+<title>Phone-booth</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" sketch:type="MSPage">
+	<g id="Phone-booth" transform="translate(1.000000, 1.000000)" sketch:type="MSLayerGroup">
+		
+			<rect id="Rectangle-path_2_" y="56" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" stroke-linejoin="round" width="6" height="6">
+		</rect>
+		
+			<rect id="Rectangle-path_3_" x="44" y="56" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" stroke-linejoin="round" width="6" height="6">
+		</rect>
+		<path id="Shape" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" stroke-linejoin="round" d="M6,11
+			C6,2.4,16.4,0,25,0l0,0c8.6,0,19,2.4,19,11"/>
+		<path id="Shape_1_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" stroke-linejoin="round" d="M44,16
+			v46H6V16"/>
+		
+			<rect id="Rectangle-path" x="12" y="23" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" stroke-linejoin="round" width="26" height="39">
+		</rect>
+		<path id="Shape_2_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" stroke-linejoin="round" d="M25,23
+			v39"/>
+		<path id="Shape_3_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" stroke-linejoin="round" d="M12,33
+			h27"/>
+		<path id="Shape_4_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" stroke-linejoin="round" d="M12,43
+			h27"/>
+		<path id="Shape_5_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" stroke-linejoin="round" d="M12,53
+			h27"/>
+		
+			<rect id="Rectangle-path_1_" x="4" y="12" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" stroke-linejoin="round" width="42" height="4">
+		</rect>
+	</g>
+</g>
+</svg>

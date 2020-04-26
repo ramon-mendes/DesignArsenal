@@ -1,0 +1,109 @@
+﻿namespace Ion
+{
+	var _status;
+
+	function Setup()
+	{
+		Utils.installLinkHandler(self#overlay-expired);
+		self#btn-ionlicense.onClick = ::ActivateDialog()
+
+		RefreshStatus();
+	}
+
+	function ActivateDialog()
+	{
+	 	self#mi-license.closePopup();
+		view.dialog({
+			url: self.url("activate.html"),
+			alignment: 5
+		});
+	}
+
+	function ShowAsTrial(remaining)
+	{
+		self#mi-gopro.onClick = ::Sciter.launch(Consts.SITE_URL);
+		self#mi-license.onClick = ::ActivateDialog();
+		if(remaining == 1)
+			self#mi-gopro.$(em).text = "(" + remaining + " day remaining)";
+		else
+			self#mi-gopro.$(em).text = "(" + remaining + " days remaining)";
+	}
+
+	function ShowAsActive()
+	{
+		self#mi-license.hide();
+		self#mi-gopro.hide();
+	}
+
+	function RefreshStatus()
+	{
+		self#frames-tabs.state.disabled = true;
+
+		var expando = view.Host_IonExpando();
+		_status = expando.status;
+
+		if(_status == "ACTIVE")
+		{
+			self#frames-tabs.state.disabled = false;
+
+			if(expando.is_trial)
+				ShowAsTrial(expando.rd);
+			else
+				ShowAsActive();
+
+			StartUpdateChecker();
+		}
+		else if(_status == "INACTIVE")
+		{
+			self#overlay-activating.show();
+
+			expando.activate(function(res, msg) {
+				if(res)
+				{
+					self#overlay-activating.hide();
+					RefreshStatus();
+				} else {
+					view.msgbox(#alert, "Could not start your trial.\n\n" + msg, Consts.APPNAME);
+					view.Host_Quit();
+				}
+			});
+		}
+		else if(_status == "EXPIRED")
+		{
+			self#overlay-expired[0].text = expando.is_trial ? 
+				"Your trial period has expired":
+				"Your license period has expired";
+			self#overlay-expired.show();
+		}
+		else
+		{
+			view.Host_Quit();
+			return;
+		}
+	}
+
+	function StartUpdateChecker()
+	{
+		var check = function() {
+			view.Host_IsUpdateAvailable(function(version) {
+				self#info-update.$(span).text = "version " + version;
+				self#info-update.show();
+				self#info-update.onClick = ::Sciter.launch("http://designarsenal.co/#update");
+			});
+			return true;
+		};
+		check();
+
+		self.timer(1000*60*10, check, true);
+	}
+
+	function View_ShowActivatingTrialOverlay()
+	{
+	}
+
+	function View_ShowExpiredOverlay(is_trial)
+	{
+		self#overlay-expired.$(h1).text = is_trial ? "Your trial has expired." : "Your license has expired.";
+		self#overlay-expired.show();
+	}
+}

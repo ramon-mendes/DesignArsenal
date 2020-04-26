@@ -1,0 +1,122 @@
+function ShowPicker(el, cbk)
+{
+	View.start_clr = el.style#background-color;
+	View.cbk_clr = cbk;
+
+	var el_frm = self#clr-popup;
+	el_frm.clear();
+	el_frm.load(self.url("lib_colorpicker/colorpicker.html"));
+
+	el.popup(el_frm, Utils.popupAttachment());
+
+
+	/*var (x1,y1,x2,y2) = el.box(#rect, #margin, #screen);
+	view.window({
+		type: View.POPUP_WINDOW,
+		url: self.url("lib_colorpicker/colorpicker.html"),
+		x: x1,
+		y: y2 + 2,
+		alignment: 7
+	});*/
+}
+
+namespace Previewer
+{
+	var _el_entry;
+	var _data;
+	var _shown = false;
+
+	function Setup()
+	{
+		self#btn-prevclose.onClick = Hide;
+		self#btn-prevreveal.onClick = ::view.Host_RevealFile(_data.fspath);
+		self#pick-bg-clr.onClick = function() {
+			ShowPicker(this, function(clr) {
+				self#pick-bg-clr.style#background-color = clr;
+				self#previmg.style#background-color = clr;
+			});
+		};
+
+		self#ui-scale.onValueChanged = function() {
+			self#ui-scale-val.value = self#ui-scale.value + "%";
+			var factor = self#ui-scale.value/100.0;
+			var sw = Math.ceil(self#previmg.style.backgroundImageWidth * factor);
+			var sh = Math.ceil(self#previmg.style.backgroundImageHeight * factor);
+			self#previmg.style#background-size = String.$({sw}px {sh}px);
+			_data.scale = true;
+			_data.scale_sw = sw;
+			_data.scale_sh = sh;
+		};
+
+		self.on("~keydown", function(evt) {// ~keydown important! prevents UISearchBehavior from running
+			if(!_shown)
+				return;
+			
+			if(evt.keyCode == Event.VK_ESCAPE)
+			{
+				Hide();
+				return true;
+			}
+			else if(evt.keyCode == Event.VK_LEFT)
+			{
+				if(_el_entry.prior)
+					Show(_el_entry.prior);
+				return true;
+			}
+			else if(evt.keyCode == Event.VK_RIGHT)
+			{
+				if(_el_entry.next)
+					Show(_el_entry.next);
+				return true;
+			}
+		});
+
+		self#previmg.on("mousedown", function(evt) {
+			if(evt.propButton)
+				ListUI.ShowMenuPattern(_data, evt);
+		});
+
+		/* NO DND - MAKES NO SENSE
+		self#previmg.on("mousedragrequest", function() {
+			if(Utils.IsWindows)
+			{
+				var path = _data.path;
+				if(path %~ '.' == "svg")
+				{
+					// convert to image?
+				}
+				view.performDrag(self#icon-dnd, { file: _data.path }, #any);
+			}
+		});*/
+	}
+
+	function Show(el_entry)
+	{
+		_el_entry = el_entry;
+		_data = el_entry.data;
+		_data.scale = false;
+
+		self#previmg.style#background-image = "url(" + URL.encode(_data.url) + ")";
+		self#previmg.update();
+
+		self#prevtitle.$(h1).text = _data.filename;
+		self#prevtitle.$(h2).text = "";
+		if(_data.kind == EEntryKind.PAT_IMAGE)
+			self#prevtitle.$(h2).text = " - from file " + _data.patfilename;
+
+		self#ui-scale.value = 100;
+		self#ui-scale-val.value = "100%";
+		self#previmg.style#background-size = undefined;
+
+		self#previewer.show();
+		self#main.hide();
+		_shown = true;
+	}
+
+	function Hide()
+	{
+		self#previewer.hide();
+		self#main.show();
+		_shown = false;
+	}
+}

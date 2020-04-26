@@ -1,0 +1,29 @@
+﻿<!-- OmniView:on -->
+<html>
+<head>
+	<style>
+	</style>
+
+	<script type="text/tiscript">
+		view.request({
+			url: "https://api.unsplash.com/photos/curated?client_id=45b976c7385afd71181539a4edc797f6157f1f15ac542c7026b46bc6666ab623",
+			success: function(data,status) {
+				log(data);
+				//console.show(data);
+			}
+		});
+	</script>
+</head>
+
+<body>
+	<header>
+		<icon .icon-picture />MIT licensed illustrations by Katerina Limpitsouni
+	</header>
+
+	<div #area-search>
+		<div #ui-insta-search></div>
+	</div>
+
+	<div #list></div>
+</body>
+</html>

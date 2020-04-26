@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="46px" height="65px" viewBox="0 0 46 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.3 (7891) - http://www.bohemiancoding.com/sketch -->
+    <title>Person-sideway</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Person-sideway" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)" stroke="#6B6C6E">
+            <path d="M14.9,62 C14.9,52.9 12.6,51.3 8.9,50.7 C4.1,49.9 7.3,39.5 4.9,38.5 C2.3,37.3 -0.3,39.5 -3.73034936e-14,37.3 C0.8,32.4 6,24.6 3,20.1 C3,8.6 12.3,0.1 23.5,0.1 C34.6,0.1 44,8.7 44,20.2 C44,26.1 42.5,36.3 37.9,41.1 C33.6,45.6 34.1,56.7 34.1,59 L14.9,62 L14.9,62 Z" id="Shape" stroke-width="2" sketch:type="MSShapeGroup"></path>
+            <ellipse id="Oval" stroke-width="2.00009295" sketch:type="MSShapeGroup" transform="translate(11.816937, 23.690212) rotate(269.447618) translate(-11.816937, -23.690212) " cx="11.7169328" cy="23.5902076" rx="1.9000883" ry="2.90013478"></ellipse>
+        </g>
+    </g>
+</svg>

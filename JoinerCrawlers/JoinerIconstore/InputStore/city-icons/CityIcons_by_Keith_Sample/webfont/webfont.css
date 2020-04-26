@@ -1,0 +1,487 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "city-icons";
+  src:url("fonts/city-icons.eot");
+  src:url("fonts/city-icons.eot?#iefix") format("embedded-opentype"),
+    url("fonts/city-icons.woff") format("woff"),
+    url("fonts/city-icons.ttf") format("truetype"),
+    url("fonts/city-icons.svg#city-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "city-icons" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  display: inline-block;
+  text-decoration: none;
+  width: 1em;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "city-icons" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  display: inline-block;
+  text-decoration: none;
+  width: 1em;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-airplane:before {
+  content: "a";
+}
+.icon-alarmclock:before {
+  content: "b";
+}
+.icon-apple:before {
+  content: "c";
+}
+.icon-arrow:before {
+  content: "d";
+}
+.icon-backpack:before {
+  content: "e";
+}
+.icon-bagel:before {
+  content: "f";
+}
+.icon-balloons:before {
+  content: "g";
+}
+.icon-banana:before {
+  content: "h";
+}
+.icon-barbell:before {
+  content: "i";
+}
+.icon-baseball:before {
+  content: "j";
+}
+.icon-basket:before {
+  content: "k";
+}
+.icon-basketball:before {
+  content: "l";
+}
+.icon-bat:before {
+  content: "m";
+}
+.icon-beer:before {
+  content: "n";
+}
+.icon-beerbottle:before {
+  content: "o";
+}
+.icon-bicycle:before {
+  content: "p";
+}
+.icon-book:before {
+  content: "q";
+}
+.icon-bowtie:before {
+  content: "r";
+}
+.icon-briefcase:before {
+  content: "s";
+}
+.icon-brushandeasle:before {
+  content: "t";
+}
+.icon-burger:before {
+  content: "u";
+}
+.icon-bus:before {
+  content: "v";
+}
+.icon-cake:before {
+  content: "w";
+}
+.icon-calendar:before {
+  content: "x";
+}
+.icon-camera:before {
+  content: "y";
+}
+.icon-camera2:before {
+  content: "z";
+}
+.icon-candrink:before {
+  content: "A";
+}
+.icon-card:before {
+  content: "B";
+}
+.icon-carriage:before {
+  content: "C";
+}
+.icon-cart:before {
+  content: "D";
+}
+.icon-chair:before {
+  content: "E";
+}
+.icon-chat:before {
+  content: "F";
+}
+.icon-clapperboard:before {
+  content: "G";
+}
+.icon-cntower:before {
+  content: "H";
+}
+.icon-coffeecup:before {
+  content: "I";
+}
+.icon-comb:before {
+  content: "J";
+}
+.icon-crane:before {
+  content: "K";
+}
+.icon-dine:before {
+  content: "L";
+}
+.icon-donotenter:before {
+  content: "M";
+}
+.icon-drama:before {
+  content: "N";
+}
+.icon-drums:before {
+  content: "O";
+}
+.icon-duffel:before {
+  content: "P";
+}
+.icon-earbuds:before {
+  content: "Q";
+}
+.icon-eggs:before {
+  content: "R";
+}
+.icon-elevator:before {
+  content: "S";
+}
+.icon-envelope:before {
+  content: "T";
+}
+.icon-ferriswheel:before {
+  content: "U";
+}
+.icon-film:before {
+  content: "V";
+}
+.icon-flags:before {
+  content: "W";
+}
+.icon-football:before {
+  content: "X";
+}
+.icon-footprints:before {
+  content: "Y";
+}
+.icon-golfclub:before {
+  content: "Z";
+}
+.icon-golftee:before {
+  content: "0";
+}
+.icon-graduationcap:before {
+  content: "1";
+}
+.icon-grapes:before {
+  content: "2";
+}
+.icon-grill:before {
+  content: "3";
+}
+.icon-groceries:before {
+  content: "4";
+}
+.icon-guitar:before {
+  content: "5";
+}
+.icon-hangtag:before {
+  content: "6";
+}
+.icon-hatscarf:before {
+  content: "7";
+}
+.icon-headphones:before {
+  content: "8";
+}
+.icon-helmet:before {
+  content: "9";
+}
+.icon-hockeystick:before {
+  content: "!";
+}
+.icon-hospital:before {
+  content: "\"";
+}
+.icon-hotbeverage:before {
+  content: "#";
+}
+.icon-hotbeverage2:before {
+  content: "$";
+}
+.icon-info:before {
+  content: "%";
+}
+.icon-kayak:before {
+  content: "&";
+}
+.icon-keyboard:before {
+  content: "'";
+}
+.icon-laptop:before {
+  content: "(";
+}
+.icon-leaves:before {
+  content: ")";
+}
+.icon-library:before {
+  content: "*";
+}
+.icon-locationmarker:before {
+  content: "+";
+}
+.icon-map:before {
+  content: ",";
+}
+.icon-mapleleaf:before {
+  content: "-";
+}
+.icon-martini:before {
+  content: ".";
+}
+.icon-medal:before {
+  content: "/";
+}
+.icon-mic:before {
+  content: ":";
+}
+.icon-mittens:before {
+  content: ";";
+}
+.icon-moon:before {
+  content: "<";
+}
+.icon-note1:before {
+  content: "=";
+}
+.icon-note2:before {
+  content: ">";
+}
+.icon-pailshovel:before {
+  content: "?";
+}
+.icon-paperclamp:before {
+  content: "@";
+}
+.icon-paperclip:before {
+  content: "[";
+}
+.icon-parking:before {
+  content: "]";
+}
+.icon-pencils:before {
+  content: "^";
+}
+.icon-picnicbench:before {
+  content: "_";
+}
+.icon-piechart:before {
+  content: "`";
+}
+.icon-pizza:before {
+  content: "{";
+}
+.icon-pokerchip:before {
+  content: "|";
+}
+.icon-puck:before {
+  content: "}";
+}
+.icon-purse:before {
+  content: "~";
+}
+.icon-rainy:before {
+  content: "\\";
+}
+.icon-record:before {
+  content: "\e000";
+}
+.icon-recordplayer:before {
+  content: "\e001";
+}
+.icon-recycle:before {
+  content: "\e002";
+}
+.icon-rollerblade:before {
+  content: "\e003";
+}
+.icon-rollercase:before {
+  content: "\e004";
+}
+.icon-runner:before {
+  content: "\e005";
+}
+.icon-sailboat:before {
+  content: "\e006";
+}
+.icon-scissors:before {
+  content: "\e007";
+}
+.icon-search:before {
+  content: "\e008";
+}
+.icon-shark:before {
+  content: "\e009";
+}
+.icon-shoppingbag:before {
+  content: "\e00a";
+}
+.icon-skate:before {
+  content: "\e00b";
+}
+.icon-skateboard:before {
+  content: "\e00c";
+}
+.icon-skiing:before {
+  content: "\e00d";
+}
+.icon-smartphone:before {
+  content: "\e00e";
+}
+.icon-snooze:before {
+  content: "\e00f";
+}
+.icon-snowflake:before {
+  content: "\e010";
+}
+.icon-soccerball:before {
+  content: "\e011";
+}
+.icon-spa:before {
+  content: "\e012";
+}
+.icon-speak:before {
+  content: "\e013";
+}
+.icon-speaker:before {
+  content: "\e014";
+}
+.icon-stairs:before {
+  content: "\e015";
+}
+.icon-stilleto:before {
+  content: "\e016";
+}
+.icon-streetmeat:before {
+  content: "\e017";
+}
+.icon-sun:before {
+  content: "\e018";
+}
+.icon-sushi:before {
+  content: "\e019";
+}
+.icon-tablet:before {
+  content: "\e01a";
+}
+.icon-tennisnet:before {
+  content: "\e01b";
+}
+.icon-tennisracket:before {
+  content: "\e01c";
+}
+.icon-tent:before {
+  content: "\e01d";
+}
+.icon-thermos:before {
+  content: "\e01e";
+}
+.icon-thought:before {
+  content: "\e01f";
+}
+.icon-thumbtack:before {
+  content: "\e020";
+}
+.icon-tickets:before {
+  content: "\e021";
+}
+.icon-timer:before {
+  content: "\e022";
+}
+.icon-tire:before {
+  content: "\e023";
+}
+.icon-toque:before {
+  content: "\e024";
+}
+.icon-tracks:before {
+  content: "\e025";
+}
+.icon-trafficlight:before {
+  content: "\e026";
+}
+.icon-train:before {
+  content: "\e027";
+}
+.icon-transitpass:before {
+  content: "\e028";
+}
+.icon-tree:before {
+  content: "\e029";
+}
+.icon-trophy:before {
+  content: "\e02a";
+}
+.icon-twitter:before {
+  content: "\e02b";
+}
+.icon-umbrella:before {
+  content: "\e02c";
+}
+.icon-vase:before {
+  content: "\e02d";
+}
+.icon-waterbottle:before {
+  content: "\e02e";
+}
+.icon-waterfall:before {
+  content: "\e02f";
+}
+.icon-wheelchair:before {
+  content: "\e030";
+}
+.icon-wifi:before {
+  content: "\e031";
+}
+.icon-wine:before {
+  content: "\e032";
+}
+.icon-wristwatch:before {
+  content: "\e033";
+}
+.icon-zoo:before {
+  content: "\e034";
+}

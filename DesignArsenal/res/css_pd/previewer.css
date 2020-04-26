@@ -1,0 +1,56 @@
+﻿#previewer
+{
+	visibility: none;
+	size: *;
+	flow: vertical;
+}
+
+#prevtitle
+{
+	flow: horizontal;
+	border-spacing: 5px;
+	padding: 5px 12px;
+	height: 30px;
+	background: url(../img/grain.png) #475468;
+	//font-family: Hack;
+	text-wrap: none;
+}
+#prevtitle h1 { color: white; margin: * 0; font-size: 18px; font-weight: normal; }
+#prevtitle h2 { color: silver; margin: * 0; font-size: 14px; font-weight: normal; }
+#prevtitle icon { margin: * 0; fill: white; cursor: pointer; opacity: 0.7; }
+#prevtitle icon:hover { opacity: 1; }
+#prevtitle #btn-prevclose { size: 20px; margin-left: *; }
+
+#prevui
+{
+	flow: horizontal;
+	vertical-align: middle;
+	horizontal-align: right;
+	border-spacing: 5px;
+	height: 30px;
+	padding: 5px 12px;
+	background: url(../img/grain.png) white;
+}
+
+#prevui #ui-scale { margin-top: 3px; }
+#prevui #ui-scale-val { width: 60px; }
+
+#clr-popup
+{
+	visibility: none;
+	size: max-content;
+}
+#pick-bg-clr
+{
+	display: block;
+	size: 22px;
+	background: #fff;
+	border-radius: 50%;
+	border: solid 1px gray;
+	cursor: pointer;
+}
+
+#previmg
+{
+	size: *;
+}

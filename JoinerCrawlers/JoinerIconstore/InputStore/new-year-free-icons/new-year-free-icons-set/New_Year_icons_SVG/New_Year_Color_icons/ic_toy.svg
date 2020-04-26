@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="90px" height="90px" viewBox="0 0 90 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.3 (16044) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_toy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="ic_toy" sketch:type="MSArtboardGroup">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(18.000000, 18.000000)">
+                <ellipse id="Oval-3" fill="#C358B7" sketch:type="MSShapeGroup" cx="34.6231884" cy="30.761194" rx="24.3768116" ry="24.238806"></ellipse>
+                <path d="M4.55443154,6.86654685 L9.30946845,2.13842987 L14.8377737,7.168029 L9.67607758,11.9049358 L4.55443154,6.86654685 L4.55443154,6.86654685 Z" id="Rectangle-1" fill="#87B8C0" sketch:type="MSShapeGroup"></path>
+                <ellipse id="Oval-3-Copy" stroke="#2B2D2B" stroke-width="4" sketch:type="MSShapeGroup" cx="28.1594203" cy="28.8358209" rx="25.6376812" ry="25.4925373"></ellipse>
+                <path d="M44.5507246,28.8358209 C44.5507246,22.5356683 40.9557505,17.0704133 35.6942714,14.3576073" id="Oval-3-Copy-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" sketch:type="MSShapeGroup"></path>
+                <path d="M39.7926194,40.3178949 C40.8429442,39.2658095 41.7499108,38.0720285 42.4819577,36.7679347" id="Oval-3-Copy-3" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" sketch:type="MSShapeGroup"></path>
+                <path d="M7.58089892,15.2211709 L2.34434002,10.014258 C1.98490845,9.6568613 1.95951019,9.10266123 2.28702103,8.77700455 L8.82697714,2.2740734 C9.1547523,1.94815389 9.71838796,1.98017868 10.071275,2.3310679 L15.3078339,7.53798081" id="Rectangle-1" stroke="#2B2D2B" stroke-width="4" sketch:type="MSShapeGroup"></path>
+                <path d="M7.33750142,2.47290015 C6.80854269,1.03014432 5.41656219,0 3.7826087,0 C1.6935316,0 0,1.68394393 0,3.76119403 C0,5.28632851 0.912918498,6.59944659 2.22503358,7.1897347 C2.7000338,7.40342555 3.22734956,7.52238806 3.7826087,7.52238806" id="Oval-5" stroke="#2B2D2B" stroke-width="4" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

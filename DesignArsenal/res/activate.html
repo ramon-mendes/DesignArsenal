@@ -1,0 +1,116 @@
+<!-- OmniView:on -->
+<html>
+<head>
+	<title>Design Arsenal</title>
+	
+	<style>
+		@import url(css/global.css);
+
+		html { font-size: 14px; size: max-content;}
+		body { margin: 0; background: #f7f7f7; size: max-content; }
+
+		@media os-vendor=="Apple"
+		{
+			html { font-size: 13px; }
+		}
+
+		main { padding: 20px; }
+		h1 { font-size: 22px; color: #0b4f9a; margin: 0; }
+
+		dl { flow: row(dt, dd); width: *; border-spacing: 3px; }
+		dt { width: 90px; }
+		dd { width: *; padding: 0; }
+
+		input.highlight { outline: solid 1px red; }
+
+		hflow { vertical-align: middle; }
+		.loader { visibility: none; margin-left: 10px; }
+	</style>
+
+	<script type="text/tiscript">
+		include "tis/consts.tis";
+
+		// Window SIZE here
+		if(!View.resized)
+		{
+			view.windowResizable = false;
+			view.windowMinimizable = false;
+			view.windowMaximizable = false;
+		}
+
+		self#name.state.focus = true;
+
+		self#btn-submit.on("click", function() {
+			if(!self#name.value)
+			{
+				self#name.@.addClass("highlight");
+				self#name.state.focus = true;
+				return;
+			}
+			if(!self#email.value)
+			{
+				self#email.@.addClass("highlight");
+				self#email.state.focus = true;
+				return;
+			}
+			if(!self#key.value)
+			{
+				self#key.@.addClass("highlight");
+				self#key.state.focus = true;
+				return;
+			}
+
+			self#name.@.removeClass("highlight");
+			self#email.@.removeClass("highlight");
+			self#key.@.removeClass("highlight");
+			self.state.disabled = true;
+
+			$(.loader).show();
+
+			self.post(function() {
+				var expando = view.parent.Host_IonExpando();
+				expando.activate(function(res) {
+					$(.loader).hide();
+					if(!res)
+						view.msgbox(#information, "Could not register " + Consts.APPNAME, Consts.APPNAME);
+					else
+					{
+						view.msgbox(#information, Consts.APPNAME + " registered with success!\n\nWe will restart the app for you.", Consts.APPNAME);
+						view.parent.Host_IonRestart();
+					}
+					view.close();
+				}, self#name.value, self#email.value, self#key.value);
+			});
+		});
+
+        self.on("~keydown", "input", function(evt) {
+            if(evt.keyCode == Event.VK_RETURN)
+	        {
+                $(button).sendEvent("click");
+                return true;
+            }
+		});
+	</script>
+</head>
+
+<body>
+	<img src="img/activate.png" />
+
+	<main>
+		<h1>Enter your PRO license</h1>
+		<dl>
+			<dt>Name:</dt>
+			<dd><input #name /></dd>
+			<dt>E-mail:</dt>
+			<dd><input #email /></dd>
+			<dt>License key:</dt>
+			<dd><input #key /></dd>
+		</dl>
+
+		<hflow>
+			<button .std-btn #btn-submit>Submit</button>
+			<img src="img/loaders/loading.png" .loader />
+		</hflow>
+	</main>
+</body>
+</html>

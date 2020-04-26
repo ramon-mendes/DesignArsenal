@@ -1,0 +1,20 @@
+NoGIT/
+/ReleaseInfo/*.exe
+/ReleaseInfo/*.zip
+/ReleaseInfo/*/
+!/ReleaseInfo/ConfuserEx_bin/
+/BefontCrawler/Output
+ArchiveResource.cs
+/JoinerIconstore/InputIconStore
+/JoinerIconstore/InputPacks
+
+# Garbage
+.DS_Store
+**/bin/Debug
+**/bin/Release
+obj/
+packages/
+.vs/
+*.sdf
+*.db
+*.userprefs

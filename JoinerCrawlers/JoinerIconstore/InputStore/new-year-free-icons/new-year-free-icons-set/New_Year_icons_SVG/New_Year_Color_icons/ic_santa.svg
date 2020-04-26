@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="90px" height="90px" viewBox="0 0 90 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.3 (16044) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_santa</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="ic_santa" sketch:type="MSArtboardGroup">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(19.000000, 7.000000)">
+                <path d="M24.2700871,47.8462935 C17.8524647,46.0565059 11,43 11,43 L11,59.5 C11,68.614702 18.3868732,76 27.499043,76 L35.500957,76 C44.6226693,76 52,68.6126984 52,59.5 L52,43 C52,43 44.3732719,46.4188313 37.6552129,48.1421914 C36.7401124,51.5430332 34.1063496,54 31,54 C27.8042617,54 25.1086999,51.3995947 24.2700871,47.8462935 Z" id="Rectangle-15-Copy" fill="#C6E4EC" sketch:type="MSShapeGroup"></path>
+                <circle id="Oval-36" stroke="#2B2D2B" stroke-width="4" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="50.5" cy="37.5" r="6.5"></circle>
+                <path d="M9.5,35 L41.4997559,33.3158023 C44.8135992,33.1413895 47.3660092,35.6798165 47.2004882,38.990237 L47.2995118,37.009763 C47.134096,40.3180795 44.7668048,44.4866634 41.9584544,46.2553732 C41.9584544,46.2553732 34.5840255,51.6177511 27.5,53 C24.8481037,53.5174432 16.9836496,53.169852 16.9836496,53.169852 C13.6789712,53.0760453 10.7770545,50.3246545 10.5015637,47.0187646 L9.5,35 Z" id="Rectangle-16" fill="#EBCCB8" sketch:type="MSShapeGroup"></path>
+                <path d="M26,59 C37.5979797,59 47,49.5979797 47,38 C47,26.4020203 37.5979797,26 26,26 C14.4020203,26 5,26.4020203 5,38 C5,49.5979797 14.4020203,59 26,59 Z" id="Oval-2" stroke="#2B2D2B" stroke-width="4" sketch:type="MSShapeGroup"></path>
+                <circle id="Oval-25" fill="#2B2D2B" sketch:type="MSShapeGroup" cx="20.5" cy="37.5" r="3.5"></circle>
+                <circle id="Oval-25-Copy" fill="#2B2D2B" sketch:type="MSShapeGroup" cx="31.5" cy="37.5" r="3.5"></circle>
+                <path d="M32,27 C43.045695,27 52,31.045695 52,20 C52,8.954305 43.045695,0 32,0 C20.954305,0 12,8.954305 12,20 C12,31.045695 20.954305,27 32,27 Z" id="Oval-30" fill="#DE3F5D" sketch:type="MSShapeGroup"></path>
+                <path d="M26,30 C37.045695,30 46,34.045695 46,23 C46,11.954305 37.045695,3 26,3 C14.954305,3 6,11.954305 6,23 C6,34.045695 14.954305,30 26,30 Z" id="Oval-30-Copy" stroke="#2B2D2B" stroke-width="4" sketch:type="MSShapeGroup"></path>
+                <path d="M37.5,17 C36.5,15 36.164774,14.9173171 34.9854855,13.6365947" id="Oval-30-Copy-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" sketch:type="MSShapeGroup"></path>
+                <path d="M28,10 C26,9.5 29,10 26.5,9.5" id="Oval-30-Copy-3" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" sketch:type="MSShapeGroup"></path>
+                <rect id="Rectangle-14" stroke="#2B2D2B" stroke-width="4" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="23" width="52" height="12" rx="2"></rect>
+                <path d="M19.3042958,47.0478127 C12.9428752,45.5971168 6,43 6,43 L6,56.5 C6,63.9574835 12.0443112,70 19.5003469,70 L32.4996531,70 C39.9465884,70 46,63.9558441 46,56.5 L46,43 C46,43 39.0691147,45.6055644 32.6935426,47.0548758 C31.8156042,49.9181277 29.1509257,52 26,52 C22.8464839,52 20.180015,49.9147033 19.3042958,47.0478127 Z" id="Rectangle-15-Copy-2" stroke="#2B2D2B" stroke-width="4" fill="#C6E3EB" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

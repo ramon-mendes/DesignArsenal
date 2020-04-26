@@ -1,0 +1,37 @@
+﻿<!-- OmniView:on -->
+<html>
+<head>
+	<style>
+		@import	url(css/global.css);
+		@import	url(css/illustrations.css);
+		@import url(lib_poptip/lib_poptip.css);
+		@import url(lib_menu/menu-chrome.css);
+	</style>
+
+	<script type="text/tiscript">
+		include "lib_settings/settings.tis";
+		include "tis/consts.tis";
+
+		var data = view.Host_IllustrationData();
+
+		for(var i = 0; i < 10; i++)
+		{
+			var item = data[i];
+			var el_div = self#list.$append(<div><label>{item.title}</label></div>);
+			el_div.prepend(item.svg);
+		}
+	</script>
+</head>
+
+<body>
+	<header>
+		<icon .icon-picture />MIT licensed illustrations by Katerina Limpitsouni
+	</header>
+
+	<div #area-search>
+		<div #ui-insta-search></div>
+	</div>
+
+	<div #list></div>
+</body>
+</html>

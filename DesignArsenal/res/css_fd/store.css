@@ -1,0 +1,50 @@
+#store-list
+{
+	size: *;
+	margin-right: -1px;	
+	margin-top: 8px;
+	flow: row(img, img, img);
+	border-spacing: 25px;
+}
+#store-list img
+{
+	cursor: pointer;
+	width: *;
+	max-width: 0.333*;
+}
+@media os-vendor=="Apple"
+{
+	#store-list img { max-height: 276px; }
+}
+@media release
+{
+	#store-list img:busy { foreground: url(../img/loaders/loading.png) center no-repeat; max-height: 138px; }
+}
+
+#store-list div.loading
+{
+	foreground: url(../img/loaders/busy.gif) center no-repeat;
+	foreground-color: rgba(255, 255, 255, 0.84);
+}
+#store-list div:hover
+{
+	background-color: #f5f5f5;
+	cursor: pointer;
+}
+#store-list div img
+{
+	width: *;
+}
+#store-list div h2
+{
+	margin: 10px 0 4px 5px;
+	font-size: 14px;
+	color: #888597;
+}
+#store-list div:hover h2 { color: #635f79; }
+
+#btn-store-load
+{
+	display: block;
+	margin: 20px *;
+}

@@ -1,0 +1,64 @@
+namespace Settings
+{
+	const cNAME = "assetsdrop";
+	const cPATH = System.path(#USER_APPDATA) + "/settings-" + cNAME + ".json";
+	const cVERSION = 0x1;
+	var ns_data;
+	
+	function RestoreWork()
+	{
+		var stream = Stream.openFile(cPATH, "r");
+		
+		if(stream)
+		{
+            stream.encoding = "utf-8";
+			try
+			{
+				ns_data = parseData(stream);
+				//log("RestoreWork data");
+			} catch(e) {
+				//log("RestoreWork failed!");
+			}
+			stream.close();
+		} else {
+			//log("RestoreWork failed to open " + cPATH);
+		}
+		
+		View["settings-" + cNAME] = ns_data = ns_data || {};
+	}
+	
+	function StoreWork()
+	{
+		var stream = Stream.openFile(cPATH, "w+");
+		stream.encoding = "utf-8";
+		assert(stream);
+		
+		ns_data.version = cVERSION;
+		stream.printf("%V\n", ns_data);
+		stream.close();
+		
+		//stdout.printf("%V\n", ns_data);
+		//log("StoreWork");
+		//console.log(ns_data);
+	}
+}
+
+function ResetSettings(force = false)
+{
+	// Create default data
+	if(!Settings.ns_data.config || force)
+		Settings.ns_data.config = {};
+	if(!Settings.ns_data.arr_projects || force)
+		Settings.ns_data.arr_projects = [];
+	if(!Settings.ns_data.arr_collections || force)
+		Settings.ns_data.arr_collections = [];
+	if(!Settings.ns_data.dic_favorites || force)
+		Settings.ns_data.dic_favorites = {};
+}
+
+if(!View["settings-" + Settings.cNAME])
+{
+	Settings.RestoreWork();
+	ResetSettings();
+}
+Settings.ns_data = View["settings-" + Settings.cNAME];

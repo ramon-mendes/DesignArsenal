@@ -1,0 +1,59 @@
+home { style-set: Home; }
+
+@set Home
+{
+	:root
+	{
+		position: relative;
+		display: block;
+		size: *;
+		background: url(../img/grain.png);
+		overflow-y: scroll-indicator;
+	}
+	#home-scroller
+	{
+		size: *;
+		overflow-y: scroll;
+	}
+
+	section
+	{
+		margin: 20px 0;
+		background: white;
+		padding: 15px 20px;
+	}	
+
+	p { margin: 0; margin-bottom: 2px; font-size: 14px; }
+
+	.flow-area
+	{
+		height: *;
+		flow: horizontal-flow;
+		border-spacing: 10px;
+	}
+
+	.area-box
+	{
+		cursor: pointer;
+		flow: horizontal;
+		padding: 1px 4px;
+		display: inline-block;
+		color: gray;
+		border: dashed 1px;
+	}
+	.area-box icon
+	{
+		fill: gray;
+		margin: * 0;
+		size: 30px;
+		margin-left: 15px;
+	}
+
+	#ui-collections em { float: right; }
+
+
+	select
+	{
+		width: 200px;
+	}
+}

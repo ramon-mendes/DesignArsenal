@@ -1,0 +1,225 @@
+namespace UI
+{
+	var _in_search = false;
+
+	function Setup()
+	{
+		self#ui-search.OnClose = function() {
+			_in_search = false;
+			ListUI.ListFiles(DirList._dir_viewing_data.url);
+		};
+		self#ui-search.OnSearch = function(needle) {
+			_in_search = true;
+			ListUI.ListSearch(needle);
+		};
+
+		self.timer(500, function() {
+			var msg = "<u>Right-click</u> to reveal a menu with actions for this pattern.<br>Make sure to have Photoshop or Sketch running to reveal additional options.";
+			if(Utils.IsWindows)
+				msg = "<u>Right-click</u> to reveal a menu with actions for this pattern.<br>Make sure to have Photoshop running to reveal additional options.";
+
+			ShowHint("pdlist", msg, self#list[15], function() {
+				ShowHint("pddirlist", "<u>Right-click</u> to reveal the folder where these patterns are stored. This way you can simply add new files or organize them.", self#dirlist);
+			});
+		});
+	}
+}
+
+namespace ListUI
+{
+	var _dir_listed;
+	var _apps_expando = view.Host_AppsExpando();
+
+	function Setup()
+	{
+		self.timer(1000, function() {
+			psource.CheckChanges_Files(function() {
+				var dir = _dir_listed;
+				_dir_listed = undefined;// to pass same dir check
+				ListFiles(dir);
+			});
+			return true;
+		});
+
+		self#list.on("mousedown", "div.item", function(evt) {
+			if(evt.mainButton)
+				Previewer.Show(this);
+			else if(evt.propButton)
+				ShowMenuPattern(this.data, evt);
+		});
+
+		self#scroller.onScroll = function(evt) {
+			var scroll_bot = self#scroller.box(#height, #content);
+			var scroll_pos = self#scroller.box(#height) + evt.scrollPos;
+			if(scroll_pos >= scroll_bot)
+			{
+				LoadBulk();
+			}
+		};
+
+		self#menu-pattern.on("click", "li", function(evt) {
+			var data = self#menu-pattern.data;
+			var fspath = data.fspath;
+
+			function ConvertToPng()
+			{
+				if(data.issvg || data.scale)
+				{
+					var el_img = self#bg-copier.$(div);
+					var (w, h);
+					el_img.style#background-image = "url(file://" + fspath + ")";
+					if(data.scale)
+					{
+						el_img.style#background-size = String.$({data.scale_sw}px {data.scale_sh}px);
+						el_img.style#width = px(data.scale_sw);
+						el_img.style#height = px(data.scale_sh);
+						w = data.scale_sw;
+						h = data.scale_sh;
+						el_img.update();
+					}
+					else
+					{
+						el_img.style#background-size = undefined;
+						el_img.update();
+						w = el_img.style.backgroundImageWidth;
+						h = el_img.style.backgroundImageHeight;
+						el_img.style#width = px(w);
+						el_img.style#height = px(h);
+					}
+					var img = new Image(w.toInteger(), h.toInteger(), self#bg-copier);
+					var bytes = img.toBytes(#png);
+					fspath = view.Host_TmpPath() + ".png";
+					bytes.save(fspath);
+				}
+			}
+
+			switch(evt.target.@#cmd)
+			{
+				case "psshape":
+					ConvertToPng();
+					_apps_expando["Photoshop.DrawPatternShape"](fspath);
+					break;
+				case "skshape":
+					ConvertToPng();
+					_apps_expando["Sketch.CreateFillRect"](fspath);
+					break;
+				case "skapply":
+					ConvertToPng();
+					_apps_expando["Sketch.ApplyFill"](fspath);
+					break;
+
+				case "copyfile":
+					if(Utils.IsWindows)
+						view.clipboard(#put, { file: fspath });
+					else
+						view.Host_CopyFile(fspath);
+					break;
+
+				case "copypng":
+					ConvertToPng();
+					view.Host_CopyPNG(fspath);
+					break;
+
+				case "copy2000":
+					{
+						ConvertToPng();
+
+						self#bg-2000.$(div).style#background-image = "url(file://" + fspath + ")";
+						self#bg-2000.$(div).update();
+						var img = new Image(2000, 2000, self#bg-2000);
+						view.Host_CopyPNG(img.toBytes(#png));
+					}
+					break;
+
+				case "reveal":
+					view.Host_RevealFile(fspath);
+					break;
+
+				case "delete":
+					view.Host_DeleteFile(fspath);
+					break;
+			}
+		});
+	}
+
+	function ShowMenuPattern(data, evt)
+	{
+		self#menu-area-photoshop.@.toggleClass("show", _apps_expando.IsAppRunning(EAppExternal.PHOTOSHOP));
+		if(Utils.IsOSX)
+			self#menu-area-sketch.@.toggleClass("show", _apps_expando.IsAppRunning(EAppExternal.SKETCH));
+
+		var el_caption = self#menu-pattern.$(.show caption);
+		if(el_caption)
+			el_caption.style#border-top = "none";
+		$(hr).@.toggleClass("show", el_caption);
+
+		self#menu-pattern.data = data;
+		self.popup(self#menu-pattern, evt.xView, evt.yView);
+	}
+
+	function ListSearch(needle)
+	{
+		var count = psource.LoadSearch(needle);
+		_dir_listed = undefined;
+
+		ResetAndLoad();
+
+		self#search-txt.show();
+		self#search-txt.html = String.$(<icon .icon-search /><span>Found <b>{count}</b> patterns for your <b>'{needle}'</b> search:<span>);
+	}
+
+	function ListFiles(path, kind = EEntryKind.DIRECTORY)
+	{
+		if(path == _dir_listed)
+			return;
+		psource.LoadFiles(path, kind);
+		_dir_listed = path;
+		
+		ResetAndLoad();
+	}
+
+	function ResetAndLoad()
+	{
+		self#search-txt.hide();
+		self#list.clear();
+		LoadBulk();
+	}
+
+	function LoadBulk()
+	{
+		var cnt = 0;
+		var hprev = 0;
+
+		psource.LoadBulk(function(data) {
+			var el_entry = self#list.$append(<div .item />);
+			el_entry.state.busy = true;
+			self.loadImage(data.url, function(img, status) {
+				if(el_entry.state)// element might have been removed
+				{
+					el_entry.state.busy = false;
+					el_entry.style#background-image = "url(" + URL.encode(data.url) + ")"
+				}
+			}, true);
+
+			if(data.issvg)
+				el_entry.$append(<issvg />);
+			el_entry.data = data;
+
+			if(cnt++ >= 50)
+			{
+				if(self#list.box(#height, #content) > hprev)
+				{
+					el_entry.remove();
+					return false;
+				}
+			}
+			hprev = self#list.box(#height);
+			return true;
+		});
+
+		if(self#list.length==0)
+			self#nopattern.show();
+		else
+			self#nopattern.hide();
+	}
+}

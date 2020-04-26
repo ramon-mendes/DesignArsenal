@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="64px" height="53px" viewBox="0 0 64 53" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.3 (7891) - http://www.bohemiancoding.com/sketch -->
+    <title>Factory</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Factory" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)" stroke="#6B6C6E" stroke-width="2">
+            <path d="M60,20 L56,20 L56,0 L47,0 L47,27.5 L34,20.6 L34,27.5 L22,20.6 L22,27.5 L11,20.6 L11,27.5 L2,20.6 C0.9,20.6 0,21.5 0,22.6 L0,48.1 C0,49.2 0.9,50.1 2,50.1 L60,50.1 C61.1,50.1 62,49.2 62,48.1 L62,22.1 C62,20.9 61.1,20 60,20 L60,20 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+            <rect id="Rectangle-path" sketch:type="MSShapeGroup" x="4" y="32" width="4" height="4"></rect>
+            <rect id="Rectangle-path" sketch:type="MSShapeGroup" x="14" y="32" width="4" height="4"></rect>
+            <rect id="Rectangle-path" sketch:type="MSShapeGroup" x="25" y="32" width="4" height="4"></rect>
+            <rect id="Rectangle-path" sketch:type="MSShapeGroup" x="37" y="32" width="4" height="4"></rect>
+            <path d="M0,46.1 L62,46.1" id="Shape" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

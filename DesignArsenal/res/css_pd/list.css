@@ -1,0 +1,50 @@
+﻿#scroller
+{
+	flow: vertical;
+	size: *;
+	overflow-y: auto;
+}
+#nopattern { padding: 10px; }
+
+#list
+{
+	flow: horizontal-flow;
+	style-set: ListIcon;
+}
+#list .item
+{
+	size: 110px;
+	position: relative;
+	cursor: pointer;
+	foreground: repeat;
+}
+#list issvg
+{
+	display: block;
+	size: 20px;
+	foreground: url(../img/SVGlogo.png) no-repeat;
+
+	position: absolute;
+	right: 4px;
+	bottom: 4px;
+	opacity: 0.7;
+	z-index: 999;
+}
+#list .item:busy { foreground: url(../img/loaders/loading.png) center no-repeat; }
+#list .item:hover issvg { opacity: 1.0; }
+
+#search-txt
+{
+	visibility: none;
+	flow: horizontal;
+	horizontal-align: center;
+	vertical-align: middle;
+	border-spacing: 10px;
+
+	padding: 10px;
+	background: url(../img/grain.png);
+	text-align: center;
+	font-size: 13px;
+	color: #818181;
+}
+#search-txt icon { fill: currentColor; }

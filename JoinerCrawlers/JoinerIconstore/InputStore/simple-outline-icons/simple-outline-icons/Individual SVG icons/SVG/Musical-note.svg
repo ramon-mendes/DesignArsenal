@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="52px" height="64px" viewBox="0 0 52 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.3 (7891) - http://www.bohemiancoding.com/sketch -->
+    <title>Musical-note</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Musical-note" sketch:type="MSLayerGroup" transform="translate(1.000000, 3.000000)" stroke="#6B6C6E" stroke-width="2">
+            <path d="M9.8,42.9 C16.8,39.7 23.8,40.5 25.6,44.7 C27.4,48.9 23.2,54.8 16.2,58 C9.2,61.2 2.2,60.4 0.4,56.2 C-1.4,52.1 2.8,46.1 9.8,42.9 L9.8,42.9 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+            <path d="M26,47.6 L26,-0.5 C26,-0.5 31.2,2.3 36.4,6.4 C48.1,15.6 53.6,29.2 45.2,38.8" id="Shape" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

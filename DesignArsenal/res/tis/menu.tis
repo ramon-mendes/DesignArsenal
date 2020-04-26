@@ -1,0 +1,53 @@
+﻿self#btn-menu.onClick = function() {
+	self#mi-clearcache.text = "Clear cache";
+	this.popup(self#menu-main, Utils.popupAttachment());
+
+	view.Host_CacheSize(function(sz) {
+		self#mi-clearcache.html = "Clear cache " + "<em>(" + sz + ")</em>";
+	});
+};
+
+self#mi-quit.onClick = ::view.Host_Quit();
+self#mi-quit.$(accesskey).html = Utils.IsOSX ? "⌘ + Q" : "Ctrl + Q";
+
+self#mi-skiacode.hide();
+if(view.Host_IsMidi())
+{
+	self#mi-skiacode.show();
+	self#mi-skiacode.onClick = function() {
+		view.dialog({
+			url: self.url("dlg_xamarin.html"),
+			alignment: 5
+		});
+	};
+}
+
+self#mi-gopro.on("mousedown", function() {
+	Sciter.launch("http://designarsenal.co/Home/Pro");
+});
+self#mi-clearcache.onClick = function() {
+	view.Host_ClearCache();
+
+	this.closePopup();
+	view.msgbox(#information, "Cache cleared with success.", Consts.APPNAME);
+};
+
+if(Utils.IsWindows && !Utils.InDBGView)
+{
+	self#mi-runstart.on("mouseup", function(evt) {
+		var el_btn = this.$(button);
+		el_btn.state.checked = !el_btn.state.checked;
+		view.Host_RunRegistry(el_btn.state.checked);
+		return true;
+	});
+
+	self#mi-runstart.$(button).state.checked = view.Host_IsRegistryRun();
+}
+
+self#mi-about.onClick = function() {
+	this.closePopup();
+	view.dialog({
+		url: self.url("dlg_about.html"),
+		alignment: 5
+	});
+};

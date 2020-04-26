@@ -1,0 +1,226 @@
+<!-- OmniView:on -->
+<html>
+<head>
+	<style>
+		@import url(css/global.css);
+		@import url(css_fd/style.css);
+		@import url(css_fd/home.css);
+		@import url(css_fd/store.css);
+		@import url(css_fd/face.css);
+		@import url(css_fd/main_font.css);
+		@import url(css_fd/main_list.css);
+		@import url(lib_poptip/lib_poptip.css);
+		@import url(lib_menu/menu-chrome.css);
+
+		fontsource { behavior: FontSource; }
+	</style>
+
+	<script type="text/tiscript">
+		include "lib_settings/settings.tis";
+		include "lib_growl/lib_growl.tis";
+		include "tis/consts.tis";
+		include "tis_fd/store.tis";
+		include "tis_fd/UI.tis";
+		include "tis_fd/UIFont.tis";
+
+		var FontSource = $(fontsource);
+		UI.Setup();
+		ListUI.Setup();
+		Store.Setup();
+	</script>
+
+	<menu .menu-chromed #menu-font .outline>
+		<div .inner>
+			<div #menu-area-photoshop.hide>
+				<caption><img src="img/icon-photoshop.svg" width="22" /> <span>Photoshop</span></caption>
+				<ul>
+					<li cmd="pslayer">Create font layer</li>
+					<li cmd="psapply">Apply font to selected layers</li>
+				</ul>
+			</div>
+
+			<div #menu-area-illustrator.hide>
+				<caption><img src="img/icon-illustrator.svg" width="22" /> <span>Illustrator</span></caption>
+				<ul>
+					<li cmd="ailayer">Create font layer</li>
+					<li cmd="aiapply">Apply font to selected layers</li>
+				</ul>
+			</div>
+
+			<div #menu-area-sketch.hide>
+				<caption><img src="img/icon-sketch.svg" width="22" /> <span>Sketch</span></caption>
+				<ul>
+					<li cmd="sklayer">Create font layer</li>
+					<li cmd="skapply">Apply font to selection</li>
+				</ul>
+			</div>
+
+			<hr .hide />
+
+			<ul>
+				<li cmd="install" #mi-fontinstall .hide>-</li>
+				<li cmd="installcopy" #mi-fontcopy .hide>-</li>
+				<li cmd="export">Export font files to folder</li>
+				<li cmd="glyphs">View glyphs</li>
+			</ul>
+		</div>
+	</menu>
+
+	<menu .menu-chromed #menu-cats .outline style="margin-left: -6px">
+		<div .inner>
+			<ul>
+				<li favs>Favorites</li>
+				<li installed>Installed</li>
+			</ul>
+
+			<hr />
+
+			<ul>
+				<li>
+					Basic
+					<menu .sub-menu-chromed>
+						<div .inner>
+							<ul>
+								<li cat="BASIC_SANS_SERIF">Sans serif</li>
+								<li cat="BASIC_SERIF">Serif</li>
+								<li cat="BASIC_SLAB_SERIF">Slab serif</li>
+								<li cat="BASIC_MONOSPACE">Monospaced</li>
+							</ul>
+						</div>
+					</menu>
+				</li>
+
+				<li>
+					Display
+					<menu .sub-menu-chromed>
+						<div .inner>
+							<ul>
+								<li cat="DISPLAY">Basic</li>
+								<!--<li cat="DISPLAY_3D">3D</li>-->
+								<li cat="DISPLAY_GHOTIC">Gothic</li>
+								<li cat="DISPLAY_GRAFFITI">Graffiti</li>
+								<!--<li cat="DISPLAY_FIRE_ICE">Fire - Ice</li>-->
+								<li cat="DISPLAY_STENCIL">Stencil / Army</li>
+								<li cat="DISPLAY_DECORATIVE">Decorative</li>
+							</ul>
+						</div>
+					</menu>
+				</li>
+
+				<li>
+					Script
+					<menu .sub-menu-chromed>
+						<div .inner>
+							<ul>
+								<li cat="SCRIPT_BRUSH">Brush</li>
+								<li cat="SCRIPT_CALLIGRAPHY">Calligraphy</li>
+								<li cat="SCRIPT_HANDWRITTEN">Handwritten</li>
+								<li cat="SCRIPT_COMIC">Comic</li>
+							</ul>
+						</div>
+					</menu>
+				</li>
+
+				<!--<li cat="SYMBOLS">Symbols</li>-->
+				<li cat="NON_WESTERN">Non western</li>
+
+				<li>
+					Misc
+					<menu .sub-menu-chromed>
+						<div .inner>
+							<ul>
+								<li cat="MISC_BITMAP_PIXEL">Bitmap / pixel</li>
+								<li cat="MISC_BLACKLETTER">Blackletter</li>
+								<li cat="MISC_RETRO">Retro</li>
+								<li cat="MISC_TYPEWRITTER">Typewritter</li>
+							</ul>
+						</div>
+					</menu>
+				</li>
+			</ul>
+		</div>
+	</menu>
+
+	<fontsource />
+</head>
+
+<body>
+	<overlay #overlay-msg />
+
+	<header>
+		<div #ui-search has-menu />
+	</header>
+
+	<home #home>
+		<div #home-scroller>
+			<section>
+				<div .flow-area>
+					<div style="width: *">
+						<p>Local fonts directories:</p>
+						<select #ui-collections novalue="" />
+					</div>
+
+					<div style="width: *">
+						<p>Manage local fonts:</p>
+						<div #area-localfonts.area-box>
+							<em>Click here to open the root directory.</em>
+							<icon .icon-folder-open-empty />
+						</div>
+					</div>
+
+					<!--<div style="width: *">
+						<p>What the font?</p>
+						<div #area-wtf.area-box>
+							<em>Seen a font in use and want to know what it is? </em>
+							<icon .icon-fontsize />
+						</div>
+					</div>-->
+				</div>
+			</section>
+
+			<section>
+				<hflow>
+					Fonts showcase:
+
+					<div #ui-insta-search></div>
+				</hflow>
+
+				<div #store-list />
+				<button #btn-store-load .btn-blue><icon .icon-dot-3 /> Load more</button>
+			</section>
+		</div>
+	</home>
+
+	<main #main-font>
+		<div .wraper>
+			<div #title>
+				<h1 />
+				<img #btn-fav poptip="-" popnow />
+				<hspacer />
+				<div #btn-install.btn-onoff poptip="Install/uninstall font" popnow><div #handle /></div>
+			</div>
+
+			<div #info>
+				<b>License:</b>
+				<span #license />
+				<b #info-b>More info/author:</b>
+				<icon .icon-link-ext-alt #btn-info />
+
+				<div #toggle-styles />
+			</div>
+		</div>
+		
+		<div #faces />
+
+		<div .wraper>
+			<div #pics />
+		</div>
+	</main>
+
+	<main #main-list>
+		<div #msg-nofonts>No fonts were found.</div>
+
+		<div #list />
+	</main>
+</body>
+</html>

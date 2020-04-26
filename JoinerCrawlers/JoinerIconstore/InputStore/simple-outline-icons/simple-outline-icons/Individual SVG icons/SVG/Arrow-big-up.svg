@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="46px" height="66px"
+	 viewBox="0 0 46 66" enable-background="new 0 0 46 66" xml:space="preserve">
+<title>Arrow-big-up</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" sketch:type="MSPage">
+	<g id="Arrow-big-up" transform="translate(1.000000, 2.000000)" sketch:type="MSLayerGroup">
+		<path id="Shape" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" d="M32,30.1v30.5
+			c0,0.8-0.7,1.5-1.5,1.5h-18c-0.8,0-1.5-0.7-1.5-1.5V30.1"/>
+		<path id="Shape_1_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" d="M11,34.1H1.5
+			c-0.8,0-1.5-0.7-1.5-1.5L19.8,1.4c0-0.8,0.7-1.5,1.5-1.5H22c0.8,0,1.5,0.7,1.5,1.5L44,32.6c0,0.8-0.7,1.5-1.5,1.5H32"/>
+	</g>
+</g>
+</svg>

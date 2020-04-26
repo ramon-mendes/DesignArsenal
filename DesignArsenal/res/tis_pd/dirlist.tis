@@ -1,0 +1,114 @@
+namespace DirList
+{
+	var _dir_viewing_data;
+
+	function Setup()
+	{
+		function CreateDirEntry(data)
+		{
+			assert(data);
+			var el_entry = self#dirlist.$append(<entry tabindex=0 />);
+
+			if(data.kind == EEntryKind.DIRECTORY)
+				el_entry.@.addClass("dir");
+			else if(data.kind == EEntryKind.PAT)
+				el_entry.@.addClass("pat");
+
+			el_entry.$append({data.filename});
+			if(data.kind == EEntryKind.DIRECTORY)
+				el_entry.$append( <span>({data.imgcount})</span>);
+			el_entry.data = data;
+		}
+
+		function AddDotDot(new_url, prev_data)
+		{
+			//if(Consts.PATTERNS_DIR==path)
+			if(new_url == "local:/")
+				return;
+
+			if(new_url == "local:" || new_url == "online:")
+				new_url = "local:/";
+				
+			var el_entry_prev = self#dirlist.$append(<entry .dir>..</entry>);
+			el_entry_prev.data = prev_data;
+			el_entry_prev.dotdot = true;
+		}
+
+		function ListDir(data)
+		{
+			self#dirlist.clear();
+			AddDotDot(data.url, _dir_viewing_data);
+			psource.EnumDirDirs(data.url, CreateDirEntry);
+			ListUI.ListFiles(data.url);
+
+			_dir_viewing_data = data;
+		}
+
+		self#dirlist.on("click", function(evt) {
+			if(evt.target.$p(entry))
+			{
+				var el_entry = evt.target.$p(entry);
+				el_entry.current = true;
+
+				if(el_entry.dotdot)
+					return;
+
+				ListUI.ListFiles(el_entry.data.url, el_entry.data.kind);
+			} else {
+			console.log("clicked on blank space");
+				// clicked on blank space
+				var el_entry_curr = self#dirlist.$(entry:current);
+				if(el_entry_curr)
+					el_entry_curr.state.current = false;
+				if(_dir_viewing_data.url.indexOf("online:")==0)
+					return;
+				ListUI.ListFiles(_dir_viewing_data.url);
+			}
+		});
+
+		self#dirlist.on("dblclick", "entry", function() {
+			ListDir(this.data);
+		});
+
+		self.timer(1000, function() {
+			psource.CheckChanges_Dir(function() {
+				ListDir(_dir_viewing_data);
+			});
+			return true;
+		});
+		
+
+		var el_menu_target;
+
+		self#dirlist.on("mousedown", function(evt) {
+			if(evt.propButton)
+			{
+				el_menu_target = evt.target.$p(entry) || evt.target;
+				if(el_menu_target.$is(entry))
+					el_menu_target.state.focus = true;
+				if(Utils.IsOSX)
+					self#menu-dir.Show();
+				else
+					this.popup(self#menu-dir, evt.xView, evt.yView);
+			}
+		});
+
+		self#menu-dir.onControlEvent = function(evt) {
+			if(evt.type == Event.MENU_ITEM_CLICK)
+			{
+				log(el_menu_target);
+				if(el_menu_target == self#dirlist)
+					view.Host_RevealDir(_dir_viewing_data.fspath);
+				else if(el_menu_target.data.kind === EEntryKind.DIRECTORY)
+					view.Host_RevealDir(el_menu_target.data.fspath);
+				else
+					view.Host_RevealFile(el_menu_target.data.fspath);
+			}
+			return false;
+		};
+
+		_dir_viewing_data = psource.SetRootPath(Consts.PATTERNS_DIR);
+		psource.EnumDirDirs(_dir_viewing_data.url, CreateDirEntry);
+		ListUI.ListFiles(_dir_viewing_data.url);
+	}
+}

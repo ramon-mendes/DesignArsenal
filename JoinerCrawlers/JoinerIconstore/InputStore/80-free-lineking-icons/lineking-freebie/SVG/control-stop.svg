@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>control-stop</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="People" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon-63" fill="#FFFFFF">
+            <path d="M40,21 L40,39 C40,39.553 39.553,40 39,40 C38.447,40 38,39.553 38,39 L38,22 L22,22 L22,38 L35,38 C35.553,38 36,38.447 36,39 C36,39.553 35.553,40 35,40 L21,40 C20.448,40 20,39.553 20,39 L20,21 C20,20.447 20.448,20 21,20 L39,20 C39.553,20 40,20.447 40,21 M30,58 C14.561,58 2,45.439 2,30 C2,14.561 14.561,2 30,2 C45.439,2 58,14.561 58,30 C58,45.439 45.439,58 30,58 M30,0 C13.458,0 0,13.458 0,30 C0,46.542 13.458,60 30,60 C46.542,60 60,46.542 60,30 C60,13.458 46.542,0 30,0" id="control-stop"></path>
+        </g>
+    </g>
+</svg>

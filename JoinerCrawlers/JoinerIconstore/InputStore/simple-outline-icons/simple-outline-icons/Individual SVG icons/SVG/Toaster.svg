@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="64px" height="56px"
+	 viewBox="0 0 64 56" enable-background="new 0 0 64 56" xml:space="preserve">
+<title>Toaster</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" sketch:type="MSPage">
+	<g id="Toaster" transform="translate(1.000000, 1.000000)" sketch:type="MSLayerGroup">
+		
+			<rect id="Rectangle-path" x="58" y="43" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" width="4" height="4">
+		</rect>
+		<path id="Shape_2_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" d="M43.1,21v-8.6
+			c2.4-1.1,2-3.3,2-5.8c0-3.6-3.2-6.5-7.1-6.5H19.2c-3.9,0-7.1,2.9-7.1,6.5c0,2.6-0.4,4.8,2,5.8V21"/>
+		<path id="Shape" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" d="M51.1,21H7.2C2.8,21,0,24.6,0,29
+			v22.9h8.2c0,2.2,1.8,2,4,2s4,0.2,4-2h25.9c0,2.2,1.8,2,4,2c2.2,0,4,0.2,4-2h8V29C58.1,24.6,55.5,21,51.1,21L51.1,21z"/>
+		<path id="Shape_1_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" d="M37.1,27h9.1
+			c3.2,0,5.8,2.6,5.8,5.8v2.1"/>
+		<path id="Shape_3_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" d="M19.2,18l10-12"/>
+		<path id="Shape_4_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" d="M18.2,12l5-6"/>
+		<path id="Shape_5_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" d="M25.2,18l9.9-12"/>
+		<path id="Shape_6_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" d="M31.1,18l10-12"/>
+	</g>
+</g>
+</svg>

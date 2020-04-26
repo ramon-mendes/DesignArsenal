@@ -1,0 +1,71 @@
+<!-- OmniView:on -->
+<html window-frame="transparent" window-resizable="true">
+<head>
+	<script type="text/tiscript">
+		include "tis/consts.tis";
+
+		Utils.emulateMoveWnd($(body));
+
+		self#btn-close.onClick = ::view.close();
+		self#btn-submit.onClick = function() {
+			var (x,y,w,h) = self.box(#rectw, #margin, #screen);
+			self.hide();
+			view.windowState = View.WINDOW_HIDDEN;
+			view.update();
+
+			view.parameters.Host_Capture2WTF(x,y,w,h, function(res) {
+				view.close();
+				if(!res)
+					view.msgbox("alert", "Could not upload the captured image.<br>Check your internet connection.", Consts.APP_NAME);
+				else
+					Sciter.launch(res);
+			});
+		};
+	</script>
+
+	<style>
+		@import url(css/global.css);
+
+		html { background-color: transparent; size: 420px 200px; border-radius: 3px; }
+		body
+		{
+			flow: stack;
+			vertical-align: middle;
+			horizontal-align: center;
+			margin: 0;
+			background: rgba(208, 208, 208, 0.40);
+			cursor: move;
+			color: rgb(78, 78, 78);
+			border: dashed 2px currentColor;
+		}
+		button
+		{
+			color: inherit;
+			padding: 1px 11px;
+			background: none;
+			border: solid 1px;
+			border-radius: 3px;
+			cursor: pointer;
+			position: relative;
+			border-color: rgb(138, 0, 0);
+		}
+		button:hover { background: rgba(0, 0, 0, 0.1); }
+
+		@media os-vendor=="Apple"
+		{
+			button { padding-top: 3px; }
+			footer { font-weight: 500; }
+		}
+
+		#btn-close { margin: 10px 10px * *; padding: 4px 5px; }
+		#btn-close icon { size: 7px; }
+		#btn-submit { font-size: 15px; }
+		footer { margin-top: *; text-align: center; margin-bottom: 8px; font-size: 14px; }
+	</style>
+</head>
+<body>
+	<button #btn-close><icon .icon-cancel /></button>
+	<button #btn-submit>Capture</button>
+	<footer>You can drag and resize this window..</footer>
+</body>
+</html>

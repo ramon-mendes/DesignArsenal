@@ -1,0 +1,116 @@
+body
+{
+	flow: vertical;
+	horizontal-align: middle;
+	margin: 0;
+}
+
+@const BORDER_CLR: #5074a9;
+
+header
+{
+	vertical-align: middle;
+	flow: horizontal;
+	background: #eeeeee url(../img/grain.png);
+	padding: 0;
+	margin: 0;
+	color: rgb(118, 115, 144);
+	height: 21px;
+}
+header #btn-frames { height: *; }
+header button { background: none; border-left: solid 1px #bebebe; padding: 0px 6px; cursor: pointer; height: *; }
+header #btn-menu { border: none; }
+@media os-vendor=="Apple"
+{
+	header button { padding: 0px 6px; }
+}
+header button icon { size: 13px; fill: currentColor; opacity: 0.6; }
+header button:hover icon,
+header button:owns-popup icon { opacity: 1; }
+header button:current { background: #525ab2; }
+header button:current icon { fill: white; opacity: 1; }
+
+#menu-main span#pro { background: black; color: white; cursor: pointer; border-radius: 100px; margin-left: 7px; padding: 1px 8px; font-size: 11px; }
+@media os-vendor=="Apple"
+{
+	#menu-main span#pro { padding-top: 0; padding-bottom: 2px; margin-top: 2px; }
+}
+
+#info-update
+{
+	visibility: none;
+	padding: 1px 9px;
+	background: #a2a1c3;
+	color: white;
+	
+	border-radius: 100px;
+	cursor: pointer;
+}
+#info-update div { font-size: 11.5px; }
+#info-update span { font-weight: bold; }
+
+
+#osx-wraper { size: *; }
+#osx-arrow { visibility: none; }
+
+//@media true
+@const BRD_COLOR: rgb(0, 206, 233);
+
+@media os-vendor=="Apple"
+{
+	html, body { background: transparent; }
+
+	#osx-wraper
+	{
+		border: solid 3px @BRD_COLOR;
+		border-radius: 5px;
+		background: white;
+		overflow: hidden;// cause of border-radius
+	}
+	#osx-arrow { display: block; foreground-image-transformation: colorize(@BRD_COLOR); visibility: visible; }
+
+	#vresizer
+	{
+		position: relative;
+		margin-top: -3px;
+		cursor: s-resize;
+		height: 3px;
+	}
+}
+
+frames
+{
+	display: block;
+	size: *;
+}
+frames frame { visibility: none; }
+frames frame:current { visibility: visible; }
+
+
+#overlay-activating
+{
+	text-align: center;
+}
+#overlay-activating h1
+{
+	font-size: 24px;
+}
+
+#overlay-expired
+{
+	flow: vertical;
+	text-align: center;
+}
+#overlay-expired h3 { margin-top: 30px; }
+#overlay-expired a { color: antiquewhite; }
+#overlay-expired button { height: 2em; }
+
+#overlay-expired h4
+{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	text-align: center;
+	color: antiquewhite;
+}

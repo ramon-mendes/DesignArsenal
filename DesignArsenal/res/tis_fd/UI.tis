@@ -1,0 +1,323 @@
+﻿namespace UI
+{
+	var _inhome = true;
+	
+	function Setup()
+	{
+		self#ui-search.OnClose = ::ViewHome();
+		self#ui-search.OnSearch = :needle:ShowSearch(needle);
+		self#ui-search.OnShowDD = ::self#btn-ddmenu.popup(self#menu-cats, Utils.popupAttachment());
+
+		self#menu-cats.on("click", "li[favs]", function(evt) {
+			self#ui-search.Clear();
+			self#ui-search.AddTag("Favorites");
+
+			FontSource.SetFilterData({ favorites: Settings.ns_data.dic_favorites });
+			ListUI.ResetViewAndLoad();
+			ViewMainList();
+		});
+
+		self#menu-cats.on("click", "li[installed]", function(evt) {
+			self#ui-search.Clear();
+			self#ui-search.AddTag("Installed");
+
+			FontSource.SetFilterData({ installed: true });
+			ListUI.ResetViewAndLoad();
+			ViewMainList();
+		});
+
+		self#menu-cats.on("click", "li[cat]", function(evt) {
+			self#ui-search.Clear();
+			self#ui-search.AddTag("Category: " + this.text);
+
+			FontSource.SetFilterData({ category: this.@#cat });
+			ListUI.ResetViewAndLoad();
+			ViewMainList();
+		});
+
+		// Section 1: local fonts
+		self#area-localfonts.onClick = ::view.Host_RevealDir(Consts.FONTS_DIR);
+
+		view.Host_SetupLocalFonts(Consts.FONTS_DIR, function(arr_dirlist) {
+			self#ui-collections.state.disabled = arr_dirlist.length==0;
+			self#ui-collections.options.clear();
+			for(var dirpath in arr_dirlist)
+			{
+				var name = dirpath %~ "/";
+				var el_opt = self#ui-collections.options.$append(<option value="{dirpath}">{name}</option>);
+			}
+		});
+
+		self#ui-collections.on("change", function() {
+			var name = this.value %~ "/";
+			self#ui-search.Clear();
+			self#ui-search.AddTag("Local font directory: " + name);
+
+			FontSource.SetLocalDirectoryListing(this.value);
+			ListUI.ResetViewAndLoad();
+			ViewMainList();
+
+			self.timer(100, ::self#ui-collections.value = undefined);
+		});
+
+		/*self#area-wtf.onClick = function() {
+			View.window({
+				type: View.POPUP_WINDOW,
+				url: self.url("dlg_wtf.html"),
+				alignment: 5,
+				parameters: view
+			});
+		};*/
+	}
+
+	function ViewHome()
+	{
+		_inhome = true;
+
+		self#home.show();
+		self#main-font.hide();
+		self#main-list.hide();
+	}
+
+	function ViewMainList()
+	{
+		_inhome = false;
+
+		self#home.hide();
+		self#main-font.hide();
+		self#main-list.scrollTo(0, 0);
+		self#main-list.show();
+	}
+
+	function ViewMainFont()
+	{
+		_inhome = false;
+
+		self#home.hide();
+		self#main-list.hide();
+		self#main-font.scrollTo(0, 0);
+		self#main-font.show();
+	}
+
+	function ShowSearch(needle)
+	{
+		var dic_filter = {};
+		dic_filter.search = needle;
+
+		FontSource.SetFilterData(dic_filter);
+		ListUI.ResetViewAndLoad();
+		ViewMainList();
+	}
+}
+
+namespace ListUI
+{
+	var _apps_expando = Utils.InDBGView ? {} : view.Host_AppsExpando();
+	var ns_arr_elitens = [];
+	var ns_dic_itens = {};
+
+	function Setup()
+	{
+		// Infite scroll handling
+		self#main-list.onScroll = function(evt) {
+			var scroll_bot = this.box(#height, #content);
+			var scroll_pos = this.box(#height) + evt.scrollPos;
+			if(scroll_pos >= scroll_bot)
+				LoadItensBulk();
+		};
+
+		self#main-list.on("click", "fontdraw", function() {
+			UIFont.ShowFontByFamily(this.@#family);
+		});
+
+		self#menu-font.on("click", "li", function(evt) {
+			this.closePopup();
+			var family = self#menu-font.family;
+			var variant = self#menu-font.variant;
+			var dic_font = FontSource.FFJFromFamily(family);
+
+			switch(evt.target.@#cmd)
+			{
+				case "install": UIFont.InstallUninstall(dic_font.installed, dic_font, function() { }); return;
+				case "installcopy": return;
+				case "export":
+				{
+					var path = view.selectFolder("Where to export files?");
+					if(path)
+					{
+						self#overlay-msg.html = "Exporting '" + family + "' ...";
+						self#overlay-msg.show();
+
+						view.Host_ExportFont(path, family, function() {
+							self#overlay-msg.hide();
+						});
+					}
+					return;
+				}
+				case "glyphs":
+				{
+					view.dialog({
+						url: self.url("glyphs.html"),
+						width: 1320,
+						height: 800,
+						caption: dic_font.family,
+						alignment: 5,
+						parameters: dic_font
+					});
+					return;
+				}
+			}
+
+			// check if font installed
+			if(!dic_font.installed)
+			{
+				var el_li = this;
+				if(Utils.IsOSX)
+				{
+					UIFont.InstallUninstall(true, dic_font, function() {
+						el_li.sendEvent("click")
+					}, true);
+				} else {
+					self.post(function() {
+						if(Settings.ns_data.config.auto_install)
+						{
+							UIFont.InstallUninstall(true, dic_font, function() {
+								el_li.sendEvent("click");
+							});
+						} else {
+							var res = view.msgbox(#alert, "You must first install this font to be\nable to create a text layer.", Consts.APPNAME, [{ id: #ok, text: "OK" }, { id: #auto, text: "Always automatically install it" }]);
+							if(res == #auto)
+							{
+								UIFont.InstallUninstall(true, dic_font, function() {
+									el_li.sendEvent("click");
+								});
+								Settings.ns_data.config.auto_install = true;
+								Settings.StoreWork();
+							}
+						}
+					});
+				}
+				return;
+			}
+
+			switch(evt.target.@#cmd)
+			{
+				// Photoshop
+				case "pslayer": _apps_expando["Photoshop.DrawText"](family, variant); break;
+				case "psapply": _apps_expando["Photoshop.ApplyText"](family, variant); break;
+
+				// Illustrator
+				case "ailayer": _apps_expando["Illustrator.DrawText"](family, variant); break;
+				case "aiapply": _apps_expando["Illustrator.ApplyText"](family, variant); break;
+
+				// Sketch
+				case "sklayer": _apps_expando["Sketch.DrawText"](family, variant); break;
+				case "skapply": _apps_expando["Sketch.ApplyText"](family, variant); break;
+			}
+		});
+	}
+
+	function CreateFaceEntry(el_parent, dic_font, ivariant=undefined)
+	{
+		var variant;
+		if(ivariant !== undefined)
+		{
+			variant = dic_font.variants[ivariant];
+			var variant_hr = dic_font.variants_hr[ivariant];
+			el_parent.$append(<div .stylename>{variant_hr}</div>)
+		}
+
+		var el_fontdraw = el_parent.$append(<fontdraw><click></fontdraw>);
+		el_fontdraw.@#variant = variant;
+		el_fontdraw.@#family = dic_font.family;
+		if(!Utils.InDBGView)
+			el_fontdraw.Host_SetDrawParams("The quick brown fox jumps over the lazy dog");
+		el_fontdraw.on("mousedown", function(evt) {
+			// context menu
+			if(evt.propButton || this.$p(#main-font))
+			{
+				dic_font = FontSource.FFJFromFamily(dic_font.family);// refresh install state
+
+				self#menu-area-photoshop.@.toggleClass("show", _apps_expando.IsAppRunning(EAppExternal.PHOTOSHOP));
+				self#menu-area-illustrator.@.toggleClass("show", _apps_expando.IsAppRunning(EAppExternal.ILLUSTRATOR));
+				if(Utils.IsOSX)
+					self#menu-area-sketch.@.toggleClass("show", _apps_expando.IsAppRunning(EAppExternal.SKETCH));
+
+
+				var el_caption = self#menu-font.$(.show caption);
+				if(el_caption)
+					el_caption.style#border-top = "none";
+				$(hr).@.toggleClass("show", el_caption);
+
+
+				if(!dic_font.installed)
+				{
+					self#mi-fontinstall.text = "Install font";
+					self#mi-fontcopy.text = "Install font and copy text";
+				} else {
+					self#mi-fontinstall.text = "Uninstall font";
+					self#mi-fontcopy.text = "Copy text";
+				}
+
+				self#menu-font.family = dic_font.family;
+				self#menu-font.variant = variant;
+				this.popup(self#menu-font, evt.xView, evt.yView)
+			}
+		});
+		return el_fontdraw;
+	}
+
+	function ResetViewAndLoad()
+	{
+		ns_arr_elitens = [];
+		ns_dic_itens = {};
+
+		self#list.clear();
+		self#msg-nofonts.@#animate = undefined;
+		self#msg-nofonts.hide();
+
+		UI.FontSource.BulkReset();
+		if(UI.FontSource.HasItens())
+		{
+			LoadItensBulk();
+			self.timer(500, function() {
+				if(Utils.IsWindows)
+					ShowHint("fdfont2", "<u>Click</u> to reveal a menu with actions for this font.<br>Make sure to have Photoshop or Illustrator running to reveal additional options.", self#list[0]);
+				else
+					ShowHint("fdfont2", "<u>Click</u> to reveal a menu with actions for this font.<br>Make sure to have Photoshop, Illustrator or Sketch running to reveal additional options.", self#list[0]);
+			});
+		}
+		else
+		{
+			self#msg-nofonts.show();
+			self#msg-nofonts.@#animate = true;
+		}
+	}
+
+	function LoadItensBulk()
+	{
+		FontSource.LoadBulk(CreateItem);
+	}
+
+	function CreateItem(dic_font)
+	{
+		var el_item = self#list.$append(<item>);
+		if(dic_font.variants.length==1)
+			el_item.$append(<hflow><b>{dic_font.family}</b><span>Single style</span></hflow>)
+		else
+			el_item.$append(<hflow><b>{dic_font.family}</b><span>{dic_font.variants.length} styles</span></hflow>)
+
+		CreateFaceEntry(el_item, dic_font);
+
+		/*var el_item = FontItemBehavior.Create(dic_font);
+		ns_dic_itens[dic_font.family] = el_item;
+		ns_arr_elitens.push(el_item);
+
+		if(!Utils.InDBGView)
+		{
+			var clr = UI._draw_clr;
+			el_item.$(draw).Host_SetDrawParams(UI._list_mode ? self#user-txt.value : "Abc", param_size, false);
+			el_item.$(draw).Host_SetDrawColor(clr.r, clr.g, clr.b);
+		}*/
+	}
+}

@@ -1,0 +1,60 @@
+#main-font
+{
+	flow: vertical;
+	size: *;
+	horizontal-align: center;
+	overflow-y: scroll-indicator;
+}
+#main-font .wraper
+{
+	flow: vertical;
+	max-width: 600px;
+}
+#main-font 
+
+#title
+{
+	flow: horizontal;
+	vertical-align: middle;
+}
+#title h1 { font-family: 'alphanum20'; margin: 15px 0; }
+#title img#btn-fav { size: 16px 13px; margin-left: 8px; margin-top: 7px; cursor: pointer; opacity: 0.3; }
+#title img#btn-fav
+{
+	background-image: url(../img/heart.png);
+	transform: none;
+}
+#title img#btn-fav:checked
+{
+	background-image: url(../img/heart_filled.png);
+	opacity: 1;
+}
+#title img:hover { opacity: 1; }
+#title #btn-install { margin-top: 6px; }
+
+#info { flow: horizontal; vertical-align: middle; border-spacing: 4px; text-wrap: none; }
+#info #license { margin-right: 20px; }
+#info icon#btn-info { size: 12px; fill: #8589c6; cursor: pointer; }
+
+#toggle-styles
+{
+	margin-left: *;
+	font-size: 12px;
+	color: gray;
+	width: max-content;
+}
+#toggle-styles:empty { content: "Single style font"; }
+#toggle-styles:not(:empty)
+{
+	text-decoration: underline;
+	text-decoration-style: dotted;
+	cursor: pointer;
+}
+@media os-vendor=="Apple"
+{
+	#toggle-styles:not(:empty) { text-decoration-style: solid; }
+}
+
+#pics { size: *; flow: vertical; border-spacing: 25px; horizontal-align: center; padding-bottom: 30px; }
+#pics picture { width: *; }
+#pics picture:busy { foreground: url(../img/loaders/loading.png) center no-repeat; outline: solid 1px silver -1px; }

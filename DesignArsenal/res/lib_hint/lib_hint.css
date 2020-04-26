@@ -1,0 +1,23 @@
+.hint
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	width: calc(274dip + 84px);
+}
+.hint[show] { opacity: 1; transition: opacity(linear, 400ms); }
+
+.hint .wraper { flow: horizontal; vertical-align: middle; }
+.hint .poptip
+{
+	width: 260dip;
+	padding: 6dip 7dip;
+	border-radius: 4px;
+	background: rgba(0, 0, 0, 0.85);
+	color: white;
+	font-size: 12dip;
+}
+.hint h1 { margin: 0; margin-top: -1px; font-size: 17dip; color: #5687d4; }
+.hint p { margin: 3px 0; margin-bottom: 6px; }
+.hint img { margin-top: 0; width: 52px; margin-left: 6px; }

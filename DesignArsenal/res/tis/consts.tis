@@ -1,0 +1,60 @@
+﻿namespace EIconKind
+{
+	const LIBRARY = 0;
+	const COLLECTION = 1;
+	const STORE = 2;
+}
+
+namespace EEntryKind
+{
+	const DIRECTORY = 0;
+	const PAT = 1;
+	const IMAGE = 2;
+	const PAT_IMAGE = 3;
+}
+
+namespace EAppExternal
+{
+	const UNKNOWN = 0;
+	const PHOTOSHOP = 1;
+	const ILLUSTRATOR = 2;
+	const INDESIGN = 3;
+	const SKETCH = 4;
+}
+
+namespace Consts
+{
+	const APPNAME = "Design Arsenal";
+	const COLLECTIONS_DIR = System.path(#USER_APPDATA) + "/" + APPNAME + "/IconCollections/";
+	const PATTERNS_DIR = System.path(#USER_APPDATA) + "/" + APPNAME + "/Patterns/";
+	const FONTS_DIR = System.path(#USER_APPDATA) + "/" + APPNAME + "/Fonts/";
+
+	const SITE_URL = "http://designarsenal.co/";
+	const SERVER_ASSETS = "https://storagemvc.blob.core.windows.net/arsenal/";
+	const SERVER_APIGENERAL = SERVER_ASSETS + "APIGeneral/";
+}
+
+self.on("blur", "input, widget|text", function(evt) {
+	try {
+		this.setSelection(0, 0);// because we have input|hslider
+	} catch(e) {
+	}
+});
+
+self.on("~keydown" , function(evt) {
+	if(evt.keyCode == Event.VK_ESCAPE)
+	{
+		var el_popup = self.$(:popup);
+		if(el_popup)
+		{
+			el_popup.closePopup();
+			View_FocusIt()
+			return true;
+		}
+	}
+});
+
+/*self.on("popupdismissed", function(evt) {
+	// note: also triggered by poptips
+	log("popupdismissed");
+});*/

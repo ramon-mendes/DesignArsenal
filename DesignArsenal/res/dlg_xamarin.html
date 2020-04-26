@@ -1,0 +1,56 @@
+<!-- OmniView:on -->
+<html window-resizable="true">
+<head>
+	<title>Xamarin code</title>
+
+	<script type="text/tiscript">
+		include "tis/utils.tis";
+
+		Utils.EscClosesWindow();
+
+		$(select).onValueChanged = function() {
+			var stream = self.request(0, #get, this.value);
+			$(plaintext).html = stream.toString();
+		};
+
+		$(select).value = $(option).value;
+		$(select).onValueChanged();
+	</script>
+
+	<style>
+		@import url(css/global.css);
+
+		html { size: 950px 530px; font-size: 12px; }
+
+		body
+		{
+		margin: 0;
+		flow: horizontal;
+		}
+
+		body > * { size: *; }
+
+		#files
+		{
+		width: 200px;
+		border: none;
+		background: none;
+		border-right: solid 1px silver;
+		}
+
+		plaintext
+		{
+		text-wrap: none;
+		}
+	</style>
+</head>
+
+<body>
+	<select size="10" #files>
+		<option>SkiaButton.cs</option>
+		<option>SkiaIcon.cs</option>
+	</select>
+
+	<plaintext></plaintext>
+</body>
+</html>

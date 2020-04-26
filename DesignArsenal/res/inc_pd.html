@@ -1,0 +1,143 @@
+<!-- OmniView:on -->
+<html>
+<head>
+	<style>
+		@import url(css/global.css);
+		@import url(css_pd/style.css);
+		@import url(css_pd/list.css);
+		@import url(css_pd/previewer.css);
+		@import url(css_pd/dirlist.css);
+		@import url(lib_menu/menu-chrome.css);
+		@import url(lib_poptip/lib_poptip.css);
+
+		psource { behavior: PatternSource; }
+	</style>
+
+	<script type="text/tiscript">
+		include "tis/consts.tis";
+		include "tis_pd/UI.tis";
+		include "tis_pd/previewer.tis";
+		include "tis_pd/dirlist.tis";
+		include "lib_settings/settings.tis";
+
+		var psource = $(psource);
+
+		// Copy /Shared patterns
+		if(!Utils.InDBGView)
+		{
+			view.Host_SetupCopyPatterns(!Settings.ns_data.shared_patterns, Consts.PATTERNS_DIR)
+			Settings.ns_data.shared_patterns = true;
+			Settings.StoreWork();
+		}
+
+		UI.Setup();
+		ListUI.Setup();
+		DirList.Setup();
+		Previewer.Setup();
+	</script>
+
+	<psource />
+
+	<menu .menu-chromed #menu-pattern .outline>
+		<div .inner>
+			<div #menu-area-photoshop.hide>
+				<caption><img src="img/icon-photoshop.svg" width="22" /> <span>Photoshop</span></caption>
+				<ul>
+					<li cmd="psshape">Create filled shape</li>
+					<!--<li cmd="psapply">Apply to current shape</li>-->
+				</ul>
+			</div>
+
+			<div #menu-area-sketch.hide>
+				<caption><img src="img/icon-sketch.svg" width="22" /> <span>Sketch</span></caption>
+				<ul>
+					<li cmd="skshape">Create filled rectangle</li>
+					<li cmd="skapply">Apply fill to selection</li>
+				</ul>
+			</div>
+
+			<hr .hide />
+			
+			<ul>
+				<li cmd="copyfile">Copy as file</li>
+				<li cmd="copypng">Copy as image</li>
+				<li cmd="copy2000">Copy as 2000x2000 image</li>
+			</ul>
+
+			<div #menu-area-file>
+				<hr />
+
+				<ul>
+					<li cmd="reveal">Reveal file</li>
+					<li cmd="delete">Delete file</li>
+				</ul>
+			</div>
+		</div>
+	</menu>
+
+	<menu .menu-chromed #menu-dir .outline>
+		<div .inner>
+			<ul>
+				<li>Reveal in Finder</li>
+			</ul>
+		</div>
+	</menu>
+
+	<script type="text/tiscript">
+		if(Utils.IsWindows)
+			self#menu-dir.$(li).text = "Reveal in Explorer";
+	</script>
+</head>
+
+<body>
+	<img src="img/32.png" #icon-dnd style="position: absolute; visibility: hidden;" />
+
+	<div .hide>
+		<div #bg-2000 style="background: white"><div style="size: 2000px" /></div>
+		<div #bg-copier style="background: white"><div /></div>
+	</div>
+
+	<frame #clr-popup.hide />
+
+	<overlay #overlay-ion>
+		<img src="img/loaders/loader.png" />
+		<h1>Starting you trial...</h1>
+	</overlay>
+
+	<overlay #overlay-expired>
+		<h1></h1>
+		<h3>You can <a href="http://icondrop.io/">purchase a license</a> to continue usage.</h3>
+		<button #btn-ionlicense .std-btn.blue>Enter license</button>
+	</overlay>
+
+	<div #previewer>
+		<div #prevtitle>
+			<h1>image.jpg</h1>
+			<h2>- whatever.pat</h2>
+			<icon .icon-folder #btn-prevreveal poptip="Reveal file" popnow />
+			<icon .icon-cancel-circled-outline #btn-prevclose />
+		</div>
+
+		<div #prevui>
+			<text>Scale:</text><input|hslider min=10 max=300 value=100 #ui-scale /><span #ui-scale-val>100%</span>
+			<text>Background:</text><span #pick-bg-clr />
+		</div>
+
+		<div #previmg />
+	</div>
+
+	<main #main>
+		<header>
+			<div #ui-search />
+		</header>
+
+		<div #dirlist tabindex="0" />
+		<div #search-txt />
+
+		<div #scroller>
+			<div #nopattern>No fills here..</div>
+			<div #list />
+		</div>
+	</main>
+</body>
+</html>

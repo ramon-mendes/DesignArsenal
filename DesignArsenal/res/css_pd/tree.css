@@ -1,0 +1,27 @@
+﻿#tree
+{
+	size: *;
+	overflow-x: hidden;
+	prototype: SamplesTree;
+	background: white;
+	padding: 0;
+	padding-left: 2px;
+	font-size: 13px;
+	border: none;
+
+	prototype: PatternsTree url(../tis/behavior_tree.tis);
+}
+
+#tree option > text
+{
+	behavior: file-icon;
+	line-height: 18px;
+	padding: 1px 3px 1px 20px;
+	foreground-repeat: no-repeat;
+	foreground-position: 0 50%;
+	min-width: 4em;
+}
+#tree option:not(:node)
+{
+	padding: 0;
+}

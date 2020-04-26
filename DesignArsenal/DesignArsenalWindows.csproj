@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\SharpFont.Dependencies.2.6\build\SharpFont.Dependencies.props" Condition="Exists('..\packages\SharpFont.Dependencies.2.6\build\SharpFont.Dependencies.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <ProjectGuid>{FABEBB54-7E6E-4DCD-A4A3-D713EA38731B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DesignArsenal</RootNamespace>
+    <AssemblyName>DesignArsenal</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WINDOWS,APP_DA</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS,APP_DA</DefineConstants>
+    <Optimize>false</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WINDOWS,APP_DA,SCITER_APP_RESOURCE_SKIP</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS,APP_DA</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PInvoke.Kernel32, Version=0.5.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.Kernel32.0.5.184\lib\net45\PInvoke.Kernel32.dll</HintPath>
+    </Reference>
+    <Reference Include="PInvoke.User32, Version=0.5.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.User32.0.5.184\lib\net45\PInvoke.User32.dll</HintPath>
+    </Reference>
+    <Reference Include="PInvoke.Windows.Core, Version=0.5.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.Windows.Core.0.5.184\lib\net35\PInvoke.Windows.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PInvoke.Windows.ShellScalingApi, Version=0.5.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.Windows.ShellScalingApi.0.5.184\lib\net45\PInvoke.Windows.ShellScalingApi.dll</HintPath>
+    </Reference>
+    <Reference Include="SciterSharpWindows, Version=2.0.85.0, Culture=neutral, PublicKeyToken=917100d643775a9e, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciterSharpWindows.2.0.85\lib\net45\SciterSharpWindows.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.4.2.0\lib\net45\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct2D1, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct2D1.4.2.0\lib\net45\SharpDX.Direct2D1.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DXGI, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DXGI.4.2.0\lib\net45\SharpDX.DXGI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Validation, Version=2.4.0.0, Culture=neutral, PublicKeyToken=2fc06f0d701809a7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Validation.2.4.22\lib\net45\Validation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArchiveResource.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.DesignArsenalWindows.config" />
+    <None Include="res\SkiaIcon.cs" />
+    <None Include="res\SkiaButton.cs" />
+    <Compile Include="Src\App.cs" />
+    <Compile Include="Src\Apps\AppsExternal.cs" />
+    <Compile Include="Src\Apps\Illustrator.cs" />
+    <Compile Include="Src\Apps\Photoshop.cs" />
+    <Compile Include="Src\Apps\Sketch.cs" />
+    <Compile Include="Src\ConstsGlobals.cs" />
+    <Compile Include="Src\ConstsVersion.cs" />
+    <Compile Include="Src\DataFD\DataProtocol.cs" />
+    <Compile Include="Src\DataFD\FontFace.cs" />
+    <Compile Include="Src\DataFD\FontFaceLocal.cs" />
+    <Compile Include="Src\DataFD\InstallerAll.cs" />
+    <Compile Include="Src\DataFD\InstallerOSX.cs" />
+    <Compile Include="Src\DataFD\InstallerWin.cs" />
+    <Compile Include="Src\DataFD\Joiner.cs" />
+    <Compile Include="Src\DataFD\LFAPI.cs" />
+    <Compile Include="Src\DataID\Collections.cs" />
+    <Compile Include="Src\DataID\Icon.cs" />
+    <Compile Include="Src\DataID\Joiner.cs" />
+    <Compile Include="Src\DataID\Library.cs" />
+    <Compile Include="Src\DataID\Store.cs" />
+    <Compile Include="Src\DataIL\Library.cs" />
+    <Compile Include="Src\DataPD\Joiner.cs" />
+    <Compile Include="Src\DataPD\Library.cs" />
+    <Compile Include="Src\Hosting\BehaviorsFD\BaseDraw.cs" />
+    <Compile Include="Src\Hosting\BehaviorsFD\FontSource.cs" />
+    <Compile Include="Src\Hosting\BehaviorsFD\UICharDraw.cs" />
+    <Compile Include="Src\Hosting\BehaviorsFD\UIFontDraw.cs" />
+    <Compile Include="Src\Hosting\BehaviorsFD\UIFontPreview.cs" />
+    <Compile Include="Src\Hosting\Behaviors\IconsSource.cs" />
+    <Compile Include="Src\Hosting\Behaviors\MenuBehavior.cs" />
+    <Compile Include="Src\Hosting\Behaviors\PatternSource.cs" />
+    <Compile Include="Src\Hosting\DnDOSX.cs" />
+    <Compile Include="Src\Hosting\Host.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Src\Hosting\HostFD.cs" />
+    <Compile Include="Src\Hosting\HostID.cs" />
+    <Compile Include="Src\Hosting\HostIL.cs" />
+    <Compile Include="Src\Hosting\HostPD.cs" />
+    <Compile Include="Src\Hosting\WindowWL.cs" />
+    <Compile Include="Src\Hosting\WindowOSX.cs" />
+    <Compile Include="Src\Hosting\WindowUnittest.cs" />
+    <Compile Include="Src\Ion\HIDLinux.cs" />
+    <Compile Include="Src\Ion\HIDOSX.cs" />
+    <Compile Include="Src\Ion\HIDWindows.cs" />
+    <Compile Include="Src\Ion\IonApp.cs" />
+    <Compile Include="Src\Ion\IonConsts.cs" />
+    <Compile Include="Src\Ion\IonWeb.cs" />
+    <Compile Include="Src\Ion\MVCHost.cs" />
+    <Compile Include="Src\Ion\UpdateControl.cs" />
+    <Compile Include="Src\Mono.cs" />
+    <Compile Include="Src\Native\ClipboardHelper.cs" />
+    <Compile Include="Src\Native\DragSource.cs" />
+    <Compile Include="Src\Native\GlobalHotkeys.cs" />
+    <Compile Include="Src\Native\NativeUtils.cs" />
+    <Compile Include="Src\Native\SingleInstance.cs" />
+    <Compile Include="Src\Native\Win32Hwnd.cs" />
+    <Compile Include="Src\PAT\Data\Channel.cs" />
+    <Compile Include="Src\PAT\Data\PatFile.cs" />
+    <Compile Include="Src\PAT\Data\Pattern.cs" />
+    <Compile Include="Src\PAT\Data\RLE.cs" />
+    <Compile Include="Src\PAT\PFile\PatFileReader.cs" />
+    <Compile Include="Src\PAT\PFile\PatFileWriter.cs" />
+    <Compile Include="Src\ProgramOSX.cs" />
+    <Compile Include="Src\ProgramWL.cs" />
+    <Compile Include="Src\SharpFont\AutoHinterScript.cs" />
+    <Compile Include="Src\SharpFont\BBox.cs" />
+    <Compile Include="Src\SharpFont\Bdf\Internal\PropertyRec.cs" />
+    <Compile Include="Src\SharpFont\Bdf\Property.cs" />
+    <Compile Include="Src\SharpFont\Bdf\PropertyType.cs" />
+    <Compile Include="Src\SharpFont\BitmapGlyph.cs" />
+    <Compile Include="Src\SharpFont\BitmapSize.cs" />
+    <Compile Include="Src\SharpFont\Cache\CMapCache.cs" />
+    <Compile Include="Src\SharpFont\Cache\FaceRequester.cs" />
+    <Compile Include="Src\SharpFont\Cache\ImageCache.cs" />
+    <Compile Include="Src\SharpFont\Cache\ImageType.cs" />
+    <Compile Include="Src\SharpFont\Cache\Internal\CMapCacheRec.cs" />
+    <Compile Include="Src\SharpFont\Cache\Internal\ImageCacheRec.cs" />
+    <Compile Include="Src\SharpFont\Cache\Internal\ImageTypeRec.cs" />
+    <Compile Include="Src\SharpFont\Cache\Internal\ManagerRec.cs" />
+    <Compile Include="Src\SharpFont\Cache\Internal\NodeRec.cs" />
+    <Compile Include="Src\SharpFont\Cache\Internal\SBitCacheRec.cs" />
+    <Compile Include="Src\SharpFont\Cache\Internal\SBitRec.cs" />
+    <Compile Include="Src\SharpFont\Cache\Internal\ScalerRec.cs" />
+    <Compile Include="Src\SharpFont\Cache\Manager.cs" />
+    <Compile Include="Src\SharpFont\Cache\Node.cs" />
+    <Compile Include="Src\SharpFont\Cache\SBit.cs" />
+    <Compile Include="Src\SharpFont\Cache\SBitCache.cs" />
+    <Compile Include="Src\SharpFont\Cache\Scaler.cs" />
+    <Compile Include="Src\SharpFont\Cff\HintingEngine.cs" />
+    <Compile Include="Src\SharpFont\CharMap.cs" />
+    <Compile Include="Src\SharpFont\ClassicKernValidationFlags.cs" />
+    <Compile Include="Src\SharpFont\Data.cs" />
+    <Compile Include="Src\SharpFont\EmbeddingTypes.cs" />
+    <Compile Include="Src\SharpFont\Encoding.cs" />
+    <Compile Include="Src\SharpFont\Error.cs" />
+    <Compile Include="Src\SharpFont\Face.cs" />
+    <Compile Include="Src\SharpFont\FaceFlags.cs" />
+    <Compile Include="Src\SharpFont\Fixed16Dot16.cs" />
+    <Compile Include="Src\SharpFont\Fixed26Dot6.cs" />
+    <Compile Include="Src\SharpFont\Fixed2Dot14.cs" />
+    <Compile Include="Src\SharpFont\Fnt\Header.cs" />
+    <Compile Include="Src\SharpFont\Fnt\Internal\HeaderRec.cs" />
+    <Compile Include="Src\SharpFont\Fnt\WinFntID.cs" />
+    <Compile Include="Src\SharpFont\FreeTypeException.cs" />
+    <Compile Include="Src\SharpFont\FT.Internal.cs" />
+    <Compile Include="Src\SharpFont\FT.Public.cs" />
+    <Compile Include="Src\SharpFont\FTBitmap.cs" />
+    <Compile Include="Src\SharpFont\FTList.cs" />
+    <Compile Include="Src\SharpFont\FTMatrix.cs" />
+    <Compile Include="Src\SharpFont\FTSize.cs" />
+    <Compile Include="Src\SharpFont\FTStream.cs" />
+    <Compile Include="Src\SharpFont\FTUnitVector.cs" />
+    <Compile Include="Src\SharpFont\FTVector.cs" />
+    <Compile Include="Src\SharpFont\FTVector26Dot6.cs" />
+    <Compile Include="Src\SharpFont\Gasp.cs" />
+    <Compile Include="Src\SharpFont\Generic.cs" />
+    <Compile Include="Src\SharpFont\Glyph.cs" />
+    <Compile Include="Src\SharpFont\GlyphBBoxMode.cs" />
+    <Compile Include="Src\SharpFont\GlyphFormat.cs" />
+    <Compile Include="Src\SharpFont\GlyphMetrics.cs" />
+    <Compile Include="Src\SharpFont\GlyphSlot.cs" />
+    <Compile Include="Src\SharpFont\GlyphToScriptMapProperty.cs" />
+    <Compile Include="Src\SharpFont\IncreaseXHeightProperty.cs" />
+    <Compile Include="Src\SharpFont\Internal\BitmapGlyphRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\BitmapRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\BitmapSizeRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\CharMapRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\FaceRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\GenericRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\GlyphMetricsRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\GlyphRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\GlyphSlotRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\GlyphToScriptMapPropertyRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\IncreaseXHeightPropertyRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\ListNodeRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\ListRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\MemoryRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\ModuleClassRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\NativeObject.cs" />
+    <Compile Include="Src\SharpFont\Internal\NativeReference.cs" />
+    <Compile Include="Src\SharpFont\Internal\OpenArgsRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\OutlineFuncsRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\OutlineGlyphRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\OutlineRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\ParameterRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\RasterFuncsRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\RasterParamsRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\RendererClassRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\SizeMetricsRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\SizeRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\SizeRequestRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\SpanRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\StreamDescRec.cs" />
+    <Compile Include="Src\SharpFont\Internal\StreamRec.cs" />
+    <Compile Include="Src\SharpFont\KerningMode.cs" />
+    <Compile Include="Src\SharpFont\LcdFilter.cs" />
+    <Compile Include="Src\SharpFont\Library.cs" />
+    <Compile Include="Src\SharpFont\ListNode.cs" />
+    <Compile Include="Src\SharpFont\LoadFlags.cs" />
+    <Compile Include="Src\SharpFont\LoadTarget.cs" />
+    <Compile Include="Src\SharpFont\Memory.cs" />
+    <Compile Include="Src\SharpFont\Module.cs" />
+    <Compile Include="Src\SharpFont\ModuleClass.cs" />
+    <Compile Include="Src\SharpFont\MultipleMasters\Internal\MMAxisRec.cs" />
+    <Compile Include="Src\SharpFont\MultipleMasters\Internal\MMVarRec.cs" />
+    <Compile Include="Src\SharpFont\MultipleMasters\Internal\MultiMasterRec.cs" />
+    <Compile Include="Src\SharpFont\MultipleMasters\Internal\VarAxisRec.cs" />
+    <Compile Include="Src\SharpFont\MultipleMasters\Internal\VarNamedStyleRec.cs" />
+    <Compile Include="Src\SharpFont\MultipleMasters\MMAxis.cs" />
+    <Compile Include="Src\SharpFont\MultipleMasters\MMVar.cs" />
+    <Compile Include="Src\SharpFont\MultipleMasters\MultiMaster.cs" />
+    <Compile Include="Src\SharpFont\MultipleMasters\VarAxis.cs" />
+    <Compile Include="Src\SharpFont\MultipleMasters\VarNamedStyle.cs" />
+    <Compile Include="Src\SharpFont\OpenArgs.cs" />
+    <Compile Include="Src\SharpFont\OpenFlags.cs" />
+    <Compile Include="Src\SharpFont\OpenTypeValidationFlags.cs" />
+    <Compile Include="Src\SharpFont\Orientation.cs" />
+    <Compile Include="Src\SharpFont\Outline.cs" />
+    <Compile Include="Src\SharpFont\OutlineFlags.cs" />
+    <Compile Include="Src\SharpFont\OutlineFuncs.cs" />
+    <Compile Include="Src\SharpFont\OutlineGlyph.cs" />
+    <Compile Include="Src\SharpFont\Parameter.cs" />
+    <Compile Include="Src\SharpFont\ParamTag.cs" />
+    <Compile Include="Src\SharpFont\PInvokeHelper.cs" />
+    <Compile Include="Src\SharpFont\PixelMode.cs" />
+    <Compile Include="Src\SharpFont\PostScript\BlendFlags.cs" />
+    <Compile Include="Src\SharpFont\PostScript\DictionaryKeys.cs" />
+    <Compile Include="Src\SharpFont\PostScript\EncodingType.cs" />
+    <Compile Include="Src\SharpFont\PostScript\FaceDict.cs" />
+    <Compile Include="Src\SharpFont\PostScript\FaceInfo.cs" />
+    <Compile Include="Src\SharpFont\PostScript\FontInfo.cs" />
+    <Compile Include="Src\SharpFont\PostScript\Internal\FaceDictRec.cs" />
+    <Compile Include="Src\SharpFont\PostScript\Internal\FaceInfoRec.cs" />
+    <Compile Include="Src\SharpFont\PostScript\Internal\FontInfoRec.cs" />
+    <Compile Include="Src\SharpFont\PostScript\Internal\PrivateRec.cs" />
+    <Compile Include="Src\SharpFont\PostScript\Private.cs" />
+    <Compile Include="Src\SharpFont\Raster.cs" />
+    <Compile Include="Src\SharpFont\RasterFlags.cs" />
+    <Compile Include="Src\SharpFont\RasterFuncs.cs" />
+    <Compile Include="Src\SharpFont\RasterParams.cs" />
+    <Compile Include="Src\SharpFont\Renderer.cs" />
+    <Compile Include="Src\SharpFont\RendererClass.cs" />
+    <Compile Include="Src\SharpFont\RenderMode.cs" />
+    <Compile Include="Src\SharpFont\SizeMetrics.cs" />
+    <Compile Include="Src\SharpFont\SizeRequest.cs" />
+    <Compile Include="Src\SharpFont\SizeRequestType.cs" />
+    <Compile Include="Src\SharpFont\Span.cs" />
+    <Compile Include="Src\SharpFont\StreamDesc.cs" />
+    <Compile Include="Src\SharpFont\Stroker.cs" />
+    <Compile Include="Src\SharpFont\StrokerBorder.cs" />
+    <Compile Include="Src\SharpFont\StrokerLineCap.cs" />
+    <Compile Include="Src\SharpFont\StrokerLineJoin.cs" />
+    <Compile Include="Src\SharpFont\StyleFlags.cs" />
+    <Compile Include="Src\SharpFont\SubGlyph.cs" />
+    <Compile Include="Src\SharpFont\SubGlyphFlags.cs" />
+    <Compile Include="Src\SharpFont\TrueTypeValidationFlags.cs" />
+    <Compile Include="Src\SharpFont\TrueType\EncodingId.cs" />
+    <Compile Include="Src\SharpFont\TrueType\EngineType.cs" />
+    <Compile Include="Src\SharpFont\TrueType\Header.cs" />
+    <Compile Include="Src\SharpFont\TrueType\HoriHeader.cs" />
+    <Compile Include="Src\SharpFont\TrueType\Internal\HeaderRec.cs" />
+    <Compile Include="Src\SharpFont\TrueType\Internal\HoriHeaderRec.cs" />
+    <Compile Include="Src\SharpFont\TrueType\Internal\MaxProfileRec.cs" />
+    <Compile Include="Src\SharpFont\TrueType\Internal\OS2Rec.cs" />
+    <Compile Include="Src\SharpFont\TrueType\Internal\PCLTRec.cs" />
+    <Compile Include="Src\SharpFont\TrueType\Internal\PostscriptRec.cs" />
+    <Compile Include="Src\SharpFont\TrueType\Internal\SfntNameRec.cs" />
+    <Compile Include="Src\SharpFont\TrueType\Internal\VertHeaderRec.cs" />
+    <Compile Include="Src\SharpFont\TrueType\MaxProfile.cs" />
+    <Compile Include="Src\SharpFont\TrueType\OS2.cs" />
+    <Compile Include="Src\SharpFont\TrueType\Pclt.cs" />
+    <Compile Include="Src\SharpFont\TrueType\PlatformId.cs" />
+    <Compile Include="Src\SharpFont\TrueType\Postscript.cs" />
+    <Compile Include="Src\SharpFont\TrueType\SfntName.cs" />
+    <Compile Include="Src\SharpFont\TrueType\SfntTag.cs" />
+    <Compile Include="Src\SharpFont\TrueType\VertHeader.cs" />
+    <Compile Include="Src\SimpleBSON.cs" />
+    <Compile Include="Src\Svg\SvgParser.cs" />
+    <Compile Include="Src\Svg\SvgSpriteXML.cs" />
+    <Compile Include="Src\Svg\SvgToSkia.cs" />
+    <Compile Include="Src\Svg\SvgXML.cs" />
+    <Compile Include="Src\Utilities\SKIconCode.cs" />
+    <Compile Include="Src\Utilities\Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.manifest" />
+    <None Include="Resources\icon.icns" />
+    <None Include="res\css\iconfont\idrop.ttf" />
+    <None Include="res\img\loaders\dual_ring.apng" />
+    <None Include="res\img\loaders\ripple.apng" />
+    <None Include="res\index.html" />
+    <None Include="res\ion_key.bin" />
+    <None Include="res\lib_colorpicker\colorpicker.tis" />
+    <None Include="res\lib_growl\lib_growl.tis" />
+    <None Include="res\lib_hint\lib_hint.tis" />
+    <None Include="res\lib_poptip\lib_poptip.tis" />
+    <None Include="res\lib_settings\settings.tis" />
+    <None Include="res\tis\utils.tis" />
+    <None Include="res\tis\consts.tis" />
+    <None Include="res\tis\behavior_ui_search.tis" />
+    <None Include="res\tis\menu.tis" />
+    <None Include="res\tis\keyboard.tis" />
+    <None Include="res\tis\ion.tis" />
+    <None Include="res\tis_fd\UIFont.tis" />
+    <None Include="res\tis_fd\UI.tis" />
+    <None Include="res\tis_fd\store.tis" />
+    <None Include="res\tis_id\collections.tis" />
+    <None Include="res\tis_id\icon_behavior.tis" />
+    <None Include="res\tis_id\icon_info.tis" />
+    <None Include="res\tis_id\icon_store.tis" />
+    <None Include="res\tis_id\UI.tis" />
+    <None Include="res\tis_pd\dirlist.tis" />
+    <None Include="res\tis_pd\previewer.tis" />
+    <None Include="res\tis_pd\UI.tis" />
+    <None Include="scripts\packfolder" />
+    <None Include="scripts\packWindows.bat" />
+    <None Include="scripts\postBuild.bat" />
+    <None Include="scripts\preBuildOSX.sh" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\icon.ico" />
+    <Content Include="Resources\icon_menubar.png" />
+    <None Include="Resources\icon_taskbar.png" />
+    <Content Include="res\css\fonts.css" />
+    <Content Include="res\dlg_about.html" />
+    <Content Include="res\activate.html" />
+    <Content Include="res\css\iconfont\idrop-font.css" />
+    <Content Include="res\css\iconfont\idrop-svg.css" />
+    <Content Include="res\css\search.css" />
+    <Content Include="res\css\buttons.css" />
+    <Content Include="res\css\illustrations.css" />
+    <Content Include="res\css\links.css" />
+    <Content Include="res\css\index.css" />
+    <Content Include="res\css\global.css" />
+    <Content Include="res\css_fd\home.css" />
+    <Content Include="res\css_fd\main_list.css" />
+    <Content Include="res\css_fd\main_font.css" />
+    <Content Include="res\css_fd\store.css" />
+    <Content Include="res\css_fd\face.css" />
+    <Content Include="res\css_fd\style.css" />
+    <Content Include="res\css_id\home.css" />
+    <Content Include="res\css_id\icn-info.css" />
+    <Content Include="res\css_id\iconstore.css" />
+    <Content Include="res\css_id\list.css" />
+    <Content Include="res\css_id\spriter.css" />
+    <Content Include="res\css_id\style.css" />
+    <Content Include="res\css_pd\dirlist.css" />
+    <Content Include="res\css_pd\list.css" />
+    <Content Include="res\css_pd\previewer.css" />
+    <Content Include="res\css_pd\style.css" />
+    <Content Include="res\css_pd\tree.css" />
+    <Content Include="res\dlg_xamarin.html" />
+    <Content Include="res\dlg_wtf.html" />
+    <Content Include="res\glyphs.html" />
+    <None Include="res\inc_welcome.html" />
+    <Content Include="res\img\32.png" />
+    <Content Include="res\img\activate.png" />
+    <Content Include="res\img\alpha_grid.png" />
+    <Content Include="res\img\arrow2.png" />
+    <Content Include="res\img\band.png" />
+    <Content Include="res\img\bandi.png" />
+    <Content Include="res\img\banner_activate.jpg" />
+    <Content Include="res\img\bar_hue.png" />
+    <Content Include="res\img\bar_saturation.png" />
+    <Content Include="res\img\bg-site1.png" />
+    <Content Include="res\img\bg-site2.png" />
+    <Content Include="res\img\bg-site3.png" />
+    <Content Include="res\img\dlbg.png" />
+    <Content Include="res\img\folder.png" />
+    <Content Include="res\img\folderMAC.png" />
+    <Content Include="res\img\folderWIN.png" />
+    <Content Include="res\img\grain.png" />
+    <Content Include="res\img\heart.png" />
+    <Content Include="res\img\heart.svg" />
+    <Content Include="res\img\heart_filled.png" />
+    <Content Include="res\img\heart_filled.svg" />
+    <Content Include="res\img\icon-illustrator.svg" />
+    <Content Include="res\img\icon-photoshop.svg" />
+    <Content Include="res\img\icon-sketch.svg" />
+    <Content Include="res\img\loaders\busy.gif" />
+    <Content Include="res\img\loaders\loader.png" />
+    <Content Include="res\img\loaders\loading.png" />
+    <Content Include="res\img\loaders\quantum_spinner.gif" />
+    <Content Include="res\img\logo.svg" />
+    <Content Include="res\img\logo_mi.png" />
+    <Content Include="res\img\nyan.gif" />
+    <Content Include="res\img\pat0.png" />
+    <Content Include="res\img\pat1.png" />
+    <Content Include="res\img\pat2.png" />
+    <Content Include="res\img\picker.png" />
+    <Content Include="res\img\slider_handles.png" />
+    <Content Include="res\img\subheader_bg.png" />
+    <Content Include="res\img\SVGlogo.png" />
+    <Content Include="res\img\SVGlogo.svg" />
+    <Content Include="res\img\swatch.png" />
+    <Content Include="res\img\www.png" />
+    <Content Include="res\inc_illustrations.html" />
+    <Content Include="res\inc_grads.html" />
+    <Content Include="res\inc_photos.html" />
+    <Content Include="res\ion_rsa.txt" />
+    <Content Include="res\jsx\AI_ApplyFont.jsx" />
+    <Content Include="res\jsx\AI_DrawText.jsx" />
+    <Content Include="res\jsx\AI_PS_EnsureFont.jsx" />
+    <Content Include="res\jsx\PS_ApplyFont.jsx" />
+    <Content Include="res\jsx\PS_DrawText.jsx" />
+    <Content Include="res\jsx\utils.jsx" />
+    <Content Include="res\lib_hint\lib_hint.css" />
+    <Content Include="res\unittest.html" />
+    <Content Include="res\inc_id.html" />
+    <Content Include="res\inc_links.html" />
+    <Content Include="res\inc_fd.html" />
+    <Content Include="res\inc_pd.html" />
+    <Content Include="res\jsx\PS_DrawPattern.jsx" />
+    <Content Include="res\lib_colorpicker\colorpicker.html" />
+    <Content Include="res\lib_colorpicker\frame.html" />
+    <Content Include="res\lib_colorpicker\unittest.html" />
+    <Content Include="res\lib_growl\lib_growl.css" />
+    <Content Include="res\lib_menu\menu-chrome.css" />
+    <Content Include="res\lib_menu\toggler2.css" />
+    <Content Include="res\lib_menu\unittes.html" />
+    <Content Include="res\lib_poptip\lib_poptip.css" />
+    <Content Include="res\lib_poptip\unittest.html" />
+    <Content Include="res\lib_settings\unittest.html" />
+    <Content Include="sciter.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scripts\packfolder.exe" />
+    <Content Include="Src\SharpFont\SharpFont.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Src\SharpFont\Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>call $(ProjectDir)scripts\packWindows.bat $(ConfigurationName)</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>call $(ProjectDir)scripts\postBuild.bat $(ConfigurationName) $(TargetDir) $(PlatformName)</PostBuildEvent>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\SharpFont.Dependencies.2.6\build\SharpFont.Dependencies.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SharpFont.Dependencies.2.6\build\SharpFont.Dependencies.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

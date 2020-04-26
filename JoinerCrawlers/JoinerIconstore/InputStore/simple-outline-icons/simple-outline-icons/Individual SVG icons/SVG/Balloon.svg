@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="36px" height="64px" viewBox="0 0 36 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.3 (7891) - http://www.bohemiancoding.com/sketch -->
+    <title>Balloon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Balloon" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)" stroke="#6B6C6E" stroke-width="2">
+            <path d="M15,43 C15,43 11,47 15,47 L19,47 C23,47 19,43 19,43" id="Shape" sketch:type="MSShapeGroup"></path>
+            <path d="M17,43 C18,43 35,48 19,55 C14.4,57 14,62 14,62" id="Shape" sketch:type="MSShapeGroup"></path>
+            <path d="M34,15 C34,28 25.3,43 17,43 C8.7,43 0,27 0,15 C0,6.2 8.7,0 17,0 C25.3,0 34,6.2 34,15 L34,15 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+            <path d="M22,6 C26.4,7.7 30,11.6 30,16.5" id="Shape" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

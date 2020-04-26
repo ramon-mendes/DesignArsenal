@@ -1,0 +1,19 @@
+﻿class UIOverlay : Element
+{
+	function attached()
+	{
+		var el_overlay = this;
+
+		this.on("keydown", function(evt) {
+			if(evt.keyCode == Event.VK_ESCAPE)
+			{
+				el_overlay.hide();
+				count();
+			}
+		});
+
+		this.on("click", ".btn-cancel", function() {
+			el_overlay.hide();
+		});
+	}
+}

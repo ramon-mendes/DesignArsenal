@@ -1,0 +1,75 @@
+#faces
+{
+	flow: vertical;
+	border-spacing: 8px;
+	padding: 30px;
+	margin: 35px 0;
+	background: #f7f7f7;
+	overflow: visible;
+}
+
+.stylename
+{
+	opacity: 0;
+	height: 12px;
+	overflow: visible;
+
+	font-size: 12px;
+	font-style: italic;
+	color: #92a3b1;
+}
+.stylename:first-child { margin-top: -10px; }
+
+#faces:hover .stylename
+{
+	opacity: 1;
+}
+
+fontdraw
+{
+	display: block;
+	size: *;
+	min-height: 32px;
+}
+@media release
+{
+	fontdraw { background: url(../img/loaders/loader.png) no-repeat; }
+}
+
+fontdraw[family] { behavior: UIFontDraw; }
+fontdraw[loaded] { background: none; }
+fontdraw[loaded="failed"] { content: "Could not load this font"; font-size: 15px; font-style: italic; color: red; }
+fontdraw click { display: block; cursor: pointer; size: *; }
+
+
+.btn-onoff { style-set: ToggleBluish; }
+
+@set ToggleBluish
+{
+	:root
+	{
+		size: 20px 6px;
+		padding: 4px 10px;
+			
+		//behavior: check;
+
+		background: url(../img/bandi.png) no-repeat center;
+		cursor: pointer;
+	}
+	:root:checked
+	{
+		background: url(../img/band.png) no-repeat center;
+	}
+		
+	#handle
+	{
+		size: 17px 21px;
+		background: url(../img/slider_handles.png) no-repeat;
+			
+		position: relative;
+		top: -5px;
+		left: -10px;
+	}
+	#handle:ready { transition: left(cubic-out, 200ms); }
+	:root:checked #handle { left: 14px; }
+}

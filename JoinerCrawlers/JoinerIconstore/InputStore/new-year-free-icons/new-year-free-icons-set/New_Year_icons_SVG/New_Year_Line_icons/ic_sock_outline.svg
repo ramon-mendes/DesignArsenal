@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="90px" height="90px" viewBox="0 0 90 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.3 (16044) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_sock_outline</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="ic_sock_outline" sketch:type="MSArtboardGroup">
+            <g id="Rectangle-43-+-Rectangle-42" sketch:type="MSLayerGroup" transform="translate(45.612428, 45.019824) rotate(-340.000000) translate(-45.612428, -45.019824) translate(22.112428, 16.019824)">
+                <path d="M22.1939966,56.8265867 C22.603266,55.3533266 22.8128416,53.8232356 22.8128416,52.2672899 C22.8128416,42.8784492 15.2016823,35.2672899 5.81284156,35.2672899 L5.81284156,39.2672899 C12.9925433,39.2672899 18.8128416,45.0875882 18.8128416,52.2672899 C18.8128416,53.4605296 18.6525927,54.6304912 18.3399455,55.755937 L22.1939966,56.8265867 L22.1939966,56.8265867 Z" id="Shape" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+                <path d="M7,19.0036561 L7,42.9985678 C7,50.1821439 12.8202983,56.2238576 20,56.5 L26.9288668,56.7664949 L34.4569476,57.7397391 C41.3903972,58.6361083 47,53.7002032 47,46.7168517 L47,44.002045 C47,39.0227779 42.993967,34.5377654 38.0522749,33.9675702 L33,33.3846154 L33,18.9957102" id="Rectangle-43-Copy" stroke="#FFFFFF" stroke-width="4" sketch:type="MSShapeGroup"></path>
+                <path d="M4,6.99668583 C4,5.34134842 5.34324478,4 7.00564575,4 L32.9943542,4 C34.6532996,4 36,5.34512356 36,6.99668583 L36,13.0033142 C36,14.6586516 34.6567552,16 32.9943542,16 L7.00564575,16 C5.34670043,16 4,14.6548764 4,13.0033142 L4,6.99668583 L4,6.99668583 Z M-3.55271368e-14,6.99668583 L-3.55271368e-14,13.0033142 C-3.55271368e-14,16.8650652 3.13860983,20 7.00564575,20 L32.9943542,20 C36.8646302,20 40,16.8690566 40,13.0033142 L40,6.99668583 C40,3.13493479 36.8613902,-9.05941988e-14 32.9943542,-9.05941988e-14 L7.00564575,-9.05941988e-14 C3.13536983,-9.05941988e-14 -3.55271368e-14,3.13094339 -3.55271368e-14,6.99668583 L-3.55271368e-14,6.99668583 Z" id="Shape" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="46px" height="64px"
+	 viewBox="0 0 46 64" enable-background="new 0 0 46 64" xml:space="preserve">
+<title>Hour-glass</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" sketch:type="MSPage">
+	<g id="Hour-glass" transform="translate(1.000000, 1.000000)" sketch:type="MSLayerGroup">
+		<path id="Shape" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" stroke-linejoin="round" d="M3,4v54"
+			/>
+		<path id="Shape_1_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" stroke-linejoin="round" d="M41,4
+			v54"/>
+		<path id="Shape_2_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" stroke-linejoin="round" d="M42,58
+			h-5.8c6.1-5.1-2.3-16-12.2-27C33.9,20,42.3,9.1,36.2,4H42c1.1,0,2-0.9,2-2s-0.9-2-2-2H2C0.9,0,0,0.9,0,2s0.9,2,2,2h35H7.9
+			c-6.1,5.1,2.3,16,12.2,27C10.2,42,1.8,52.9,7.9,58H2c-1.1,0-2,0.9-2,2s0.9,2,2,2h40c1.1,0,2-0.9,2-2S43.1,58,42,58L42,58z"/>
+		
+			<path id="Shape_3_" sketch:type="MSShapeGroup" fill="none" stroke="#6B6C6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="
+			M26.75,41.25c4.3,5.3,8.05,11.05,7.15,13.15"/>
+	</g>
+</g>
+<path fill="none" stroke="#6B6C6E" stroke-width="2" stroke-linejoin="round" d="M39.25,59"/>
+</svg>

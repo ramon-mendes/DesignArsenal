@@ -1,0 +1,139 @@
+﻿namespace UIFont
+{
+	var _shown_dic_font;
+
+	function ShowFontByFamily(family)
+	{
+		var dic_store_font = Store._font2store[family];
+		if(dic_store_font)
+			ShowStoreFont(dic_store_font);
+		else
+			ShowFontInternal(family);
+	}
+
+	function ShowStoreFont(dic_store_font)
+	{
+		ShowFontInternal(dic_store_font.title);
+
+		for(var i = 0; i < dic_store_font.images; i++)
+		{
+			var picurl = Consts.SERVER_ASSETS + "cache_BF/" + dic_store_font.title + "/image" + i + ".jpg";
+			self#pics.$append(<picture src="{picurl}" />);
+		}
+	}
+
+	function ShowFontInternal(family)
+	{
+		var dic_font = FontSource.FFJFromFamily(family); assert(dic_font);
+		_shown_dic_font = dic_font;
+
+		self#pics.clear();
+		if(dic_font.preview_img)
+			self#pics.$append(<picture src="{dic_font.preview_img}" />);
+
+		// favorites
+		function RefreshFavBtn(isfav) {
+			self#btn-fav.state.checked = isfav;
+			self#btn-fav.@#poptip = isfav ? "Remove from favorites" : "Add to favorites";
+			self#btn-fav.onClick = function() {
+				isfav = !isfav;
+
+				if(isfav)
+					Settings.ns_data.dic_favorites[family] = true;
+				else
+					delete Settings.ns_data.dic_favorites[family];
+				Settings.StoreWork();
+
+				RefreshFavBtn(isfav);
+			};
+		}
+		
+		RefreshFavBtn(Settings.ns_data.dic_favorites[family]);
+
+		// title and install btn
+		self#title.$(h1).text = dic_font.family;
+
+		self#btn-install.state.checked = dic_font.installed;
+		self#btn-install.onClick = function() {
+			var install = !this.checked;
+			InstallUninstall(install, dic_font, function() {
+			});
+		};
+
+		// license & more
+		self#license.text = dic_font.license.replace("&amp;", "&");
+		if(dic_font.author_name)
+		{
+		} else {
+		}
+
+		if(dic_font.source_url)
+		{
+			self#btn-info.onClick = ::Sciter.launch(dic_font.source_url);
+			self#info-b.show();
+			self#btn-info.show();
+		} else {
+			self#info-b.hide();
+			self#btn-info.hide();
+		}
+
+		// styles
+		self#toggle-styles.show();
+		if(dic_font.variants.length == 1)
+			self#toggle-styles.text = "";
+		else
+		{
+			self#toggle-styles.text = "Show all " + dic_font.variants.length + " styles";
+			self#toggle-styles.onClick = function() {
+				self#toggle-styles.hide();
+				self#faces.clear();
+				for(var (i, v) in dic_font.variants)
+					ListUI.CreateFaceEntry(self#faces, dic_font, i);
+			};
+		}
+
+		// faces
+		self#faces.clear();
+		var el_fontdraw = ListUI.CreateFaceEntry(self#faces, dic_font);
+
+		// hint
+		self.timer(500, function() {
+			if(Utils.IsWindows)
+				ShowHint("fdfont1", "<u>Right-click</u> to reveal a menu with actions for this font.<br>Make sure to have Photoshop or Illustrator running to reveal additional options.", el_fontdraw);
+			else
+				ShowHint("fdfont1", "<u>Right-click</u> to reveal a menu with actions for this font.<br>Make sure to have Photoshop, Illustrator or Sketch running to reveal additional options.", el_fontdraw);
+		});
+		
+		//self#ui-search.AddTag("View font: <b>" + dic_font.title + "</b>");
+		self#ui-search.Clear();
+		self#ui-search.AddTag("Font view");
+		UI.ViewMainFont();
+	}
+
+	function InstallUninstall(install, dic_font, cbk, delay = 0)
+	{
+		if(install)
+			self#overlay-msg.html = "Installing '" + dic_font.family + "' ...";
+		else
+			self#overlay-msg.html = "Uninstalling '" + dic_font.family + "' ...";
+		self#overlay-msg.show();
+
+		view.Host_FontPermInstall(install, dic_font.family, function(ok) {
+			if(install && delay)
+			{
+				self.timer(2000, function() {
+					self#overlay-msg.hide();
+					if(ok && _shown_dic_font.family == dic_font.family)
+						self#btn-install.state.checked = install;
+					cbk();
+				});
+			} else {
+				self#overlay-msg.hide();
+				assert(_shown_dic_font);
+				if(ok && _shown_dic_font.family == dic_font.family)
+					self#btn-install.state.checked = install;
+				cbk();
+			}
+		});
+	}
+}

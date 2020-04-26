@@ -1,0 +1,46 @@
+include "../lib_settings/settings.tis";
+
+function ShowHint(key, html_hint, el, cbk=undefined)
+{
+	if(!el)
+		return;
+
+	key = "hint_" + key;
+	if(Settings.ns_data.config[key])
+		return;
+	
+	var el_hint = self.$append(<div .hint>
+		<div .wraper>
+			<div .poptip>
+				<h1>Hint!</h1>
+				<p />
+				<button .std-btn>Got it</button>
+			</div>
+			<img src="img/loaders/dual_ring.apng" />
+		</div>
+	</div>);
+	el_hint.$(p).html = html_hint;
+	var (hintw, hinth) = el_hint.box(#dimension);
+
+	var (x, y, w, h) = el.box(#rectw, #border, #view);
+	x += w/2;
+	y += h/2;
+	x -= 305;
+	y -= hinth/2;
+
+	if(Utils.IsOSX)
+		el_hint.move(x, y, #detached-topmost-window);
+	else
+		el_hint.move(x, y, #attached-window);
+
+	el_hint.$(button).onClick = function() {
+		el_hint.remove();
+
+		Settings.ns_data.config[key] = true;
+		Settings.StoreWork();
+
+		if(cbk)
+			cbk();
+	};
+	el_hint.@#show = true;
+}

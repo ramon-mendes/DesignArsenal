@@ -1,0 +1,6 @@
+<svg version="1.1" id="browser-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+  <rect x="4" y="7" width="2" height="2"/>
+  <rect x="7" y="7" width="2" height="2"/>
+  <rect x="10" y="7" width="2" height="2"/>
+  <path d="M0 3v26h32V3H0zM30 27H2V13h28V27zM30 11H2V5h28V11z"/>
+</svg>

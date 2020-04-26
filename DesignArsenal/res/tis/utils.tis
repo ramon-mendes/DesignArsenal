@@ -1,0 +1,30 @@
+﻿Utils.FixRevealedDirName = function(dir) {
+	dir = URL.toPath(dir).replace("+", " ");// TODO: remove this replace
+	if(dir[dir.length-1] != '/')
+		dir = dir + "/";
+	return dir
+};
+
+Utils.EscClosesWindow = function() {
+	self.on("keydown", function(evt) {
+		var ctrl;
+		if(Utils.IsWindows)
+			ctrl = evt.ctrlKey && !evt.shiftKey && !evt.altKey;
+		else
+			ctrl = evt.commandKey && !evt.shiftKey && !evt.altKey;
+			
+		if(evt.keyCode == Event.VK_ESCAPE)
+		{
+			view.close();
+			return true;
+		}
+		if(ctrl)
+		{
+			if(evt.keyCode == Event.VK_W)
+			{
+				view.close();
+				return true;
+			}
+		}
+	});
+};

@@ -1,0 +1,106 @@
+﻿<!-- OmniView:on -->
+<html>
+<head>
+	<style>
+		@import url(css/global.css);
+		@import url(lib_menu/menu-chrome.css);
+
+		#main
+		{
+			flow: vertical;
+			size: *;
+		}
+
+		#gradlist
+		{
+			height: 160px;
+			border-bottom: solid 3px #D8D8D8;
+			overflow-y: scroll;
+		}
+
+		#gradlist #inner
+		{
+			padding: 7px 8px;
+			flow: horizontal-flow;
+			border-spacing: 8px;
+		}
+
+		#gradlist .box
+		{
+			cursor: pointer;
+			size: 90px;
+		}
+
+		#previewer
+		{
+			size: *;
+			background: url(img/kevin-grieve-788994-unsplash.jpg) red no-repeat;
+			background-size: cover;
+		}
+	</style>
+
+	<script type="text/tiscript">
+		const GRADS = [
+			["rgba(225, 33, 105, 0.7)", "rgba(40, 36, 97, 0.7)"],
+			["rgba(39, 179, 170, 0.72)", "rgba(39, 179, 170, 0.72)"],
+			["rgba(36, 209, 235, 0.85)", "rgba(36, 156, 235, 0.85)"],
+		];
+
+		for(var arr_clrs in GRADS)
+		{
+			var colors = arr_clrs.join(",");
+			var el_box = self#inner.$append(<div .box />);
+			el_box.style#background = "linear-gradient(45deg, " + colors + ")";
+		}
+
+		self.on("click", ".box", function() {
+			var colors = GRADS[this.index];
+			self#previewer.style#foreground = "linear-gradient(45deg, " + colors + ")";
+		});
+
+		self.on("mousedown", ".box", function(evt) {
+			// context menu
+			if(evt.propButton)
+			{
+				count();
+				this.popup(self#menu-grad, evt.xView, evt.yView)
+			}
+		});
+	</script>
+
+	<menu .menu-chromed #menu-grad .outline>
+		<div .inner>
+			<!--<div #menu-area-photoshop.hide>
+				<caption><img src="img/icon-photoshop.svg" width="22" /> <span>Photoshop</span></caption>
+				<ul>
+					<li cmd="pslayer">Create shape layer</li>
+				</ul>
+			</div>
+
+			<div #menu-area-illustrator.hide>
+				<caption><img src="img/icon-illustrator.svg" width="22" /> <span>Illustrator</span></caption>
+				<ul>
+					<li cmd="ailayer">Create shape layer</li>
+				</ul>
+			</div>-->
+
+			<div #menu-area-sketch>
+				<caption><img src="img/icon-sketch.svg" width="22" /> <span>Sketch</span></caption>
+				<ul>
+					<li cmd="sklayer">Create shape layer</li>
+				</ul>
+			</div>
+		</div>
+	</menu>
+</head>
+
+<body>
+	<main #main>
+		<div #gradlist>
+			<div #inner />
+		</div>
+
+		<div #previewer />
+	</main>
+</body>
+</html>

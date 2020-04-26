@@ -1,0 +1,63 @@
+﻿#dirlist
+{
+	width: *;
+	height: 140px;
+	overflow-x: scroll-indicator;
+
+	padding-top: 2px;
+	border-bottom: solid 2px #d8d8d8;
+	flow: vertical-flow;
+	font-size: 12px;
+}
+
+#dirlist entry
+{
+	display: block;
+	width: 150px;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 24px;
+	padding-right: 2px;
+	margin-right: 5px;
+
+	foreground-repeat: no-repeat;
+	foreground-position-left: 3px;
+	foreground-position-top: 2px;
+
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: path-ellipsis;
+}
+#dirlist entry span { color: silver; }
+#dirlist entry:hover { background-color: #CDE8FF; }
+#dirlist entry:focus:not(:current):not(:active) { outline: solid 1px #CDE8FF -1px; background: none !important; }
+#dirlist entry:current { background-color: #0668D9; }
+#dirlist entry span
+{
+	size: *;
+}
+@media os-vendor=="Apple"
+{
+	#dirlist entry.dir { foreground-image: url(../img/folderMAC.png); }
+
+	#menu-dir
+	{
+		behavior: MenuBehavior !important;// important because menu-chrome also sets behavior: menu
+	}
+}
+@media os-vendor=="Microsoft"
+{
+	#dirlist entry.dir { foreground-image: url(../img/folderWIN.png); }
+}
+#dirlist entry.pat { foreground-image: url(../img/pat0.png); }
+#dirlist entry.onlineroot,
+#dirlist entry.onlinedir
+{
+	foreground-image: url(../img/www.png);
+}
+
+#dirlist entry:current
+{
+	background: #095cdc;
+	color: white;
+}
