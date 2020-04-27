@@ -19,7 +19,7 @@
 				}
 
 				var entry = arr_listed[bulk_pos++];
-				var imgurl = Consts.SERVER_ASSETS + "cache_BF/" + URL.encodeParam(entry.title) + "/preview.jpg";
+				var imgurl = Consts.SERVER_ASSETS + "FontCache/cache_BF/" + URL.encodeParam(entry.title) + "/preview.jpg";
 				log(imgurl);
 				
 				var el_entry = self#store-list.$append(<img src="{imgurl}" />)
