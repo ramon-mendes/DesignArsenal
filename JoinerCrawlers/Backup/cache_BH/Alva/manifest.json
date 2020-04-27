@@ -1,0 +1,9 @@
+{
+	name: "Alva",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/43534721/ALVA-FREE-FONT",
+	styles: [
+		["Regular", "ALVA-Regular.ttf", "ALVA"]
+	],
+	license: "NON_FREE"
+}

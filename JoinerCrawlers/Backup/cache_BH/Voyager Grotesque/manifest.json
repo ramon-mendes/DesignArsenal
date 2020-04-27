@@ -1,0 +1,25 @@
+{
+  "name": "Voyager Grotesque",
+  "category": "display",
+  "styles": [
+    [
+      "Regular",
+      "VoyagerGrotesque.otf",
+      "VoyagerGrotesque"
+    ],
+    [
+      "Bold",
+      "VoyagerGrotesqueBold.otf",
+      "VoyagerGrotesqueBold"
+    ],
+    [
+      "Light",
+      "VoyagerGrotesqueLight.otf",
+      "VoyagerGrotesqueLight"
+    ]
+  ],
+  "url": null,
+  "url_basedir": "http://localhost:51193/CDN/FDCache/cache_BH/Voyager Grotesque/",
+  "url_gallery": "https://www.behance.net/gallery/vger-grotesque/6636573",
+  "license": "FREE_COMMERCIAL_USE"
+}

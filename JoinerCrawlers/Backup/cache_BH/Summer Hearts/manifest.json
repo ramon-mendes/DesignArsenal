@@ -1,0 +1,8 @@
+{
+	name: "Summer Hearts",
+	category: "handwriting",
+	url_gallery: "https://www.behance.net/gallery/38331175/SUMMER-HEARTS-FREE-FONT",
+	styles: [
+		["Regular", "SummerHearts-Regular.otf", "Summer Hearts"]
+	]
+}

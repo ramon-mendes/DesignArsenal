@@ -1,0 +1,9 @@
+{
+	category: "handwriting",
+	url_gallery: "https://www.behance.net/gallery/61214739/FREE-FONTS-Handwritten-Font-Collection",
+	styles: [
+		["Regular", "Cornish_Pasty-Regular.otf"],
+		["Stylistic_One", "Cornish_Pasty_Stylistic_Two-Regular.otf"],
+		["Stylistic_Two", "Cornish_Pasty_Stylistic_One-Regular.otf"],
+	]
+}

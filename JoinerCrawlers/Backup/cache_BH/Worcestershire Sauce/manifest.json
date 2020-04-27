@@ -1,0 +1,9 @@
+{
+	name: "Worcestershire Sauce",
+	category: "handwriting",
+	url_gallery: "https://www.behance.net/gallery/61214739/FREE-FONTS-Handwritten-Font-Collection",
+	styles: [
+		["Press", "Worcestershire_Sauce_Press-Regular.otf"],
+		["Regular", "Worcestershire_Sauce-Regular.otf"],
+	]
+}

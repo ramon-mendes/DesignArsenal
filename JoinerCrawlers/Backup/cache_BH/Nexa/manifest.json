@@ -1,0 +1,9 @@
+{
+	name: "Nexa",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/5462751/Nexa-font",
+	styles: [
+		["Light", "Nexa_Free_Light.otf", "Nexa Light"],
+		["Bold", "Nexa_Free_Bold.otf", "Nexa Bold"]
+	]
+}

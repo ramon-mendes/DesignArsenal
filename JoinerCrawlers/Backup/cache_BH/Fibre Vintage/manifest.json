@@ -1,0 +1,8 @@
+{
+	name: "Fibre Vintage",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/38563857/Fibre-Free-Vintage-Font",
+	styles: [
+		["Regular", "fibre-font.otf", "Fibre Vintage"]
+	]
+}

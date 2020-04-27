@@ -1,0 +1,8 @@
+{
+	name: "Astry",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/42038581/Astry-Free-Font",
+	styles: [
+		["Regular", "Astry.ttf", "Astry"]
+	]
+}

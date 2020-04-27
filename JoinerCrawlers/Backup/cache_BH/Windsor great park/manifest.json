@@ -1,0 +1,10 @@
+{
+	name: "Windsor great park",
+	category: "handwriting",
+	url_gallery: "https://www.behance.net/gallery/61214739/FREE-FONTS-Handwritten-Font-Collection",
+	styles: [
+		["Regular", "Windsor_Great_Park-Regular.otf"],
+		["Italic", "Windsor_Great_Park_Italic-Regular.otf"],
+		["Stylistic", "Windsor_Great_Park_Stylistic_One-Regular.otf"],
+	]
+}

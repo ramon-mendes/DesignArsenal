@@ -1,0 +1,8 @@
+{
+	name: "Umbra",
+	category: "serif",
+	url_gallery: "https://www.behance.net/gallery/40428599/Umbra-Free-Font",
+	styles: [
+		["Regular", "Umbra-Regular.otf", "Umbra"]
+	]
+}

@@ -1,0 +1,8 @@
+{
+	name: "Fjord",
+	category: "brush",
+	url_gallery: "https://www.behance.net/gallery/35755549/Fjord-Brush-Typeface",
+	styles: [
+		["Regular", "fjord-font-free.otf", "Fjord-free"]
+	]
+}

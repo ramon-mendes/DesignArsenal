@@ -1,0 +1,8 @@
+{
+	name: "Houndville",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/40916703/Houndville-Font",
+	styles: [
+		["Regular", "Houndville.ttf", "Houndville"]
+	]
+}

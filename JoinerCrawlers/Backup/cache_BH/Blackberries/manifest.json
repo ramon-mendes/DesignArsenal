@@ -1,0 +1,9 @@
+{
+	name: "Blackberries",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/38357127/Blackberries-A-sweet-free-font",
+	styles: [
+		["Regular", "Blackberries.otf", "Blackberries"],
+		["Bold", "Blackberries Bold.otf", "Blackberries"]
+	]
+}

@@ -1,0 +1,9 @@
+{
+	name: "Tindra",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/37526103/TINDRA-FONT",
+	styles: [
+		["Regular", "Tindra-Regular.ttf", "Tindra"]
+	],
+	license: "NON_FREE"
+}

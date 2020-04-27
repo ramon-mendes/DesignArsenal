@@ -1,0 +1,9 @@
+{
+	name: "Reckoner",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/16591321/Reckoner-Typeface",
+	styles: [
+		["Regular", "Reckoner.ttf", "Reckoner"],
+		["Bold", "Reckoner_Bold.ttf", "Reckoner Bold"],
+	]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Ostrich Sans",
+  "category": "BASIC_SANS_SERIF",
+  "url": "https://github.com/theleagueof/ostrich-sans",
+  "license": "FREE_COMMERCIAL_USE",
+  "styles": [
+		["Black", "ostrich-sans-black.ttf"],
+		["Bold", "ostrich-sans-bold.ttf"],
+    ["Dashed", "ostrich-sans-dashed.ttf"],
+    ["Inline Italic", "ostrich-sans-inline-italic.ttf"],
+    ["Inline Regular", "ostrich-sans-inline-regular.ttf"],
+    ["Light", "ostrich-sans-light.ttf"],
+    ["Regular", "ostrich-sans-regular.ttf"],
+    ["Rounded", "ostrich-sans-rounded.ttf"],
+	]
+}

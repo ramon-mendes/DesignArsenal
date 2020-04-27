@@ -1,0 +1,8 @@
+{
+	name: "Plume",
+	category: "brush",
+	url_gallery: "https://www.behance.net/gallery/30242599/PLUME-Free-Brush-Font",
+	styles: [
+		["Regular", "Plume-Free-Brush-Font.otf", "Plume"]
+	]
+}

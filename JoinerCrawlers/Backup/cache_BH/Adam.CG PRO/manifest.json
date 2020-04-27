@@ -1,0 +1,8 @@
+{
+	name: "Adam.CG PRO",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/13756975/ADAMCG-PRO-Free-Typeface",
+	styles: [
+		["Regular", "ADAM.CG PRO.otf", "ADAM.CG PRO"]
+	]
+}

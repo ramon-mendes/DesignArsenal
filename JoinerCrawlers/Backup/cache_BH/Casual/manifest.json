@@ -1,0 +1,8 @@
+{
+	name: "Casual",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/40847991/Casual-Free-Typeface",
+	styles: [
+		["Regular", "Casual-Regular.ttf", "Casual"]
+	]
+}

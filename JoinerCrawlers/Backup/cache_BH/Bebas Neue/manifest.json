@@ -1,0 +1,12 @@
+{
+	name: "Bebas Neue",
+	category: "sans-serif",
+	url_gallery: "https://www.behance.net/gallery/49639997/Bebas-Neue-Type-Specimen",
+	styles: [
+		["Thin", "BebasNeue Thin.otf", "Bebas Neue Thin"],
+		["Light", "BebasNeue Light.otf", "Bebas Neue Light"],
+		["Book", "BebasNeue Book.otf", "Bebas Neue Book"],
+		["Regular", "BebasNeue Regular.otf", "Bebas Neue Regular"],
+		["Bold", "BebasNeue Bold.otf", "Bebas Neue Bold"]
+	]
+}

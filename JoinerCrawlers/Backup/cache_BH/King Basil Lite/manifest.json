@@ -1,0 +1,15 @@
+{
+  "name": "King Basil Lite",
+  "category": "handwriting",
+  "styles": [
+    [
+      "Regular",
+      "King-Basil-Lite.otf",
+      "King-Basil-Lite"
+    ]
+  ],
+  "url": null,
+  "url_basedir": "http://localhost:51193/CDN/FDCache/cache_BH/King Basil Lite/",
+  "url_gallery": "https://www.behance.net/gallery/40105313/King-Basil-Free-Brush-Font",
+  "license": "FREE_COMMERCIAL_USE"
+}

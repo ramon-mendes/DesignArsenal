@@ -1,0 +1,8 @@
+{
+	name: "Locke",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/37872253/Locke-typeface",
+	styles: [
+		["Regular", "Locke-Regular.otf", "Locke Regular"]
+	]
+}

@@ -1,0 +1,8 @@
+{
+	name: "Gothic Modern",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/40920911/Gothic-Modern-Typeface?utm_source=codropscollective",
+	styles: [
+		["Regular", "gothic_modern.ttf", "gothic_modern"]
+	]
+}
