@@ -74,8 +74,8 @@ namespace JoinerCache
 
 			Task[] tasks = new Task[]
 			{
-				//Task.Run(BHAPI.Setup),
-				//Task.Run(GHAPI.Setup),
+				Task.Run(BHAPI.Setup),
+				Task.Run(GHAPI.Setup),
 				Task.Run(GAPI.Setup),
 				Task.Run(BFAPI.Setup),
 				//Task.Run(FSAPI.Setup),
@@ -111,11 +111,11 @@ namespace JoinerCache
 
 		public static bool JoinFonts(CacheFontData new_cache)
 		{
-			/*if(GAPI._fontlist == null || FSAPI._fontlist == null || BHAPI._fontlist == null || GHAPI._fontlist == null)
+			if(GAPI._fontlist == null || BHAPI._fontlist == null || GHAPI._fontlist == null)
 			{
 				Debug.Assert(false);
 				return false;
-			}*/
+			}
 
 			int r = 0;
 
