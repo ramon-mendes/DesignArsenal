@@ -158,13 +158,14 @@
 					}
 				}
 
-				/*view.request({
+				// get meta data of the site with my API
+				view.request({
 					url: Consts.SERVER_APIGENERAL + "LinkData",
 					params: { url: g_url },
 					success: :data, status:ShowEditOverlay(data.title, data.desc),
 					//success: :data, status:data.show(),
 					error: ::ShowEditOverlay()
-				});*/
+				});
 			});
 		}
 
