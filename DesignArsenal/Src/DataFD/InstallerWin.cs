@@ -20,7 +20,7 @@ namespace DesignArsenal.DataFD
 {
 	static class Installer
 	{
-		public const string MAGIC_PREFIX = "DesignArsenal-";
+		public const string MAGIC_PREFIX = "DesignArsenal--";
 		public static readonly string _fonts_dir = Path.GetFullPath(Environment.SystemDirectory + "\\..\\Fonts\\");
 
 		public static void RefreshSystemFonts()

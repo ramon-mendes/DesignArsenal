@@ -178,8 +178,8 @@ namespace DesignArsenal.DataFD
 
 				//string query = $"APIFD/DownloadFont?path={Uri.EscapeDataString(ffj.variant2file[variant])}&{Ion.IonApp.URIAuthData}";
 				//string query = $"APIFD/DownloadFont?path={Uri.EscapeDataString(ffj.variant2file[variant])}";
-				//string url = Consts.SERVER_ASSETS + query;
-				string url = "https://storagemvc.blob.core.windows.net/designarsenal/FDCache/" + ffj.variant2file[variant];
+				string url = Consts.SERVER_ASSETS + "FontCache/" + ffj.variant2file[variant];
+				//string url = "https://storagemvc.blob.core.windows.net/designarsenal/FDCache/" + ffj.variant2file[variant];
 				byte[] fontbinary = Utils.GetDataRetryPattern(url);
 				if(fontbinary == null)
 					return null;
