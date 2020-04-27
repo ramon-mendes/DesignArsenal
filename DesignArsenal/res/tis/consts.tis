@@ -31,7 +31,7 @@ namespace Consts
 
 	const SITE_URL = "http://designarsenal.co/";
 	const SERVER_ASSETS = "https://storagemvc.blob.core.windows.net/arsenal/";
-	const SERVER_APIGENERAL = SERVER_ASSETS + "APIGeneral/";
+	const SERVER_APIGENERAL = "https://designarsenalmvc.azurewebsites.net/APIGeneral/";
 }
 
 self.on("blur", "input, widget|text", function(evt) {
