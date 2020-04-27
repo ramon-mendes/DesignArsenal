@@ -17,9 +17,8 @@ namespace JoinerCache
 	public static class Joiner
 	{
 		private static readonly string MVC_CacheFile = @"D:\MVC\DesignArsenalMVC\DesignArsenalMVC\App_Data\fd_cache.bson";
-		private static readonly string AD_CacheFile = @"D:\ProjetosSciter\DesignArsenal\DesignArsenal\Shared\fd_cache.bson";
+		private static readonly string AD_CacheFile = Path.GetFullPath(Environment.CurrentDirectory + @"\..\..\..\..\DesignArsenal\Shared\fd_cache.bson");
 
-		
 		public static CacheFontData _dataJoin { get; private set; }
 		public static byte[] _dataBSON { get; private set; }
 		public static string _dataDbgJSON { get; private set; }
@@ -75,11 +74,11 @@ namespace JoinerCache
 
 			Task[] tasks = new Task[]
 			{
-				//Task.Run((Action)BHAPI.Setup),
-				//Task.Run((Action)GHAPI.Setup),
-				Task.Run((Action)GAPI.Setup),
-				Task.Run((Action)BFAPI.Setup),
-				//Task.Run((Action)FSAPI.Setup),
+				//Task.Run(BHAPI.Setup),
+				//Task.Run(GHAPI.Setup),
+				Task.Run(GAPI.Setup),
+				Task.Run(BFAPI.Setup),
+				//Task.Run(FSAPI.Setup),
 			};
 
 			Task.WhenAll(tasks).ContinueWith((t) =>
@@ -100,7 +99,7 @@ namespace JoinerCache
 					_dataBSON = new_cache.SerializeBSON();
 					
 					// Save to files
-					File.WriteAllBytes(MVC_CacheFile, _dataBSON);
+					//File.WriteAllBytes(MVC_CacheFile, _dataBSON);
 					File.WriteAllBytes(AD_CacheFile, _dataBSON);
 
 					Debug.WriteLine("Joiner.Setup Finished!!");
@@ -209,6 +208,7 @@ namespace JoinerCache
 			new_cache.arr_joinedfonts.AddRange(list_bhapi.Where(wb => new_cache.arr_joinedfonts.Any(jf => jf.family == wb.family) == false));
 			//new_cache.arr_joinedfonts.AddRange(list_fsapi.Where(wb => new_cache.arr_joinedfonts.Any(jf => jf.family == wb.family) == false));
 
+			var a = new_cache.arr_joinedfonts.Where(f => f.variant2file.Any(kv => kv.Value.Contains('#')));
 			Debug.Assert(new_cache.arr_joinedfonts.All(f => f.variant2file.Count != 0));
 			Debug.Assert(new_cache.arr_joinedfonts.All(f => f.family != null));
 			Debug.Assert(new_cache.arr_joinedfonts.All(f => !f.family.Contains(':')));

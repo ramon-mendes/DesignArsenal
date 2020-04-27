@@ -29,7 +29,9 @@ namespace BefontCrawler
 			//return;
 
 			string outdir = Path.GetFullPath(Environment.CurrentDirectory + @"\..\..\..\NoGIT\FontCache\cache_BF\");
-			Crawler(outdir, @"z7.exe");
+			Directory.CreateDirectory(outdir);
+
+			//Crawler(outdir, @"z7.exe");
 			JoinStore(outdir);
 		}
 
@@ -60,10 +62,16 @@ namespace BefontCrawler
 					var items = doc_main.QuerySelectorAll(".td-module-container");
 					Debug.Assert(items.Count != 0);
 
-					Parallel.ForEach(items, item => CrawlFont(hc, item, arg_outdir));
+					if(true)
+						Parallel.ForEach(items, item => CrawlFont(hc, item, arg_outdir));
+					else
+					{
+						foreach (var item in items)
+							CrawlFont(hc, item, arg_outdir);
+					}
 				}
 
-				break;
+				//break;
 			}
 		}
 
@@ -293,6 +301,9 @@ namespace BefontCrawler
 					if(dl_real_url == null)
 						return;
 					zip_url = dl_real_url.Attributes["href"].Value;
+
+					if(!zip_url.EndsWith(".zip") && !zip_url.EndsWith(".rar"))
+						return;
 				}
 
 				var response = RetryPattern(() => hc.GetAsync(zip_url).Result, "FAILED 4");
@@ -324,6 +335,7 @@ namespace BefontCrawler
 					if(p.ExitCode != 0)
 					{
 						var err = p.StandardOutput.ReadToEnd();
+						Console.WriteLine(err);
 
 						// TODO retry times
 						if(retry++ < 10)
@@ -331,7 +343,7 @@ namespace BefontCrawler
 							Thread.Sleep(100);
 							continue;
 						}
-						return;
+						throw new Exception("7z error");
 					}
 					break;
 				}
@@ -498,6 +510,10 @@ namespace BefontCrawler
 			}
 			catch(Exception ex)
 			{
+				// NOTES
+				// make sure 7z exists in PATH
+				// make sure VS 2010 x86 C++ redistributable is installed: https://www.microsoft.com/en-us/download/confirmation.aspx?id=5555
+				//Debug.Assert(false);
 			}
 		}
 
