@@ -123,7 +123,7 @@ namespace DesignArsenal.Hosting
 				{
 					Task.Run(() =>
 					{
-						var bytess = Utils.GetDataRetryPattern("http://api.thumbnail.ws/api/ab6abe6678e61197e47bc9db3a81a2f4ac04c3e95626/thumbnail/get?width=280&url=" + url);
+						var bytess = Utils.GetDataRetryPattern("http://api.screenshotlayer.com/api/capture?access_key=05b5c230a4b29c97c286a5151563ebcf&viewport=1440x900&width=250&url=" + url);
 						if(bytess != null)
 						{
 							File.WriteAllBytes(thumb, bytess);
@@ -208,8 +208,7 @@ namespace DesignArsenal.Hosting
 		public bool Host_ClearCache(SciterElement el, SciterValue[] args, out SciterValue result)
 		{
 			Directory.Delete(Consts.DirUserCache, true);
-			Directory.CreateDirectory(Consts.DirUserCache_Fonts);
-			Directory.CreateDirectory(Consts.DirUserCache_StoreIcons);
+			Consts.CreateDirs();
 
 			result = null;
 			return true;

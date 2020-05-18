@@ -31,6 +31,11 @@ namespace DesignArsenal
 
 		static Consts()
 		{
+			CreateDirs();
+		}
+
+		public static void CreateDirs()
+		{
 			Directory.CreateDirectory(DirUserData);
 			Directory.CreateDirectory(DirUserCache_Fonts);
 			Directory.CreateDirectory(DirUserCache_StoreIcons);

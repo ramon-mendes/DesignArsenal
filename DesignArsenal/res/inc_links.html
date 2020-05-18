@@ -68,6 +68,16 @@
 							link: "http://foculty.com/"
 						}
 					]
+				},
+				{
+					cat: "media sources",
+					arr_items: [
+						{
+							title: "DeviantArt",
+							desc: "World's largest online social community for artists and art enthusiasts, allowing people to connect through the creation and sharing of art",
+							link: "https://www.deviantart.com/"
+						}
+					]
 				}
 			];
 			Settings.StoreWork();
@@ -182,7 +192,8 @@
 
 				el_top.$append(<h2>{data.title}</h2>);
 				el_top.$append(<div .desc>{data.desc}</text>);
-				var thumb_url = (Utils.InDBGView ? "https://api.thumbnail.ws/api/ab6abe6678e61197e47bc9db3a81a2f4ac04c3e95626/thumbnail/get?width=280&url=" : "thumb://")
+				
+				var thumb_url = (Utils.InDBGView ? "http://api.screenshotlayer.com/api/capture?access_key=05b5c230a4b29c97c286a5151563ebcf&viewport=1440x900&width=250&url=" : "thumb://")
 					+ URL.encodeParam(data.link);
 				el.$append(<img src="{thumb_url}" .thumb />);
 				el.$append(<button .btn-graybord.btn-rmvme><icon .icon-trash-2 /></span>);
