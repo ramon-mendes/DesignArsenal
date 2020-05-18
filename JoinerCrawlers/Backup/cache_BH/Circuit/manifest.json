@@ -1,0 +1,8 @@
+{
+	name: "Circuit",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/42835329/Circuit-Free-Typeface?utm_source=codropscollective",
+	styles: [
+		["Regular", "Circuit.ttf", "Circuit"]
+	]
+}

@@ -1,0 +1,8 @@
+{
+	name: "Odibee Sans",
+	category: "display",
+	url_gallery: "http://odibeesans.com/",
+	styles: [
+		["Regular", "OdibeeSans-Regular.otf", "Odibee Sans"]
+	]
+}

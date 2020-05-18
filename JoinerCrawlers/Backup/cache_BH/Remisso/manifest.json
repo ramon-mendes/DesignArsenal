@@ -1,0 +1,8 @@
+{
+	name: "Remisso",
+	category: "brush",
+	url_gallery: "https://www.behance.net/gallery/38498411/Remisso-Font",
+	styles: [
+		["Remisso", "Remisso.ttf", "Remisso"]
+	]
+}

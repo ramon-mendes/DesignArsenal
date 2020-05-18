@@ -1,0 +1,12 @@
+{
+  "name": "Redacted",
+  "category": "DISPLAY",
+  "url": "https://github.com/christiannaths/Redacted-Font",
+  "license": "FREE_COMMERCIAL_USE",
+  "styles": [
+		["Regular", "redacted-regular.ttf"],
+		["Script Bold", "redacted-script-bold.ttf"],
+    ["Script Light", "redacted-script-light.ttf"],
+    ["Script Regular", "redacted-script-regular.ttf"],
+	]
+}

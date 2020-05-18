@@ -1,0 +1,8 @@
+{
+	name: "Migur",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/42261383/Migur-Free-Font?utm_source=codropscollective",
+	styles: [
+		["Regular", "Migur.otf", "Migur"]
+	]
+}

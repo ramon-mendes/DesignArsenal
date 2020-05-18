@@ -1,0 +1,7 @@
+{
+	name: "Kano",
+	category: "sans-serif",
+	styles: [
+		["Regular", "Kano.otf", "Kano regular"]
+	]
+}

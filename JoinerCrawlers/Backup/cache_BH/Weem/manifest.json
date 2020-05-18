@@ -1,0 +1,8 @@
+{
+	name: "Weem",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/34045436/Weem-Free-Font",
+	styles: [
+		["Regular", "weem.otf", "Weem"]
+	]
+}

@@ -1,0 +1,8 @@
+{
+	name: "Ginva",
+	category: "serif",
+	url_gallery: "https://www.behance.net/gallery/42150257/Ginva-Free-Font",
+	styles: [
+		["Regular", "Ginva.ttf", "Ginva"]
+	]
+}

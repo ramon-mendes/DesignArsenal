@@ -1,0 +1,9 @@
+{
+	name: "System Code",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/40835365/System-Code-Free-Font",
+	styles: [
+		["Regular", "Alt System Code Regular.ttf", "Alt System Code"],
+		["Bold", "Alt System Code Bold.ttf", "Alt System Code"]
+	]
+}

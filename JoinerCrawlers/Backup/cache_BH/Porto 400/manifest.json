@@ -1,0 +1,8 @@
+{
+	name: "Porto 400",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/12114147/Porto-font-%28free%29",
+	styles: [
+		["Regular", "Porto 400.ttf", "Porto 400"]
+	]
+}

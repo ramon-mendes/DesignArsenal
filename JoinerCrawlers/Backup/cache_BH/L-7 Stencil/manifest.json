@@ -1,0 +1,8 @@
+{
+	name: "L-7 Stencil",
+	category: "brush",
+	url_gallery: "https://www.behance.net/gallery/44809399/L-7-STENCIL-FONT-(FREE)?utm_source=codropscollective",
+	styles: [
+		["Regular", "L-7 Stencil.ttf", "L-7 Stencil"]
+	]
+}

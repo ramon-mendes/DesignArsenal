@@ -1,0 +1,8 @@
+{
+	name: "Lorano",
+	category: "sans-serif",
+	url_gallery: "https://www.behance.net/gallery/40734329/Lorano-Typeface-Family",
+	styles: [
+		["ExtraLight", "Lorano-ExtraLight.ttf", "ExtraLight"]
+	]
+}

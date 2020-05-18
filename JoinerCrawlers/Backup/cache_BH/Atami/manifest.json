@@ -1,0 +1,9 @@
+{
+	name: "Atami",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/34020116/Atami-Free-Typeface",
+	styles: [
+		["Regular", "Atami-Regular.otf", "Atami"]
+	],
+	license: "FREE_PERSONAL_USE",
+}

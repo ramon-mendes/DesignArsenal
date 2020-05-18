@@ -1,0 +1,15 @@
+{
+  "name": "Aldo the Apache",
+  "category": "display",
+  "styles": [
+    [
+      "Regular",
+      "AldotheApache.ttf",
+      "Aldo the Apache"
+    ]
+  ],
+  "url": null,
+  "url_basedir": "http://localhost:51193/CDN/FDCache/cache_BH/Aldo the Apache/",
+  "url_gallery": null,
+  "license": "FREE_PERSONAL_USE"
+}

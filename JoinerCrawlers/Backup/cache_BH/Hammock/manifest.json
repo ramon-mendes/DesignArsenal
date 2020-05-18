@@ -1,0 +1,10 @@
+{
+	name: "Hammock",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/40768653/Hammock-Free-Font",
+	styles: [
+		["Black", "HAMMOCK-Black.otf", "HAMMOCK Black"],
+		["Rough_Home", "HAMMOCK-Rough_Home.otf", "HAMMOCK Rough_Home"],
+		["Rough_Poster", "HAMMOCK-Rough_Poster.otf", "HAMMOCK Rough_Poster"]
+	]
+}

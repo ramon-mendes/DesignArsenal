@@ -1,0 +1,15 @@
+{
+  "name": "Anana",
+  "category": "brush",
+  "styles": [
+    [
+      "Regular",
+      "anana-Regular.ttf",
+      "anana"
+    ]
+  ],
+  "url": null,
+  "url_basedir": "http://localhost:51193/CDN/FDCache/cache_BH/Anana/",
+  "url_gallery": "https://www.behance.net/gallery/40129399/Anana-Free-brush-font",
+  "license": "FREE_COMMERCIAL_USE"
+}

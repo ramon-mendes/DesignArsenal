@@ -1,0 +1,9 @@
+{
+	name: "Bootcamp",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/44319325/BOOTCAMP-FREE-FONT",
+	styles: [
+		["Regular", "Bootcamp-Regular.ttf", "Bootcamp"]
+	],
+	license: "NON_FREE"
+}

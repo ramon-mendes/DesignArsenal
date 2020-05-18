@@ -1,0 +1,8 @@
+{
+	name: "Laika",
+	category: "brush",
+	url_gallery: "https://www.behance.net/gallery/8210191/Laika-FREE",
+	styles: [
+		["Regular", "LAIKA.otf", "LAIKA"]
+	]
+}

@@ -1,0 +1,13 @@
+{
+	name: "UGO",
+	category: "composite",
+	url_gallery: "https://www.behance.net/gallery/15397407/UGO-Typeface-Free-Font",
+	styles: [
+		["Color", "UGO-COLOR.otf", "UGO COLOR"],
+		["3D Color", "UGO-DCOLOR.otf", "UGO 3D COLOR"],
+		["3D Pois", "UGO-DPOIS.otf", "UGO 3D POIS"],
+		["3D Rain", "UGO-DRAIN.otf", "UGO 3D RAIN"],
+		["Engreved", "UGO-ENGREVED.otf", "UGO ENGREVED"],
+		["Line", "UGO-LINE.otf", "UGO LINE"]
+	]
+}

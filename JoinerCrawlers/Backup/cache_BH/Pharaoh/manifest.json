@@ -1,0 +1,8 @@
+{
+	name: "Pharaoh",
+	category: "display",
+	url_gallery: "https://www.behance.net/gallery/30615145/PHARAOH(free-font)",
+	styles: [
+		["Regular", "Pharaoh.otf", "Pharaoh"]
+	]
+}
