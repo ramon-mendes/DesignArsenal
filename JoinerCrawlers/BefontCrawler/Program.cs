@@ -522,8 +522,11 @@ namespace BefontCrawler
 			List<object> list = new List<object>();
 			foreach(var subdir in Directory.EnumerateDirectories(arg_outdir))
 			{
+				if(subdir.Contains("#"))
+					continue;
+
 				var files = Directory.EnumerateFiles(subdir, "*.*").ToList();
-				if (!files.All(f => new FileInfo(f).Length > 0))
+				if(!files.All(f => new FileInfo(f).Length > 0))
 				{
 					continue;
 				}
