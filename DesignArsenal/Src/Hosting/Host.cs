@@ -184,6 +184,7 @@ namespace DesignArsenal.Hosting
 			sv["Photoshop.ApplyText"] = new SciterValue(args => Photoshop.ApplyText(args[0].Get(""), args[1].Get("")));
 			sv["Illustrator.DrawText"] = new SciterValue(args => Illustrator.DrawText(args[0].Get(""), args[1].Get("")));
 			sv["Illustrator.ApplyText"] = new SciterValue(args => Illustrator.ApplyText(args[0].Get(""), args[1].Get("")));
+			sv["XD.CopyLayer"] = new SciterValue(args => XD.CopyLayer(args[0].Get(""), args[1].Get("")));
 #if OSX
 			sv["Sketch.CreateFillRect"] = new SciterValue(args => Sketch.CreateFillRect(args[0].Get("")));
 			sv["Sketch.ApplyFill"] = new SciterValue(args => Sketch.ApplyFill(args[0].Get("")));

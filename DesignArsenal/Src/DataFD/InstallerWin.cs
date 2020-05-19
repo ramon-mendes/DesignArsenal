@@ -31,7 +31,7 @@ namespace DesignArsenal.DataFD
 		public static bool PermanentlyInstall(bool install, string family)
 		{
 			var ffj = Joiner.FFJ_ByNormalName(family);
-			var key_fonts = Registry.LocalMachine.OpenSubKey("Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts", true);
+			var key_fonts = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts", true);
 			bool failed = false;
 
 			if(install)
@@ -39,9 +39,9 @@ namespace DesignArsenal.DataFD
 				Parallel.ForEach(ffj.variant2file, (kv) =>
 				{
 					string name = ffj.family + "#" + kv.Key;
-					string filename = InstallFontIO(ffj, kv.Key);
-					if(filename != null)
-						key_fonts.SetValue(name, filename, RegistryValueKind.String);
+					string path = InstallFontIO(ffj, kv.Key);
+					if(path != null)
+						key_fonts.SetValue(name, path, RegistryValueKind.String);
 					else
 						failed = true;
 				});
@@ -56,6 +56,9 @@ namespace DesignArsenal.DataFD
 					bool res = RemoveFontResource(value); Debug.Assert(res);
 				}
 			}
+
+			key_fonts.Dispose();
+
 			RefreshSystemFonts();
 
 			return !failed;
@@ -107,7 +110,7 @@ namespace DesignArsenal.DataFD
 				int res = AddFontResource(copypath);
 				Debug.Assert(res > 0);
 
-				return filename;
+				return copypath;
 			}
 			return null;
 		}

@@ -21,7 +21,8 @@ namespace DesignArsenal.Apps
 		PHOTOSHOP,
 		ILLUSTRATOR,
 		INDESIGN,
-		SKETCH
+		SKETCH,
+		XD
 	}
 
 	static class AppExtension
@@ -34,6 +35,7 @@ namespace DesignArsenal.Apps
 				case EAppExternal.ILLUSTRATOR: return "Illustrator";
 				case EAppExternal.INDESIGN: return "InDesign";
 				case EAppExternal.SKETCH: return "Sketch";
+				case EAppExternal.XD: return "XD";
 			}
 			return null;
 		}
@@ -118,7 +120,7 @@ namespace DesignArsenal.Apps
 
 			string respath = _tmp_jsxdir + "res.json";
 			File.Delete(respath);
-			for(int i = 0; i < 10; i++)
+			for(int i = 0; i < 5; i++)
 			{
 				RunJSXScript(code);
 				while(!File.Exists(respath))
@@ -147,7 +149,6 @@ namespace DesignArsenal.Apps
 #if WINDOWS
 			if(_proc.MainWindowHandle != IntPtr.Zero)
 				PInvoke.User32.ShowWindow(_proc.MainWindowHandle, PInvoke.User32.WindowShowStyle.SW_SHOW);
-			
 #endif
 		}
 	}

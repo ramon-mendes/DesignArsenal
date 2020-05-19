@@ -13,6 +13,8 @@ using SciterSharp.Interop;
 using DesignArsenal.Native;
 using DesignArsenal.DataFD;
 using System.Net;
+using System.IO;
+using DesignArsenal.Apps;
 
 namespace DesignArsenal
 {
@@ -26,6 +28,8 @@ namespace DesignArsenal
 		[STAThread]
 		static int Main(string[] args)
 		{
+
+
 #if WINDOWS
 			// Sciter needs this for drag'n'drop support; STAThread is required for OleInitialize succeess
 			int oleres = PInvokeWindows.OleInitialize(IntPtr.Zero);
@@ -34,6 +38,14 @@ namespace DesignArsenal
 #if GTKMONO
 			PInvokeGTK.gtk_init(IntPtr.Zero, IntPtr.Zero);
 			Mono.Setup();
+#endif
+
+#if DEBUG
+			//XD.CopyLayer("Arial", "");
+
+			/*var a = (MemoryStream)Clipboard.GetData("com.adobe.xd");
+			var b = a.ToArray();
+			var s = System.Text.Encoding.Unicode.GetString(b);*/
 #endif
 
 			string vs2013 = @"SOFTWARE\Classes\Installer\Dependencies\{050d4fc8-5d48-4b8f-8972-47c82c46020f}";

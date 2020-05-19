@@ -41,7 +41,7 @@ namespace DesignArsenal.DataFD
 				try
 				{
 					var val = key_fonts.GetValue(name).ToString();
-					if(val.StartsWith(Installer.MAGIC_PREFIX))
+					if(val.Contains(Installer.MAGIC_PREFIX))
 					{
 						string path = Installer._fonts_dir + val;
 						if(!File.Exists(path))

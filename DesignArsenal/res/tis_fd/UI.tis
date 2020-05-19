@@ -210,6 +210,9 @@ namespace ListUI
 				case "ailayer": _apps_expando["Illustrator.DrawText"](family, variant); break;
 				case "aiapply": _apps_expando["Illustrator.ApplyText"](family, variant); break;
 
+				// XD
+				case "xdcopy": _apps_expando["XD.CopyLayer"](family, variant); break;
+
 				// Sketch
 				case "sklayer": _apps_expando["Sketch.DrawText"](family, variant); break;
 				case "skapply": _apps_expando["Sketch.ApplyText"](family, variant); break;
@@ -240,6 +243,7 @@ namespace ListUI
 
 				self#menu-area-photoshop.@.toggleClass("show", _apps_expando.IsAppRunning(EAppExternal.PHOTOSHOP));
 				self#menu-area-illustrator.@.toggleClass("show", _apps_expando.IsAppRunning(EAppExternal.ILLUSTRATOR));
+				self#menu-area-xd.@.toggleClass("show", _apps_expando.IsAppRunning(EAppExternal.XD));
 				if(Utils.IsOSX)
 					self#menu-area-sketch.@.toggleClass("show", _apps_expando.IsAppRunning(EAppExternal.SKETCH));
 

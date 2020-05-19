@@ -1,7 +1,10 @@
 using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Text;
 #if WINDOWS
 using System.Windows.Forms;
+using PInvoke;
 #endif
 
 /// <summary>
@@ -45,46 +48,79 @@ EndSelection:<<<<<<<<4";
     /// </summary>
     private static readonly char[] _byteCount = new char[1];
 
-    #endregion
+	#endregion
 
-	#if WINDOWS
-    /// <summary>
-    /// Create <see cref="DataObject"/> with given html and plain-text ready to be used for clipboard or drag and drop.<br/>
-    /// Handle missing <![CDATA[<html>]]> tags, specified start\end segments and Unicode characters.
-    /// </summary>
-    /// <remarks>
-    /// <para>
-    /// Windows Clipboard works with UTF-8 Unicode encoding while .NET strings use with UTF-16 so for clipboard to correctly
-    /// decode Unicode string added to it from .NET we needs to be re-encoded it using UTF-8 encoding.
-    /// </para>
-    /// <para>
-    /// Builds the CF_HTML header correctly for all possible HTMLs<br/>
-    /// If given html contains start/end fragments then it will use them in the header:
-    /// <code><![CDATA[<html><body><!--StartFragment-->hello <b>world</b><!--EndFragment--></body></html>]]></code>
-    /// If given html contains html/body tags then it will inject start/end fragments to exclude html/body tags:
-    /// <code><![CDATA[<html><body>hello <b>world</b></body></html>]]></code>
-    /// If given html doesn't contain html/body tags then it will inject the tags and start/end fragments properly:
-    /// <code><![CDATA[hello <b>world</b>]]></code>
-    /// In all cases creating a proper CF_HTML header:<br/>
-    /// <code>
-    /// <![CDATA[
-    /// Version:1.0
-    /// StartHTML:000000177
-    /// EndHTML:000000329
-    /// StartFragment:000000277
-    /// EndFragment:000000295
-    /// StartSelection:000000277
-    /// EndSelection:000000277
-    /// <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-    /// <html><body><!--StartFragment-->hello <b>world</b><!--EndFragment--></body></html>
-    /// ]]>
-    /// </code>
-    /// See format specification here: http://msdn.microsoft.com/library/default.asp?url=/workshop/networking/clipboard/htmlclipboard.asp
-    /// </para>
-    /// </remarks>
-    /// <param name="html">a html fragment</param>
-    /// <param name="plainText">the plain text</param>
-    public static DataObject CreateDataObject(string html, string plainText)
+#if WINDOWS
+	[DllImport("user32.dll", SetLastError = true)]
+	static extern bool OpenClipboard(IntPtr hWndNewOwner);
+
+	[DllImport("user32.dll", SetLastError = true)]
+	static extern uint RegisterClipboardFormat(string lpszFormat);
+
+	[DllImport("user32.dll", SetLastError = true)]
+	static extern int SetClipboardData(uint uFormat, IntPtr hMem);
+
+	[DllImport("user32.dll")]
+	static extern bool EmptyClipboard();
+
+	[DllImport("user32.dll", SetLastError = true)]
+	static extern bool CloseClipboard();
+
+	public static void CopyCustomRawData(string format, byte[] data)
+	{
+		var res = OpenClipboard(IntPtr.Zero);
+		EmptyClipboard();
+
+		uint id_format = RegisterClipboardFormat(format);
+
+		var mem = Marshal.AllocHGlobal(data.Length);
+		Marshal.Copy(data, 0, mem, data.Length);
+		SetClipboardData(id_format, mem);
+		var res3 = CloseClipboard();
+		Debug.Assert(res3);
+		//Marshal.FreeHGlobal(mem);// DONT remove me, prevents a crash in the second copy, go figure
+	}
+
+#endif
+
+#if WINDOWS
+	/// <summary>
+	/// Create <see cref="DataObject"/> with given html and plain-text ready to be used for clipboard or drag and drop.<br/>
+	/// Handle missing <![CDATA[<html>]]> tags, specified start\end segments and Unicode characters.
+	/// </summary>
+	/// <remarks>
+	/// <para>
+	/// Windows Clipboard works with UTF-8 Unicode encoding while .NET strings use with UTF-16 so for clipboard to correctly
+	/// decode Unicode string added to it from .NET we needs to be re-encoded it using UTF-8 encoding.
+	/// </para>
+	/// <para>
+	/// Builds the CF_HTML header correctly for all possible HTMLs<br/>
+	/// If given html contains start/end fragments then it will use them in the header:
+	/// <code><![CDATA[<html><body><!--StartFragment-->hello <b>world</b><!--EndFragment--></body></html>]]></code>
+	/// If given html contains html/body tags then it will inject start/end fragments to exclude html/body tags:
+	/// <code><![CDATA[<html><body>hello <b>world</b></body></html>]]></code>
+	/// If given html doesn't contain html/body tags then it will inject the tags and start/end fragments properly:
+	/// <code><![CDATA[hello <b>world</b>]]></code>
+	/// In all cases creating a proper CF_HTML header:<br/>
+	/// <code>
+	/// <![CDATA[
+	/// Version:1.0
+	/// StartHTML:000000177
+	/// EndHTML:000000329
+	/// StartFragment:000000277
+	/// EndFragment:000000295
+	/// StartSelection:000000277
+	/// EndSelection:000000277
+	/// <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+	/// <html><body><!--StartFragment-->hello <b>world</b><!--EndFragment--></body></html>
+	/// ]]>
+	/// </code>
+	/// See format specification here: http://msdn.microsoft.com/library/default.asp?url=/workshop/networking/clipboard/htmlclipboard.asp
+	/// </para>
+	/// </remarks>
+	/// <param name="html">a html fragment</param>
+	/// <param name="plainText">the plain text</param>
+	public static DataObject CreateDataObject(string html, string plainText)
     {
         html = html ?? String.Empty;
         var htmlFragment = GetHtmlDataString(html);

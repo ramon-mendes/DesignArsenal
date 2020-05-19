@@ -20,6 +20,7 @@ namespace EAppExternal
 	const ILLUSTRATOR = 2;
 	const INDESIGN = 3;
 	const SKETCH = 4;
+	const XD = 5;
 }
 
 namespace Consts

@@ -108,9 +108,10 @@ namespace DesignArsenal.DataFD
 				return psname;
 
 			psname = ffv._face.GetPostscriptName();
-			if(psname != null)
+			return psname;
+			/*if(psname != null)
 				return psname.Replace(' ', '-');
-			return null;
+			return null;*/
 		}
 
 		
