@@ -74,9 +74,9 @@ namespace JoinerCache
 
 			Task[] tasks = new Task[]
 			{
-				//Task.Run(BHAPI.Setup),
-				//Task.Run(GHAPI.Setup),
-				//Task.Run(GFPI.Setup),
+				Task.Run(BHAPI.Setup),
+				Task.Run(GHAPI.Setup),
+				Task.Run(GFPI.Setup),
 				Task.Run(BFAPI.Setup),
 				//Task.Run(FSAPI.Setup),
 			};

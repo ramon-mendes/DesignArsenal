@@ -11,18 +11,6 @@ namespace JoinerCache
 	public static class App
 	{
 		public static readonly string FontsDir = Path.GetFullPath(Environment.CurrentDirectory + @"\..\..\..\NoGIT\FontCache\");
-
-		/*static App()
-		{
-			if(Utils.IsLocalHost)
-			{
-				CacheDir = @"D:\FDCache\";
-			}
-			else
-			{
-				CacheDir = HostingEnvironment.ApplicationPhysicalPath + @"App_Data\FDCache\";
-			}
-		}*/
 		
 		public static void NotifyInternetFault()
 		{

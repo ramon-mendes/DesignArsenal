@@ -542,7 +542,9 @@ namespace BefontCrawler
 			}
 
 			File.WriteAllText(arg_outdir + "bf_store.json", JsonConvert.SerializeObject(list));
-			//File.Copy(arg_outdir + "fd_store.json", @"D:\ProjetosSciter\DesignArsenal\DesignArsenal\Shared\fd_store.json", true);
+
+			string fd_out = Path.GetFullPath(arg_outdir + "/../../../../DesignArsenal/Shared/fd_store.json");
+			File.Copy(arg_outdir + "bf_store.json", fd_out, true);// Befont gets turned into the store list
         }
 
 		/*
