@@ -87,7 +87,7 @@
     <Compile Include="FontCache\BFAPI.cs" />
     <Compile Include="FontCache\BHAPI.cs" />
     <Compile Include="FontCache\FSAPI.cs" />
-    <Compile Include="FontCache\GAPI.cs" />
+    <Compile Include="FontCache\GFPI.cs" />
     <Compile Include="FontCache\GHAPI.cs" />
     <Compile Include="FontCache\Joiner.cs" />
     <Compile Include="Program.cs" />

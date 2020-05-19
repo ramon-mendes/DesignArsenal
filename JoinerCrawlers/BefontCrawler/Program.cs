@@ -523,7 +523,10 @@ namespace BefontCrawler
 			foreach(var subdir in Directory.EnumerateDirectories(arg_outdir))
 			{
 				var files = Directory.EnumerateFiles(subdir, "*.*").ToList();
-				Debug.Assert(files.All(f => new FileInfo(f).Length > 0));
+				if (!files.All(f => new FileInfo(f).Length > 0))
+				{
+					continue;
+				}
 
 				string fs_manifest = subdir + "\\manifest.json";
 				if(!File.Exists(fs_manifest))

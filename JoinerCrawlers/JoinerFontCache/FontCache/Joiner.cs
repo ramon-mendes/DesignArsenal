@@ -76,7 +76,7 @@ namespace JoinerCache
 			{
 				Task.Run(BHAPI.Setup),
 				Task.Run(GHAPI.Setup),
-				Task.Run(GAPI.Setup),
+				Task.Run(GFPI.Setup),
 				Task.Run(BFAPI.Setup),
 				//Task.Run(FSAPI.Setup),
 			};
@@ -111,7 +111,7 @@ namespace JoinerCache
 
 		public static bool JoinFonts(CacheFontData new_cache)
 		{
-			if(GAPI._fontlist == null || BHAPI._fontlist == null || GHAPI._fontlist == null)
+			if(GFPI._fontlist == null || BHAPI._fontlist == null || GHAPI._fontlist == null)
 			{
 				Debug.Assert(false);
 				return false;
@@ -148,13 +148,13 @@ namespace JoinerCache
 					}),
 				}).ToArray();
 
-			r = GAPI._fontlist.Count;
-			var list_gapi = GAPI._fontlist.Select(wb =>
+			r = GFPI._fontlist.Count;
+			var list_gapi = GFPI._fontlist.Select(wb =>
 				new FontFamilyJoin
 				{
 					source = EFontSource.GOOGLE,
 					family = wb.WF.Family,
-					ecategory = GAPI.GetCategory(wb.WF),
+					ecategory = GFPI.GetCategory(wb.WF),
 					license = EFontLicense.FREE_COMMERCIAL_USE.ToString(),
 					source_url = "https://fonts.google.com/specimen/" + wb.WF.Family.Replace(' ', '+'),
 					rank = 200 + r--,

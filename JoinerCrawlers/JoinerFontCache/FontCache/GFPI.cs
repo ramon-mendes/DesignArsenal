@@ -12,12 +12,12 @@ using DesignArsenal.DataFD;
 
 namespace JoinerCache
 {
-	public static class GAPI
+	public static class GFPI
 	{
 		public static readonly string FontCacheDir_GAPI = App.FontsDir + "cache_GF\\";
-		public static IList<GAPIFont> _fontlist = new List<GAPIFont>();
+		public static IList<GFPIFont> _fontlist = new List<GFPIFont>();
 
-		public class GAPIFont
+		public class GFPIFont
 		{
 			public Webfont WF;
 			public IDictionary<string, string> Paths;
@@ -59,7 +59,7 @@ namespace JoinerCache
 
 
 				// Download fonts
-				_fontlist = new List<GAPIFont>();
+				_fontlist = new List<GFPIFont>();
 
 				Parallel.ForEach(gfonts, wf =>
 				{
@@ -90,7 +90,7 @@ namespace JoinerCache
 
 					lock(_fontlist)
 					{
-						_fontlist.Add(new GAPIFont
+						_fontlist.Add(new GFPIFont
 						{
 							WF = wf,
 							Paths = dic_paths
