@@ -38,6 +38,14 @@ namespace DesignArsenal
 #endif
 		}
 
+#if OSX
+		public static void CopyCustomFormat(string format, string data)
+        {
+			AppKit.NSPasteboard.GeneralPasteboard.ClearContents();
+			AppKit.NSPasteboard.GeneralPasteboard.SetDataForType(data, format);
+		}
+#endif
+
 		public static void CopyFile(string path)
 		{
 #if OSX

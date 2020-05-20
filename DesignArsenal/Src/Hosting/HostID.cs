@@ -147,9 +147,9 @@ namespace DesignArsenal.Hosting
 			int xView = args[1].Get(-1);
 			int yView = args[2].Get(-1);
 
-			var img = args[3].GetBytes();
-			Debug.Assert(img.Length != 0);
-			File.WriteAllBytes(_tmp_dragimg, img);
+			//var img = args[3].GetBytes();
+			//Debug.Assert(img.Length != 0);
+			//File.WriteAllBytes(_tmp_dragimg, img);
 
 			_tmp_dragimg = Consts.AppDir_Resources + "cursor.png";
 			

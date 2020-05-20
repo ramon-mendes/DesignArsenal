@@ -174,16 +174,14 @@ button { border-radius: 0; border: none; flow: horizontal; font-size: 9pt; }
 		flow: horizontal;
 		border-spacing: 5px;
 
-		padding: 1px 19px 1px 19px;
+		padding: -2px 20px -2px 20px;
 	
 		background: white;
 		border: solid 1px #c5c5c5;
-		border-radius: 3px;
-		//border-bottom-color: red; FIXME
+		border-radius: 5px;
 
 		font-family: system;
 		font-size: 12px;
-		font-weight: 200;
 	}
 	.std-btn icon { size: 12px; }
 	.std-btn * { margin: * 0; }

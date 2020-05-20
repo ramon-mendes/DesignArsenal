@@ -27,70 +27,73 @@
 		.loader { visibility: none; margin-left: 10px; }
 	</style>
 
-	<script type="text/tiscript">
-		include "tis/consts.tis";
+    <script type="text/tiscript">
+        include "tis/consts.tis";
+        include "tis/utils.tis";
 
-		// Window SIZE here
-		if(!View.resized)
-		{
-			view.windowResizable = false;
-			view.windowMinimizable = false;
-			view.windowMaximizable = false;
-		}
+        Utils.EscClosesWindow();
 
-		self#name.state.focus = true;
+        // Window SIZE here
+        if(!View.resized)
+        {
+            view.windowResizable = false;
+            view.windowMinimizable = false;
+            view.windowMaximizable = false;
+        }
 
-		self#btn-submit.on("click", function() {
-			if(!self#name.value)
-			{
-				self#name.@.addClass("highlight");
-				self#name.state.focus = true;
-				return;
-			}
-			if(!self#email.value)
-			{
-				self#email.@.addClass("highlight");
-				self#email.state.focus = true;
-				return;
-			}
-			if(!self#key.value)
-			{
-				self#key.@.addClass("highlight");
-				self#key.state.focus = true;
-				return;
-			}
+        self#name.state.focus = true;
 
-			self#name.@.removeClass("highlight");
-			self#email.@.removeClass("highlight");
-			self#key.@.removeClass("highlight");
-			self.state.disabled = true;
+        self#btn-submit.on("click", function() {
+            if(!self#name.value)
+            {
+                self#name.@.addClass("highlight");
+                self#name.state.focus = true;
+                return;
+            }
+            if(!self#email.value)
+            {
+                self#email.@.addClass("highlight");
+                self#email.state.focus = true;
+                return;
+            }
+            if(!self#key.value)
+            {
+                self#key.@.addClass("highlight");
+                self#key.state.focus = true;
+                return;
+            }
 
-			$(.loader).show();
+            self#name.@.removeClass("highlight");
+            self#email.@.removeClass("highlight");
+            self#key.@.removeClass("highlight");
+            self.state.disabled = true;
 
-			self.post(function() {
-				var expando = view.parent.Host_IonExpando();
-				expando.activate(function(res) {
-					$(.loader).hide();
-					if(!res)
-						view.msgbox(#information, "Could not register " + Consts.APPNAME, Consts.APPNAME);
-					else
-					{
-						view.msgbox(#information, Consts.APPNAME + " registered with success!\n\nWe will restart the app for you.", Consts.APPNAME);
-						view.parent.Host_IonRestart();
-					}
-					view.close();
-				}, self#name.value, self#email.value, self#key.value);
-			});
-		});
+            $(.loader).show();
+
+            self.post(function() {
+                var expando = view.parent.Host_IonExpando();
+                expando.activate(function(res) {
+                    $(.loader).hide();
+                    if(!res)
+                        view.msgbox(#information, "Could not register " + Consts.APPNAME, Consts.APPNAME);
+                    else
+                    {
+                        view.msgbox(#information, Consts.APPNAME + " registered with success!\n\nWe will restart the app for you.", Consts.APPNAME);
+                        view.parent.Host_IonRestart();
+                    }
+                    view.close();
+                }, self#name.value, self#email.value, self#key.value);
+            });
+        });
 
         self.on("~keydown", "input", function(evt) {
             if(evt.keyCode == Event.VK_RETURN)
-	        {
+            {
                 $(button).sendEvent("click");
                 return true;
             }
-		});
-	</script>
+        });
+    </script>
 </head>
 
 <body>

@@ -448,7 +448,7 @@ namespace ListUI
 		LoadItensBulk();
 
 		self.timer(500, function() {
-			ShowHint("idlist", "You can drag'n'drop icons to your favorite design tool (Photoshop, Sketch)...<br>You are actually simply dragging a SVG file.", self#list[0]);
+			ShowHint("idlist", "You can drag'n'drop icons to your favorite design tool (Photoshop, Illustrator, XD, Sketch)...<br>You are actually simply dragging a SVG file.", self#list[0]);
 		});
 	}
 

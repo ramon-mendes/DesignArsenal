@@ -172,6 +172,7 @@
     <None Include="res\tis_pd\dirlist.tis" />
     <None Include="res\tis_pd\previewer.tis" />
     <None Include="res\tis_pd\sliderpicker.tis" />
+    <None Include="res\tis\utils.tis" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchiveResource.cs" />
@@ -419,6 +420,8 @@
     <Compile Include="Src\Native\MacInterop\Carbon.cs" />
     <Compile Include="Src\Native\MacInterop\AppleEvents\Native.cs" />
     <Compile Include="Src\Native\MacInterop\HotKey.cs" />
+    <Compile Include="Src\Apps\XD.cs" />
+    <Compile Include="Src\Native\GlobalHotkeys.cs" />
   </ItemGroup>
   <ItemGroup>
     <NativeReference Include="libsciter-osx-64.dylib">

@@ -10,8 +10,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using SciterSharp;
 using DesignArsenal.DataFD;
-using DesignArsenal.Native;
 #if WINDOWS
+using DesignArsenal.Native;
 using System.Drawing;
 using System.Drawing.Imaging;
 #elif OSX
