@@ -3,6 +3,7 @@
 <head>
     <script type="text/tiscript">
 		include "tis/consts.tis";
+		include "lib_growl/lib_growl.tis";
 
 		var dic_font = view.parameters;
 		if(!dic_font)
@@ -146,6 +147,10 @@
 				SetListTable(ascii_map);
 		};
 
+		self.on("click", function() {
+			Growl("Character copied!");
+		});
+
 		/*self#btn-style.onClick = ::this.popup(self#menu-style, Utils.popupAttachment());
 		self#btn-style.on("click", "li.radio", ::SetStyle(this.text));
 
@@ -157,6 +162,7 @@
 	<style>
         @import url(css/global.css);
 		@import url(lib_menu/menu-chrome.css);
+		@import url(lib_growl/lib_growl.css);
 
 		body
 		{
@@ -209,6 +215,7 @@
 
 			color: gray;
 			font-size: 14px;
+			cursor: pointer;
 		}
 		.box[family] { behavior: UICharDraw; }
 
