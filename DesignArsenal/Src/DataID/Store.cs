@@ -41,7 +41,8 @@ namespace DesignArsenal.DataID
 		{
 			var json = File.ReadAllText(Consts.AppDir_Shared + "id_store.json");
 			SciterValue sv = SciterValue.FromJSONString(json);
-			foreach(var sv_pack in sv.AsEnumerable())
+
+			Parallel.ForEach(sv.AsEnumerable(), sv_pack =>
 			{
 				var pack = new StorePack()
 				{
@@ -52,15 +53,15 @@ namespace DesignArsenal.DataID
 					icons = new List<Icon>(),
 					colored = sv_pack["colored"].Get(false)
 				};
-				Debug.Assert(pack.name != "" && pack.author != "");
+				//Debug.Assert(pack.name != "" && pack.author != "");
 				pack.sv = pack.ToSV();
 
 				var list = sv_pack["files"].AsEnumerable().ToList();
-				foreach(var sv_file in list)
+				foreach (var sv_file in list)
 				{
 					string filename = sv_file["n"].Get("");
 					string hash_fn = sv_file["h"].Get("");
-					Debug.Assert(!pack.icons.Any(i => i.hash == hash_fn));
+					//Debug.Assert(!pack.icons.Any(i => i.hash == hash_fn));
 
 					pack.icons.Add(new Icon()
 					{
@@ -75,8 +76,9 @@ namespace DesignArsenal.DataID
 					//Debug.Assert(!_store_packs.SelectMany(p => p.icons).Any(i => i.hash == hash));
 				}
 
-				_store_packs.Add(pack);
-			}
+				lock(_store_packs)
+					_store_packs.Add(pack);
+			});
 			Utils.Shuffle(_store_packs);
 
 			var allicons = _store_packs.SelectMany(p => p.icons).ToList();
