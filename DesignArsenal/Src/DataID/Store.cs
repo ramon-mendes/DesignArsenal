@@ -53,7 +53,7 @@ namespace DesignArsenal.DataID
 					icons = new List<Icon>(),
 					colored = sv_pack["colored"].Get(false)
 				};
-				//Debug.Assert(pack.name != "" && pack.author != "");
+				Debug.Assert(pack.name != "" && pack.author != "");
 				pack.sv = pack.ToSV();
 
 				var list = sv_pack["files"].AsEnumerable().ToList();
@@ -61,7 +61,7 @@ namespace DesignArsenal.DataID
 				{
 					string filename = sv_file["n"].Get("");
 					string hash_fn = sv_file["h"].Get("");
-					//Debug.Assert(!pack.icons.Any(i => i.hash == hash_fn));
+					Debug.Assert(!pack.icons.Any(i => i.hash == hash_fn));
 
 					pack.icons.Add(new Icon()
 					{
@@ -73,7 +73,7 @@ namespace DesignArsenal.DataID
 						arr_tags = new List<string>() { filename }
 					});
 
-					//Debug.Assert(!_store_packs.SelectMany(p => p.icons).Any(i => i.hash == hash));
+					Debug.Assert(!_store_packs.SelectMany(p => p.icons).Any(i => i.hash == hash));
 				}
 
 				lock(_store_packs)
