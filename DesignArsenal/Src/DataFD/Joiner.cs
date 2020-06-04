@@ -86,7 +86,9 @@ namespace DesignArsenal.DataFD
 
 			Debug.WriteLine("FD - total data fonts: " + _dataListJoin.Count);
 
-			Debug.Assert(_dataCache.arr_joinedfonts.All(ffj => ffj.variant2file.Count != 0));
+#if !__MACOS__
+            Debug.Assert(_dataCache.arr_joinedfonts.All(ffj => ffj.variant2file.Count != 0));
+#endif
 
 			var cache = LFAPI.SetupCache();
 			if(cache != null)

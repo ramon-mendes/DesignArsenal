@@ -72,7 +72,7 @@ namespace Ion
 					{
 						if(Debugger.IsAttached)
 						{
-							Debug.Assert(false);
+							//Debug.Assert(false);
 						}
 					}
 					Thread.Sleep(TimeSpan.FromMinutes(9));

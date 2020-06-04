@@ -62,6 +62,10 @@
           <type>BeforeBuild</type>
           <command>sh scripts/preBuildOSX.sh ${ProjectConfigName} ${ProjectDir} ${TargetDir}</command>
         </Command>
+        <Command>
+          <type>AfterBuild</type>
+          <command>sh scripts/postBuildOSX.sh ${ProjectDir} ${TargetDir}</command>
+        </Command>
       </CustomCommands>
     </CustomCommands>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -109,7 +113,6 @@
     <None Include="res\css\index.css" />
     <None Include="res\css\links.css" />
     <None Include="res\css\search.css" />
-    <None Include="res\css\fonts\alphanum20.ttf" />
     <None Include="res\css\iconfont\idrop-font.css" />
     <None Include="res\css\iconfont\idrop-svg.css" />
     <None Include="res\css\iconfont\idrop.ttf" />

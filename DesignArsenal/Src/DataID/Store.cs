@@ -8,12 +8,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using SciterSharp;
+using System.Net.Http;
+using static DesignArsenal.Utils;
 
 namespace DesignArsenal.DataID
 {
 	static class Store
 	{
 		public static readonly List<StorePack> _store_packs = new List<StorePack>();
+		public static Semaphore _load_icon_semaphore = new Semaphore(5, 5);
 
 		public class StorePack
 		{
@@ -41,7 +44,8 @@ namespace DesignArsenal.DataID
 		{
 			var json = File.ReadAllText(Consts.AppDir_Shared + "id_store.json");
 			SciterValue sv = SciterValue.FromJSONString(json);
-			foreach(var sv_pack in sv.AsEnumerable())
+
+			Parallel.ForEach(sv.AsEnumerable(), sv_pack =>
 			{
 				var pack = new StorePack()
 				{
@@ -56,12 +60,13 @@ namespace DesignArsenal.DataID
 				pack.sv = pack.ToSV();
 
 				var list = sv_pack["files"].AsEnumerable().ToList();
-				foreach(var sv_file in list)
+				foreach (var sv_file in list)
 				{
 					string filename = sv_file["n"].Get("");
 					string hash_fn = sv_file["h"].Get("");
+#if !__MACOS__
 					Debug.Assert(!pack.icons.Any(i => i.hash == hash_fn));
-
+#endif
 					pack.icons.Add(new Icon()
 					{
 						kind = EIconKind.STORE,
@@ -72,11 +77,12 @@ namespace DesignArsenal.DataID
 						arr_tags = new List<string>() { filename }
 					});
 
-					//Debug.Assert(!_store_packs.SelectMany(p => p.icons).Any(i => i.hash == hash));
+					//Debug.Assert(!_store_packs.SelectMany(p => p.icons).Any(i => i.hash == hash_fn));
 				}
 
-				_store_packs.Add(pack);
-			}
+				lock(_store_packs)
+					_store_packs.Add(pack);
+			});
 			Utils.Shuffle(_store_packs);
 
 			var allicons = _store_packs.SelectMany(p => p.icons).ToList();
@@ -84,7 +90,7 @@ namespace DesignArsenal.DataID
 			Debug.Assert(allicons_group.Count() == allicons.Count());
 		}
 
-		public static void LoadStorePack(string id, SciterValue cbk)
+		/*public static void LoadStorePack(string id, SciterValue cbk)
 		{
 			Task.Run(() =>
 			{
@@ -107,20 +113,31 @@ namespace DesignArsenal.DataID
 				}
 				cbk.Call(new SciterValue(success));
 			});
-		}
+		}*/
 
 		public static Task LoadIcon(Icon icn)
-		{
+		{	
 			return Task.Run(() =>
 			{
+				//icn.path = "https://storagemvc.blob.core.windows.net/arsenal/IconsStore/new-year-free-icons/SVG/C937C20DBFBAE3A7FD17DECB91C4F391.svg";
+				//return;
+
+				Debug.WriteLine("DL thread started");
+				_load_icon_semaphore.WaitOne();
+				Debug.WriteLine("DL thread running");
+
 				var url = Consts.SERVER_ASSETS + "IconsStore/" + icn.source["pack_name"].Get("") + "/SVG/" + icn.hash;
+				AutoStopwatch sw = new AutoStopwatch();
 				var data = Utils.GetDataRetryPattern(url);
 				if(data == null)
 					throw new Exception();
+				sw.StopAndLog();
 
 				Directory.CreateDirectory(Path.GetDirectoryName(icn.path));
 				File.WriteAllBytes(icn.path, data);
 				Debug.WriteLine("DONE Downloading " + url);
+
+				_load_icon_semaphore.Release();
 			});
 		}
 

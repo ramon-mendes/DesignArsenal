@@ -18,12 +18,12 @@ namespace DesignArsenal.Hosting
 		private Random _rnd = new Random();
 		const int FREE_SHOWCOUNT = 40;
 
-		public bool EnsureStoreIsLoaded(SciterElement el, SciterValue[] args, out SciterValue result)
+		/*public bool EnsureStoreIsLoaded(SciterElement el, SciterValue[] args, out SciterValue result)
 		{
 			Store.LoadStorePack(args[0].Get(""), args[1]);
 			result = null;
 			return true;
-		}
+		}*/
 
 		public bool IconHashExists(SciterElement el, SciterValue[] args, out SciterValue result)
 		{

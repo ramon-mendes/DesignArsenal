@@ -9,6 +9,7 @@ using SciterSharp.Interop;
 using DesignArsenal.Hosting;
 using DesignArsenal.Apps;
 using Ion;
+using System.Threading.Tasks;
 
 namespace DesignArsenal
 {
