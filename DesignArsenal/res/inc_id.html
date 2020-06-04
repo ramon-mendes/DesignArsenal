@@ -25,11 +25,9 @@
 		include "tis_id/UI.tis";
 		include "tis_id/icon_info.tis";
 		include "tis_id/icon_behavior.tis";
-		include "tis_id/icon_store.tis";
 		include "tis_id/collections.tis";
 
 		Setup();
-		SetupIconStore();
 
 		self.post(function() {
 			if(Utils.InDBGView)
@@ -112,28 +110,6 @@
 					</div>
 				</hflow>
 			</section>
-
-			<section>
-				<p>Activate SVG sprite project:</p>
-				<hflow .txt>
-					<select #ui-projects as="integer" disabled novalue="" />
-					<widget .btn-red disabled #btn-rmv-project>Remove</widget>
-					<widget .btn-blue #btn-add-project><icon .icon-plus />Add new</widget>
-					<widget .btn-blue #btn-import-project><icon .icon-plus />Import JSON</widget>
-				</hflow>
-			</section>
-
-			<section>
-				<hflow>
-					Online icons packs:
-
-					<div #ui-insta-search />
-				</hflow>
-
-				<div #store-list />
-
-				<button #btn-store-load .btn-blue><icon .icon-dot-3 /> Load more</button>
-			</section>
 		</div>
 	</home>
 
@@ -160,14 +136,6 @@
 				<div #info-collection .line><span .tag /><icon .icon-th-large-1 poptip="List icons of this collection" popnow /></div>
 			</div>
 
-			<div #info-area-store>
-				<b>Filename:</b>
-				<div #info-store-filename .line><span .tag /></div>
-
-				<b>Pack / author:</b>
-				<a #info-store-pack.line />
-			</div>
-
 			<b>Drag as PNG:</b>
 			<hflow #png-sizes>
 				<div>16</div>
@@ -180,27 +148,6 @@
 				<div>512</div>
 				<div>1024</div>
 			</hflow>
-		</vflow>
-
-		<vflow #area-sprite>
-			<b>SVG sprite</b>
-
-			<tabs>
-				<tab #tab-warn-activate>
-					<em>Activate a SVG sprites project at Home screen for adding this icon to it</em>
-				</tab>
-				<tab #tab-btn-use>
-					<em>Click the '+' button besides the icon to add this SVG icon to the active project</em>
-				</tab>
-				<tab #tab-sprite>
-					<p>ID:</p>
-					<widget type="text" #ui-icon-name />
-					<em>Invalid ID, must only contain a..z, A..Z, - and _ (or ID is already in use)</em>
-					<p><button #ui-btn-usecopy.btn-blue><icon .icon-paste /> Copy SVG &lt;use&gt; code</button></p>
-				</tab>
-			</tabs>
-
-			<p><button #ui-btn-symbolcopy.btn-blue><icon .icon-paste /> Copy SVG &lt;symbol&gt; code</button></p>
 		</vflow>
 
 		<icon .icon-cancel #btn-info-close />

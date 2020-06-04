@@ -28,7 +28,7 @@ namespace DesignArsenal.Svg
 			foreach(var icon in _icons)
 			{
 				string innerxml = null;
-				if(icon.kind == EIconKind.COLLECTION || icon.kind == EIconKind.STORE)
+				if(icon.kind == EIconKind.COLLECTION)
 					innerxml = IconFileXML(icon);
 
 				string bounds = string.Format(CultureInfo.InvariantCulture, "{0} {1} {2} {3}", icon.bounds.l, icon.bounds.t, icon.bounds.w, icon.bounds.h);
@@ -37,7 +37,7 @@ namespace DesignArsenal.Svg
 				else
 					sb.AppendLine($"\t\t<symbol id=\"{icon.id}\" viewBox=\"{bounds}\">");
 
-				if(icon.kind == EIconKind.COLLECTION || icon.kind == EIconKind.STORE)
+				if(icon.kind == EIconKind.COLLECTION)
 				{
 					sb.AppendLine(innerxml);
 				}
@@ -159,7 +159,7 @@ namespace DesignArsenal.Svg
 		public static string GetIconSymbolXML(Icon icn, string ID)
 		{
 			string innerxml;
-			if(icn.kind == EIconKind.COLLECTION || icn.kind == EIconKind.STORE)
+			if(icn.kind == EIconKind.COLLECTION)
 				innerxml = IconFileXML(icn);
 			else
 				innerxml = IconLibraryPath(icn, "\t");

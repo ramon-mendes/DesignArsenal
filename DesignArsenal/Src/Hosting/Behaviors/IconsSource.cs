@@ -37,8 +37,6 @@ namespace DesignArsenal.Hosting
 		{
 			string hash = args[0].Get("");
 			string url = "svg:" + hash + ".svg";
-			if(Joiner._iconsByHash[hash].kind == EIconKind.STORE)
-				url += "?rnd=" + _rnd.Next(9999999);
 			result = new SciterValue(url);
 			return true;
 		}
@@ -107,27 +105,6 @@ namespace DesignArsenal.Hosting
 			return true;
 		}
 
-		public bool ResetByStore(SciterElement el, SciterValue[] args, out SciterValue result)
-		{
-			var pack = Store._store_packs.Single(p => p.id == args[0].Get(""));
-
-			List<Icon> icons;
-			if(args.Length == 2)
-			{
-				string needle = args[1].Get("");
-				icons = pack.icons
-					.Where(i => i.arr_tags.Any(tag => tag.IndexOf(needle, StringComparison.CurrentCultureIgnoreCase) != -1))
-					.ToList();
-			}
-			else
-			{
-				icons = pack.icons;
-			}
-
-			SetIconList(icons, false);
-			result = null;
-			return true;
-		}
 
 		public bool ResetByNeedle(SciterElement el, SciterValue[] args, out SciterValue result)
 		{

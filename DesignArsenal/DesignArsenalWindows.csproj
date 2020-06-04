@@ -139,7 +139,6 @@
     <Compile Include="Src\DataID\Icon.cs" />
     <Compile Include="Src\DataID\Joiner.cs" />
     <Compile Include="Src\DataID\Library.cs" />
-    <Compile Include="Src\DataID\Store.cs" />
     <Compile Include="Src\DataIL\Library.cs" />
     <Compile Include="Src\DataPD\Joiner.cs" />
     <Compile Include="Src\DataPD\Library.cs" />
@@ -396,7 +395,6 @@
     <None Include="res\tis_id\collections.tis" />
     <None Include="res\tis_id\icon_behavior.tis" />
     <None Include="res\tis_id\icon_info.tis" />
-    <None Include="res\tis_id\icon_store.tis" />
     <None Include="res\tis_id\UI.tis" />
     <None Include="res\tis_pd\dirlist.tis" />
     <None Include="res\tis_pd\previewer.tis" />

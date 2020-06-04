@@ -16,7 +16,6 @@ namespace DesignArsenal.DataID
 
 		public static void Setup()
 		{
-			Store.Setup();
 			Library.Setup();
 
 			Join();
@@ -41,13 +40,6 @@ namespace DesignArsenal.DataID
 					foreach(var collected in dir.Value)
 						dic.Add(collected.icon.hash, collected.icon);
 				}
-			}
-
-			// store packs
-			foreach(var pack in Store._store_packs)
-			{
-				foreach(var icn in pack.icons)
-					dic.Add(icn.hash, icn);
 			}
 
 			_iconsByHash = dic;

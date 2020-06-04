@@ -13,12 +13,6 @@
 		if(obj_icon.colored)
 			el_icon.@.addClass("colored");
 		
-		var checked = UI.Proj._active && UI.Proj.IconIsChecked(obj_icon.hash);
-		el_icon.state.checked = checked;
-		if(checked)
-			el_icon.$prepend(<btn .rmv><icon .icon-minus-1 /></btn>);
-		else
-			el_icon.$prepend(<btn .add><icon .icon-plus /></btn>);
 		return el_icon;
 	}
 

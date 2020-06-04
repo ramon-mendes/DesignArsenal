@@ -37,7 +37,6 @@ namespace DesignArsenal.DataID
 	{
 		LIBRARY,
 		COLLECTION,// from local user directories
-		STORE,
 	}
 
 	public class Icon
@@ -76,20 +75,6 @@ namespace DesignArsenal.DataID
 					return true;
 				case EIconKind.COLLECTION:
 					return File.Exists(path);
-				case EIconKind.STORE:
-					if(!File.Exists(path))
-					{
-						try
-						{
-							Store.LoadIcon(this).Wait();
-							return true;
-						}
-						catch(Exception)
-						{
-							return false;
-						}
-					}
-					return true;
 				default:
 					Debug.Assert(false);
 					break;

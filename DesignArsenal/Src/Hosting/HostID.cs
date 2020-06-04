@@ -17,14 +17,6 @@ namespace DesignArsenal.Hosting
 {
 	partial class HostEvh : SciterEventHandler
 	{
-		public bool Host_IconStoreList(SciterElement el, SciterValue[] args, out SciterValue result)
-		{
-			result = new SciterValue();
-			foreach(var pack in Store._store_packs)
-				result.Append(pack.sv);
-			return true;
-		}
-
 		public bool Host_SetupCollections(SciterElement el, SciterValue[] args, out SciterValue result)
 		{
 			string dir = args[0].Get("");

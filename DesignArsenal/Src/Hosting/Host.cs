@@ -85,26 +85,6 @@ namespace DesignArsenal.Hosting
 						byte[] bytes = Encoding.UTF8.GetBytes(xml);
 						_api.SciterDataReady(sld.hwnd, sld.uri, bytes, (uint)bytes.Length);
 						break;
-
-					case DataID.EIconKind.STORE:
-						if(DataID.Store.IsIconLoaded(icn))
-						{
-							byte[] bytess = File.ReadAllBytes(icn.path);
-							_api.SciterDataReady(sld.hwnd, sld.uri, bytess, (uint)bytess.Length);
-							return SciterXDef.LoadResult.LOAD_OK;
-						}
-						else
-						{
-							DataID.Store.LoadIcon(icn).ContinueWith((t) =>
-							{
-								if(t.Status == TaskStatus.RanToCompletion)
-								{
-									byte[] bytess = File.ReadAllBytes(icn.path);
-									_api.SciterDataReadyAsync(sld.hwnd, sld.uri, bytess, (uint)bytess.Length, sld.requestId);
-								}
-							});
-							return SciterXDef.LoadResult.LOAD_DELAYED;
-						}
 				}
 				return SciterXDef.LoadResult.LOAD_OK;
 			}
