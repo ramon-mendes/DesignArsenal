@@ -48,12 +48,13 @@ namespace DesignArsenal.DataFD
 			}
 			else
 			{
-				foreach(var variant in ffj.variant2file)
+				foreach(var kv in ffj.variant2file)
 				{
-					string name = ffj.family + "-" + variant;
+					string name = ffj.family + "#" + kv.Key;
 					string value = (string) key_fonts.GetValue(name);
 					key_fonts.DeleteValue(name);
-					bool res = RemoveFontResource(value); Debug.Assert(res);
+					bool res = RemoveFontResource(value);
+					//Debug.Assert(res);
 				}
 			}
 
@@ -66,7 +67,7 @@ namespace DesignArsenal.DataFD
 
 		public static void PermanentlyUninstallAll()
 		{
-			var key_fonts = Registry.LocalMachine.OpenSubKey("Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts", true);
+			var key_fonts = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts", true);
 			var value_fonts = key_fonts.GetValueNames();
 			int count = 0;
 
@@ -76,7 +77,8 @@ namespace DesignArsenal.DataFD
 					continue;
 				string value = (string)key_fonts.GetValue(name);
 
-				if(!value.Replace('\\', '/').StartsWith(Consts.DirUserCache_Fonts))
+				//if(!value.Replace('\\', '/').StartsWith(Consts.DirUserCache_Fonts))
+				if(!value.Contains(MAGIC_PREFIX))
 					continue;
 
 				key_fonts.DeleteValue(name);
