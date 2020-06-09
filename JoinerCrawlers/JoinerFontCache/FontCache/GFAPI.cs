@@ -12,7 +12,7 @@ using DesignArsenal.DataFD;
 
 namespace JoinerCache
 {
-	public static class GFPI
+	public static class GFAPI
 	{
 		public static readonly string FontCacheDir_GAPI = App.FontsDir + "cache_GF\\";
 		public static IList<GFPIFont> _fontlist = new List<GFPIFont>();
@@ -51,6 +51,7 @@ namespace JoinerCache
 				var request = service.Webfonts.List();
 				request.Sort = WebfontsResource.ListRequest.SortEnum.Popularity;
 				gfonts = request.Execute().Items;
+				var aa = gfonts.SingleOrDefault(g => g.Family.ToLower().Contains("quicksand"));
 
 				// BLACKLIST
 				string[] BLACKLIST = { "Fira Sans" };

@@ -17,7 +17,7 @@ namespace JoinerCache
 	public static class Joiner
 	{
 		private static readonly string MVC_CacheFile = @"D:\MVC\DesignArsenalMVC\DesignArsenalMVC\App_Data\fd_cache.bson";
-		private static readonly string AD_CacheFile = Path.GetFullPath(Environment.CurrentDirectory + @"\..\..\..\..\DesignArsenal\Shared\fd_cache.bson");
+		private static readonly string DA_CacheFile = Path.GetFullPath(Environment.CurrentDirectory + @"\..\..\..\..\DesignArsenal\Shared\fd_cache.bson");
 
 		public static CacheFontData _dataJoin { get; private set; }
 		public static byte[] _dataBSON { get; private set; }
@@ -74,9 +74,9 @@ namespace JoinerCache
 
 			Task[] tasks = new Task[]
 			{
-				//Task.Run(BHAPI.Setup),
-				//Task.Run(GHAPI.Setup),
-				//Task.Run(GFPI.Setup),
+				Task.Run(BHAPI.Setup),
+				Task.Run(GHAPI.Setup),
+				Task.Run(GFAPI.Setup),
 				Task.Run(BFAPI.Setup),
 				//Task.Run(FSAPI.Setup),
 			};
@@ -100,7 +100,7 @@ namespace JoinerCache
 					
 					// Save to files
 					//File.WriteAllBytes(MVC_CacheFile, _dataBSON);
-					File.WriteAllBytes(AD_CacheFile, _dataBSON);
+					File.WriteAllBytes(DA_CacheFile, _dataBSON);
 
 					Debug.WriteLine("Joiner.Setup Finished!!");
 				}
@@ -111,7 +111,7 @@ namespace JoinerCache
 
 		public static bool JoinFonts(CacheFontData new_cache)
 		{
-			if(GFPI._fontlist == null || BHAPI._fontlist == null || GHAPI._fontlist == null)
+			if(GFAPI._fontlist == null || BHAPI._fontlist == null || GHAPI._fontlist == null)
 			{
 				Debug.Assert(false);
 				return false;
@@ -148,13 +148,13 @@ namespace JoinerCache
 					}),
 				}).ToArray();
 
-			r = GFPI._fontlist.Count;
-			var list_gapi = GFPI._fontlist.Select(wb =>
+			r = GFAPI._fontlist.Count;
+			var list_gapi = GFAPI._fontlist.Select(wb =>
 				new FontFamilyJoin
 				{
 					source = EFontSource.GOOGLE,
 					family = wb.WF.Family,
-					ecategory = GFPI.GetCategory(wb.WF),
+					ecategory = GFAPI.GetCategory(wb.WF),
 					license = EFontLicense.FREE_COMMERCIAL_USE.ToString(),
 					source_url = "https://fonts.google.com/specimen/" + wb.WF.Family.Replace(' ', '+'),
 					rank = 200 + r--,
