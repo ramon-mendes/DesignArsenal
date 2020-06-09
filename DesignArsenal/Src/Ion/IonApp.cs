@@ -57,7 +57,7 @@ namespace Ion
 			Directory.CreateDirectory(Consts.DirUserData);
 
 #if DEBUG
-			//File.Delete(PathActivationInfo);// dont remove-me from this #if #def
+			File.Delete(PathActivationInfo);// dont remove-me from this #if #def
 #endif
 
 			if(File.Exists(PathHIDCache))

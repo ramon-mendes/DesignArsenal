@@ -105,7 +105,11 @@ namespace DesignArsenal.Apps
 			sb.Append("   }");
 			sb.Append("}");
 
-			ClipboardHelper.CopyCustomRawData("com.adobe.xd", Encoding.Unicode.GetBytes(sb.ToString()));
+#if WINDOWS
+            ClipboardHelper.CopyCustomRawData("com.adobe.xd", Encoding.Unicode.GetBytes(sb.ToString()));
+#else
+            Utils.CopyCustomFormat("com.adobe.xd", sb.ToString());
+#endif
 		}
 	}
 }

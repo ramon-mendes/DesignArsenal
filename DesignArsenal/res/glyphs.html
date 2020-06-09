@@ -3,6 +3,7 @@
 <head>
     <script type="text/tiscript">
 		include "tis/consts.tis";
+		include "lib_growl/lib_growl.tis";
 
 		var dic_font = view.parameters;
 		if(!dic_font)
@@ -26,7 +27,7 @@
 		// Table mode
 		var aa_map = ["Aa", "Bb", "Cc", "Dd", "Ee", "Ff", "Gg", "Hh", "Ii", "Jj", "Kk", "Ll", "Mm", "Nn", "Oo", "Pp", "Qq", "Rr", "Ss", "Tt", "Uu", "Vv", "Ww", "Xx", "Yy", "Zz", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 		var ascii_map = [];
-		for(var i = 33; i < 126; i++)
+		for(var i = 33; i < 1024; i++)
 			ascii_map.push(String.fromCharCode(i));
 
 		function SetListTable(arr_table)
@@ -146,6 +147,10 @@
 				SetListTable(ascii_map);
 		};
 
+		self.on("click", function() {
+			Growl("Character copied!");
+		});
+
 		/*self#btn-style.onClick = ::this.popup(self#menu-style, Utils.popupAttachment());
 		self#btn-style.on("click", "li.radio", ::SetStyle(this.text));
 
@@ -157,6 +162,7 @@
 	<style>
         @import url(css/global.css);
 		@import url(lib_menu/menu-chrome.css);
+		@import url(lib_growl/lib_growl.css);
 
 		body
 		{
@@ -209,6 +215,7 @@
 
 			color: gray;
 			font-size: 14px;
+			cursor: pointer;
 		}
 		.box[family] { behavior: UICharDraw; }
 

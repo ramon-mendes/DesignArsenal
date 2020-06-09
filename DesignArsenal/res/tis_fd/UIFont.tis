@@ -15,9 +15,12 @@
 	{
 		ShowFontInternal(dic_store_font.title);
 
+		log(dic_store_font.images)
+		log(dic_store_font.images.lenght)
+
 		for(var i = 0; i < dic_store_font.images; i++)
 		{
-			var picurl = Consts.SERVER_ASSETS + "cache_BF/" + dic_store_font.title + "/image" + i + ".jpg";
+			var picurl = Consts.SERVER_ASSETS + "FontCache/cache_BF/" + dic_store_font.title + "/image" + i + ".jpg";
 			self#pics.$append(<picture src="{picurl}" />);
 		}
 	}

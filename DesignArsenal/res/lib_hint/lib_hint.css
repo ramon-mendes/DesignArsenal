@@ -18,6 +18,7 @@
 	color: white;
 	font-size: 12dip;
 }
+.hint button { margin-left: *; }
 .hint h1 { margin: 0; margin-top: -1px; font-size: 17dip; color: #5687d4; }
 .hint p { margin: 3px 0; margin-bottom: 6px; }
 .hint img { margin-top: 0; width: 52px; margin-left: 6px; }

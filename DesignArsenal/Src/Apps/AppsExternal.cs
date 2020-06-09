@@ -48,6 +48,7 @@ namespace DesignArsenal.Apps
 				case EAppExternal.ILLUSTRATOR: return "com.adobe.illustrator";
 				case EAppExternal.INDESIGN: return "com.adobe.InDesign";// JSX don't work in OSX
 				case EAppExternal.SKETCH: return "com.bohemiancoding.sketch3";
+				case EAppExternal.XD: return "com.adobe.xd";
 			}
 			return null;
 		}

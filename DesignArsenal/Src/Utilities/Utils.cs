@@ -4,10 +4,12 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using SciterSharp;
 
 namespace DesignArsenal
 {
@@ -37,6 +39,14 @@ namespace DesignArsenal
 			AppKit.NSPasteboard.GeneralPasteboard.SetDataForType(Foundation.NSData.FromString(text), AppKit.NSPasteboard.NSStringType);
 #endif
 		}
+
+#if OSX
+		public static void CopyCustomFormat(string format, string data)
+        {
+			AppKit.NSPasteboard.GeneralPasteboard.ClearContents();
+			AppKit.NSPasteboard.GeneralPasteboard.SetDataForType(data, format);
+		}
+#endif
 
 		public static void CopyFile(string path)
 		{
