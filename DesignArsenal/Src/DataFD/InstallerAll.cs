@@ -33,7 +33,7 @@ namespace DesignArsenal.DataFD
 
 		public static void LoadInstalledFonts()
 		{
-			var key_fonts = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts");
+			var key_fonts = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts");
 			var names = key_fonts.GetValueNames().OrderBy(a => a);
 
 			foreach(var name in names)
@@ -53,7 +53,9 @@ namespace DesignArsenal.DataFD
 						{
 							_installed_ffj.Add(ffj);
 							ffj.dt_install = new FileInfo(path).CreationTime;
-						} else {
+						}
+						else
+						{
 							Debug.Assert(false);
 						}
 					}
@@ -72,7 +74,7 @@ namespace DesignArsenal.DataFD
 
 		public static void SetInstallFont(string family, bool installed)
 		{
-			var ffj = Joiner._dataListJoin.First(f => f.family==family);
+			var ffj = Joiner._dataListJoin.First(f => f.family == family);
 			if(ffj != null)
 			{
 				if(installed)
