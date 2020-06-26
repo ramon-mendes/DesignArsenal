@@ -147,7 +147,8 @@
 				SetListTable(ascii_map);
 		};
 
-		self.on("click", function() {
+		self#list.on("click", ".box", function() {
+			view.clipboard(#put, this.@#char.substr(0, 1));
 			Growl("Character copied!");
 		});
 
