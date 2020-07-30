@@ -53,7 +53,9 @@ namespace DesignArsenal.DataFD
 						{
 							_installed_ffj.Add(ffj);
 							ffj.dt_install = new FileInfo(path).CreationTime;
-						} else {
+						}
+						else
+						{
 							Debug.Assert(false);
 						}
 					}
@@ -72,7 +74,7 @@ namespace DesignArsenal.DataFD
 
 		public static void SetInstallFont(string family, bool installed)
 		{
-			var ffj = Joiner._dataListJoin.First(f => f.family==family);
+			var ffj = Joiner._dataListJoin.First(f => f.family == family);
 			if(ffj != null)
 			{
 				if(installed)

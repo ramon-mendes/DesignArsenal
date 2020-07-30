@@ -52,6 +52,7 @@ namespace DesignArsenal.DataFD
 				{
 					string name = ffj.family + "#" + kv.Key;
 					string value = (string) key_fonts.GetValue(name);
+
 					key_fonts.DeleteValue(name);
 					bool res = RemoveFontResource(value);
 					//Debug.Assert(res);
@@ -183,17 +184,17 @@ namespace DesignArsenal.DataFD
 					}
 				}
 			}
-			
+
 			return res.Distinct().ToList();
 		}
 
-		#region PInvoke
+#region PInvoke
 		[DllImport("gdi32.dll")]
 		public static extern int AddFontResource(string lpszFilename);
 
 		[DllImport("gdi32.dll")]
 		public static extern bool RemoveFontResource(string lpFileName);
-		#endregion
+#endregion
 	}
 }
 
