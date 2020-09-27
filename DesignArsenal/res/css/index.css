@@ -54,7 +54,7 @@ header button:current icon { fill: white; opacity: 1; }
 #osx-arrow { visibility: none; }
 
 //@media true
-@const BRD_COLOR: rgb(0, 206, 233);
+@const BRD_COLOR: #C3C3C3;
 
 @media os-vendor=="Apple"
 {
@@ -62,7 +62,7 @@ header button:current icon { fill: white; opacity: 1; }
 
 	#osx-wraper
 	{
-		border: solid 3px @BRD_COLOR;
+		border: solid 2px @BRD_COLOR;
 		border-radius: 5px;
 		background: white;
 		overflow: hidden;// cause of border-radius
