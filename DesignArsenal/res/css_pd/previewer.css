@@ -11,7 +11,7 @@
 	border-spacing: 5px;
 	padding: 5px 12px;
 	height: 30px;
-	background: url(../img/grain.png) #475468;
+	background: url(../img/grain.png) #475468 repeat;
 	//font-family: Hack;
 	text-wrap: none;
 }
@@ -29,7 +29,7 @@
 	border-spacing: 5px;
 	height: 30px;
 	padding: 5px 12px;
-	background: url(../img/grain.png) white;
+	background: url(../img/grain.png) white repeat;
 }
 
 #prevui #ui-scale { margin-top: 3px; }

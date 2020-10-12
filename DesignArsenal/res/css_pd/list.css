@@ -42,7 +42,7 @@
 	border-spacing: 10px;
 
 	padding: 10px;
-	background: url(../img/grain.png);
+	background-image: url(../img/grain.png);
 	text-align: center;
 	font-size: 13px;
 	color: #818181;

@@ -7,7 +7,7 @@ home { style-set: Home; }
 		position: relative;
 		display: block;
 		size: *;
-		background: url(../img/grain.png);
+		background-image: url(../img/grain.png);
 		overflow-y: scroll-indicator;
 	}
 	h1

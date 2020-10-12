@@ -14,7 +14,7 @@ header
 	border-spacing: 7px;
 	height: 30px;
 	padding: 8px;
-	background: url(../img/grain.png) #0F52BA;
+	background: url(../img/grain.png) #0F52BA repeat;
 	text-wrap: none;
 }
 header icon:hover { fill: white; }

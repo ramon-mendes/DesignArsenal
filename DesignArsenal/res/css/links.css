@@ -1,7 +1,7 @@
 body
 {
 	margin: 0;
-	background: url(../img/grain.png) white;
+	background: url(../img/grain.png) white repeat;
 }
 
 header
@@ -9,7 +9,7 @@ header
 	flow: horizontal;
 	height: 30px;
 	padding: 8px 13px;
-	background: url(../img/bg-site2.png);
+	background-image: url(../img/bg-site2.png);
 	color: white;
 	font-size: 20px;
 	horizontal-align: center;

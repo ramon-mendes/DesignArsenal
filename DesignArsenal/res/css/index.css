@@ -11,7 +11,7 @@ header
 {
 	vertical-align: middle;
 	flow: horizontal;
-	background: #eee url(../img/grain.png);
+	background: #eee url(../img/grain.png) repeat;
 	padding: 0;
 	margin: 0;
 	color: rgb(118, 115, 144);
@@ -89,7 +89,8 @@ frames frame:current { visibility: visible; }
 
 #overlay-activating
 {
-	text-align: center;
+	flow: horizontal;
+	horizontal-align: center;
 }
 #overlay-activating h1
 {
