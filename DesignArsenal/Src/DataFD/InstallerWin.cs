@@ -22,6 +22,7 @@ namespace DesignArsenal.DataFD
 	{
 		public const string MAGIC_PREFIX = "DesignArsenal--";
 		public static readonly string _fonts_dir = Path.GetFullPath(Environment.SystemDirectory + "\\..\\Fonts\\");
+		public const string REG_PATH = "Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts";
 
 		public static void RefreshSystemFonts()
 		{
@@ -31,7 +32,7 @@ namespace DesignArsenal.DataFD
 		public static bool PermanentlyInstall(bool install, string family)
 		{
 			var ffj = Joiner.FFJ_ByNormalName(family);
-			var key_fonts = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts", true);
+			var key_fonts = Registry.CurrentUser.OpenSubKey(REG_PATH, true);
 			bool failed = false;
 
 			if(install)

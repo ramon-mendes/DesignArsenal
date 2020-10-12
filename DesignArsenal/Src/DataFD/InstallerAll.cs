@@ -33,7 +33,7 @@ namespace DesignArsenal.DataFD
 
 		public static void LoadInstalledFonts()
 		{
-			var key_fonts = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts");
+			var key_fonts = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(Installer.REG_PATH);
 			var names = key_fonts.GetValueNames().OrderBy(a => a);
 
 			foreach(var name in names)
@@ -43,7 +43,7 @@ namespace DesignArsenal.DataFD
 					var val = key_fonts.GetValue(name).ToString();
 					if(val.Contains(Installer.MAGIC_PREFIX))
 					{
-						string path = Installer._fonts_dir + val;
+						string path = val;
 						if(!File.Exists(path))
 							continue;
 
