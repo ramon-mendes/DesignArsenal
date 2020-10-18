@@ -61,6 +61,8 @@ namespace DesignArsenal
 			if(in_test)
 				AppHost.CallFunction("View_FocusIt", new SciterValue(true));
 
+			DirSyncer.Login();
+			DirSyncer.Sync();
 #if !OSX
 			PInvokeUtils.RunMsgLoop();
 #endif

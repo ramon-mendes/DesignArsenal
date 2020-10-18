@@ -59,7 +59,7 @@ namespace UI
 
 		// Section 2: collections
 		self#info-cols.onClick = function() {
-			view.Host_RevealDir(Consts.COLLECTIONS_DIR);
+			view.Host_RevealDir(Consts.ICONS_DIR);
 		};
 	}
 

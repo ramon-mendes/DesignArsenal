@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SyncServer.Classes;
 using SyncServer.DAL;
 
 namespace SyncServer
@@ -32,11 +33,15 @@ namespace SyncServer
 			);
 
 			services.AddSession();
+
+			services.AddScoped<Auth>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SyncContext db)
 		{
+			db.Database.EnsureCreated();
+			
 			if(env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
@@ -51,6 +56,7 @@ namespace SyncServer
 			app.UseStaticFiles();
 
 			app.UseRouting();
+			app.UseSession();
 
 			app.UseAuthorization();
 

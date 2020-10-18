@@ -70,6 +70,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PInvoke.Kernel32, Version=0.7.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
       <HintPath>..\packages\PInvoke.Kernel32.0.7.78\lib\net45\PInvoke.Kernel32.dll</HintPath>
     </Reference>
@@ -155,6 +158,7 @@
     <Compile Include="Src\DataIL\Library.cs" />
     <Compile Include="Src\DataPD\Joiner.cs" />
     <Compile Include="Src\DataPD\Library.cs" />
+    <Compile Include="Src\DirSyncer.cs" />
     <Compile Include="Src\Hosting\BehaviorsFD\BaseDraw.cs" />
     <Compile Include="Src\Hosting\BehaviorsFD\FontSource.cs" />
     <Compile Include="Src\Hosting\BehaviorsFD\UICharDraw.cs" />

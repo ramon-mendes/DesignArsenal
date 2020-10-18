@@ -11,7 +11,6 @@ namespace DesignArsenal.DataPD
 	static class Joiner
 	{
 		public static readonly Dictionary<string, PatternFile> _patternByHash = new Dictionary<string, PatternFile>();
-		public static readonly Dictionary<string, Folder> _onlineFolderByName = new Dictionary<string, Folder>();
 		public static Library _lib { get; private set; }
 
 		public static void Setup()
@@ -26,10 +25,8 @@ namespace DesignArsenal.DataPD
 					file.hash = Utils.CalculateMD5Hash(folder.name + '/' + file.name);
 					file.url = "ptr:" + file.hash;// + Path.GetExtension(file.name);
 					file.path_local = Consts.DirUserCache_StorePatterns + folder.name + '/' + file.name;
-					file.path_remote = folder.name + '/' + file.name;
 					_patternByHash.Add(file.hash, file);
 				}
-				_onlineFolderByName.Add(folder.name, folder);
 			}
 		}
 	}

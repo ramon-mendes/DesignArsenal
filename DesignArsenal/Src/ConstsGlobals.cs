@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using Ion;
@@ -13,7 +14,6 @@ namespace DesignArsenal
 	{
 		public const string AppName = "Design Arsenal";
 		public const EProduct ProductID = EProduct.DESIGNARSENAL;
-
 		public static readonly string DirLibrary = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/Library/Design Arsenal";
 		public static readonly string DirUserData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "/MISoftware/DesignArsenal/";
 		public static readonly string DirUserCache = DirUserData + "Cache/";
@@ -27,7 +27,18 @@ namespace DesignArsenal
 		//public static readonly string APP_DIR_SLASH = APP_DIR.Replace('\\', '/');
         public static readonly string LOG_FILE = DirUserData + "log.txt";
 
+		public static readonly string DirUserFiles = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + AppName + "\\";
+		public static readonly string DirUserFiles_Fonts = DirUserFiles + "Fonts\\";
+		public static readonly string DirUserFiles_Icons = DirUserFiles + "Icons\\";
+		public static readonly string DirUserFiles_Pattenrs = DirUserFiles + "Patterns\\";
+
 		public const string SERVER_ASSETS = "https://storagemvc.blob.core.windows.net/arsenal/";
+
+#if DEBUG
+		public const string SERVER_SYNC = "https://localhost:44307/";
+#else
+		public const string SERVER_SYNC = "https://localhost:44307/";
+#endif
 
 		static Consts()
 		{
