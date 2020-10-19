@@ -31,6 +31,11 @@ self#mi-clearcache.onClick = function() {
 	this.closePopup();
 	view.msgbox(#information, "Cache cleared with success.", Consts.APPNAME);
 };
+self#mi-devmode.on("mouseup", function(evt) {
+	var el_btn = this.$(button);
+	el_btn.state.checked = !el_btn.state.checked;
+	return true;
+});
 
 if(Utils.IsWindows && !Utils.InDBGView)
 {

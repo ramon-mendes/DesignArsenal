@@ -2,6 +2,13 @@
 {
 	var _shown_dic_font;
 
+	function ExportWebfont(family)
+	{
+		var dic_font = FontSource.FFJFromFamily(family); assert(dic_font);
+
+
+	}
+
 	function ShowFontByFamily(family)
 	{
 		var dic_store_font = Store._font2store[family];
