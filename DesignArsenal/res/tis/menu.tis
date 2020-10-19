@@ -1,4 +1,6 @@
-﻿self#btn-menu.onClick = function() {
+﻿include "../lib_settings/settings.tis";
+
+self#btn-menu.onClick = function() {
 	self#mi-clearcache.text = "Clear cache";
 	this.popup(self#menu-main, Utils.popupAttachment());
 
@@ -33,9 +35,11 @@ self#mi-clearcache.onClick = function() {
 };
 self#mi-devmode.on("mouseup", function(evt) {
 	var el_btn = this.$(button);
-	el_btn.state.checked = !el_btn.state.checked;
+	Settings.ns_data.devmode = el_btn.state.checked = !el_btn.state.checked;
+	Settings.StoreWork();
 	return true;
 });
+self#mi-devmode.$(button).state.checked = !!Settings.ns_data.devmode;
 
 if(Utils.IsWindows && !Utils.InDBGView)
 {
