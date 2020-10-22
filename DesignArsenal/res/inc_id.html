@@ -110,6 +110,16 @@
 					</div>
 				</hflow>
 			</section>
+
+			<section #section-iconsprites>
+				<p>Activate SVG sprite project:</p>
+				<hflow .txt>
+					<select #ui-projects as="integer" disabled novalue="" />
+					<widget .btn-red disabled #btn-rmv-project>Remove</widget>
+					<widget .btn-blue #btn-add-project><icon .icon-plus />Add new</widget>
+					<widget .btn-blue #btn-import-project><icon .icon-plus />Import JSON</widget>
+				</hflow>
+			</section>
 		</div>
 	</home>
 
@@ -148,6 +158,27 @@
 				<div>512</div>
 				<div>1024</div>
 			</hflow>
+		</vflow>
+
+		<vflow #area-sprite>
+			<b>SVG sprite</b>
+
+			<tabs>
+				<tab #tab-warn-activate>
+					<em>Activate a SVG sprites project at Home screen for adding this icon to it</em>
+				</tab>
+				<tab #tab-btn-use>
+					<em>Click the '+' button besides the icon to add this SVG icon to the active project</em>
+				</tab>
+				<tab #tab-sprite>
+					<p>ID:</p>
+					<widget type="text" #ui-icon-name />
+					<em>Invalid ID, must only contain a..z, A..Z, - and _ (or ID is already in use)</em>
+					<p><button #ui-btn-usecopy.btn-blue><icon .icon-paste /> Copy SVG &lt;use&gt; code</button></p>
+				</tab>
+			</tabs>
+
+			<p><button #ui-btn-symbolcopy.btn-blue><icon .icon-paste /> Copy SVG &lt;symbol&gt; code</button></p>
 		</vflow>
 
 		<icon .icon-cancel #btn-info-close />

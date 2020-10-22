@@ -122,6 +122,15 @@
 		cursor: pointer;
 	}
 }
+
+	#area-sprite
+	{
+		display: none;
+	}
+	[devmode] #area-sprite
+	{
+		display: block;
+	}
 #area-sprite button icon
 {
 	size: 12px !important;// cause !important dont work in @set

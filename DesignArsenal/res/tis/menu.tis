@@ -48,9 +48,11 @@ function SetDevMode(mode) {
 		if(mode)
 			el.attributes#devmode = true;
 		else
+		{
 			el.attributes.remove("devmode");
-
-		log(el.tagname());
+			if(View.close_project_func)
+				View.close_project_func();
+		}
 	}
 }
 SetDevMode(!!Settings.ns_data.devmode);
