@@ -1,5 +1,17 @@
 home { style-set: Home; }
 
+
+	#section-iconsprites
+	{
+		display: none;
+	}
+
+	[devmode] #section-iconsprites
+	{
+		display: block;
+	}
+
+
 @set Home
 {
 	:root
@@ -28,7 +40,7 @@ home { style-set: Home; }
 		margin: 20px 0;
 		background: white;
 		padding: 15px 20px;
-	}	
+	}
 
 	p { margin: 0; margin-bottom: 2px; font-size: 14px; }
 	#info-cols

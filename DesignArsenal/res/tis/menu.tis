@@ -33,13 +33,37 @@ self#mi-clearcache.onClick = function() {
 	this.closePopup();
 	view.msgbox(#information, "Cache cleared with success.", Consts.APPNAME);
 };
-self#mi-devmode.on("mouseup", function(evt) {
-	var el_btn = this.$(button);
-	Settings.ns_data.devmode = el_btn.state.checked = !el_btn.state.checked;
+
+var cur_dev_mode;
+var arr_selfs = [];
+
+function SetDevMode(mode) {
+	var el_btn = self#mi-devmode.$(button);
+	Settings.ns_data.devmode = el_btn.state.checked = mode;
 	Settings.StoreWork();
+
+	cur_dev_mode = mode;
+
+	for(var (i,el) in arr_selfs) {
+		if(mode)
+			el.attributes#devmode = true;
+		else
+			el.attributes.remove("devmode");
+
+		log(el.tagname());
+	}
+}
+SetDevMode(!!Settings.ns_data.devmode);
+
+function RegisterDevmode() {
+	arr_selfs.push(this);
+	SetDevMode(cur_dev_mode);
+}
+
+self#mi-devmode.on("mouseup", function(evt) {
+	SetDevMode(!cur_dev_mode);
 	return true;
 });
-self#mi-devmode.$(button).state.checked = !!Settings.ns_data.devmode;
 
 if(Utils.IsWindows && !Utils.InDBGView)
 {
