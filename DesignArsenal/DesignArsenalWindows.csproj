@@ -379,6 +379,7 @@
     <Compile Include="Src\Svg\SvgXML.cs" />
     <Compile Include="Src\Utilities\SKIconCode.cs" />
     <Compile Include="Src\Utilities\Utils.cs" />
+    <None Include="Src\SharpFont\SharpFont.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -529,7 +530,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="scripts\packfolder.exe" />
-    <Content Include="Src\SharpFont\SharpFont.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Src\SharpFont\Properties\" />

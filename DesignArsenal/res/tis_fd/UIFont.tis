@@ -102,6 +102,21 @@
 			};
 		}
 
+		// export webfont
+		self#export.onClick = function() {
+			var path = view.selectFolder("Where to create webfont?");
+			if(path)
+			{
+				self#overlay-msg.html = "Creating '" + family + "' webfont ...";
+				self#overlay-msg.show();
+
+				view.Host_ExportWebFont(path, family, function() {
+					self#overlay-msg.hide();
+				});
+			}
+			return;
+		};
+
 		// faces
 		self#faces.clear();
 		var el_fontdraw = ListUI.CreateFaceEntry(self#faces, dic_font);

@@ -36,7 +36,7 @@
 #info #license { margin-right: 20px; }
 #info icon#btn-info { size: 12px; fill: #8589c6; cursor: pointer; }
 
-#toggle-styles
+#toggle-styles, #export
 {
 	margin-left: *;
 	font-size: 12px;
@@ -52,8 +52,18 @@
 }
 @media os-vendor=="Apple"
 {
-	#toggle-styles:not(:empty) { text-decoration-style: solid; }
+	#toggle-styles:not(:empty), #export { text-decoration-style: solid; }
 }
+
+#export
+{
+	display: none;
+	margin-top: 5px;
+	text-decoration: underline;
+	text-decoration-style: dotted;
+	cursor: pointer;
+}
+[devmode] #export { display: block; }
 
 #pics { size: *; flow: vertical; border-spacing: 25px; horizontal-align: center; padding-bottom: 30px; }
 #pics picture { width: *; }
