@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		DesignArsenal\res\css\fontello\IconBundler.exe = DesignArsenal\res\css\fontello\IconBundler.exe
+		NOTES.txt = NOTES.txt
 		OmniCode-Settings.json = OmniCode-Settings.json
 	EndProjectSection
 EndProject
@@ -25,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoinerFontCache", "JoinerCr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BefontCrawler", "JoinerCrawlers\BefontCrawler\BefontCrawler.csproj", "{897F3911-92E3-4175-8D50-18A6097B6E91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyncServer", "SyncServer\SyncServer.csproj", "{483B9FC1-15CE-4982-AE07-E6C60D1E6F96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SyncServer", "SyncServer\SyncServer.csproj", "{483B9FC1-15CE-4982-AE07-E6C60D1E6F96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
