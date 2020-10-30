@@ -4,6 +4,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using Azure.Storage.Blobs;
 using DesignArsenal;
 
 partial class Script
@@ -35,11 +36,30 @@ partial class Script
 		}
 
 		// Copy to DB
-		Console.WriteLine("### UPLOAD");
+		/*Console.WriteLine("### UPLOAD");
 		if(Environment.OSVersion.Platform == PlatformID.Win32NT)
 			File.Copy(_upload_output, @"D:\Dropbox\Apps\DesignArsenalWIN.zip", true);
 		else
-			File.Copy(_upload_output, @"/Users/midiway/Dropbox/Apps/DesignArsenalOSX.zip", true);
+			File.Copy(_upload_output, @"/Users/midiway/Dropbox/Apps/DesignArsenalOSX.zip", true);*/
+
+		// Copy to Azure Storage
+		string localPath;
+		if(Environment.OSVersion.Platform == PlatformID.Win32NT)
+			localPath = @"D:\Dropbox\Apps\DesignArsenalWIN.zip";
+		else
+			localPath = @"/Users/midiway/Dropbox/Apps/DesignArsenalOSX.zip";
+
+		BlobServiceClient blobServiceClient = new BlobServiceClient("DefaultEndpointsProtocol=https;AccountName=midistorage;AccountKey=s5CGWLkZVCDat5vYMz0ZBeHVzUaHEcsEGiLipnGdTTAFUVQn0VP1+xWZo5xwdWXZ8YXf9Whhx3q9EUWasqvV/Q==;EndpointSuffix=core.windows.net");
+		var containerClient = blobServiceClient.GetBlobContainerClient("designarsenal");
+
+		// Get a reference to a blob
+		BlobClient blobClient = containerClient.GetBlobClient(Path.GetFileName(localPath));
+
+		// Open the file and upload its data
+		using(var file = File.OpenRead(localPath))
+		{
+			var r = blobClient.UploadAsync(file, true).Result;
+		}
 
 		// Save version
 		Console.WriteLine("### UPDATE INFO");
