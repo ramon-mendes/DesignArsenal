@@ -5,6 +5,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using DesignArsenal;
 
 partial class Script
@@ -32,7 +33,7 @@ partial class Script
 			Console.WriteLine("### RUN + TESTS (WAITS FOR EXIT) ###");
 			SpawnProcess(exe_test, "-test");
 		} else {
-			_upload_output = CWD + "ReleaseInfo/Latest/DesignArsenal.zip";
+			_upload_output = CWD + "DesignArsenal.exe";
 		}
 
 		// Copy to DB
@@ -47,7 +48,8 @@ partial class Script
 		var containerClient = blobServiceClient.GetBlobContainerClient("designarsenal");
 
 		// Get a reference to a blob
-		BlobClient blobClient = containerClient.GetBlobClient(Path.GetFileName(_upload_output));
+		var uploadFileName = Environment.OSVersion.Platform == PlatformID.Win32NT ? "DesignArsenalWIN.exe" : "DesignArsenalOSX.zip";
+		BlobClient blobClient = containerClient.GetBlobClient(uploadFileName);
 
 		// Open the file and upload its data
 		using(var file = File.OpenRead(_upload_output))
