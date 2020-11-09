@@ -24,7 +24,7 @@ partial class Script
 		Environment.CurrentDirectory = CWD;
 
 		string exe_test;
-		if(true)
+		if(false)
 		{
 			GitPush();
 			exe_test = BuildAndDeploy();

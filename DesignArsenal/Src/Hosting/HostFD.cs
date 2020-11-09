@@ -245,7 +245,7 @@ namespace DesignArsenal.Hosting
 				{
 					try
 					{
-						var res = wb.UploadData("https://designarsenal.co/APIFD/WhatTheFont", imgbuff);
+						var res = wb.UploadData("https://designarsenal.com.br/APIFD/WhatTheFont", imgbuff);
 						cbk.Call(new SciterValue(System.Text.Encoding.UTF8.GetString(res)));
 					}
 					catch(Exception)

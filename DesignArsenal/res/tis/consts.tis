@@ -30,7 +30,7 @@ namespace Consts
 	const ICONS_DIR = view.Host_Paths().icons;
 	const PATTERNS_DIR = view.Host_Paths().patterns;
 
-	const SITE_URL = "http://designarsenal.co/";
+	const SITE_URL = "http://designarsenal.com.br/";
 	const SERVER_ASSETS = "https://storagemvc.blob.core.windows.net/arsenal/";
 	const SERVER_APIGENERAL = "https://designarsenalmvc.azurewebsites.net/APIGeneral/";
 }
