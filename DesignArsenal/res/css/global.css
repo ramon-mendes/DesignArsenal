@@ -10,6 +10,8 @@ html
 {
 	//font-rendering-mode: classic;
 	font-family: system;
+
+	aspect: RegisterDevmode;
 }
 @media min-resolution > 96
 {

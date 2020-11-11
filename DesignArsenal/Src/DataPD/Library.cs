@@ -54,7 +54,6 @@ namespace DesignArsenal.DataPD
 		public string name;
 		public string hash;
 		public string url;
-		public string path_remote;
 		public string path_local;
 
 		public bool IsFilePresent()

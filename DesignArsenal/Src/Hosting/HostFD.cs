@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using SciterSharp;
 using DesignArsenal.DataFD;
+using SharpFont;
 #if WINDOWS
 using DesignArsenal.Native;
 using System.Drawing;
@@ -153,6 +154,70 @@ namespace DesignArsenal.Hosting
 			return true;
 		}
 
+		public bool Host_ExportWebFont(SciterElement el, SciterValue[] args, out SciterValue result)
+		{
+			Task.Run(() =>
+			{
+				// write .css
+				StringBuilder sb_css = new StringBuilder();
+				StringBuilder sb_html = new StringBuilder($@"<html>
+<head>
+	<link rel=""stylesheet"" href=""webfont.css"">
+</head>
+<body>");
+
+				string path_savefolder = args[0].Get("").Replace("file://", "") + "/";
+				var ffj = Joiner.FFJ_ByNormalName(args[1].Get(""));
+				foreach(var kv in ffj.variant2file)
+				{
+					string path_font = Joiner.GetVariantLocalFilePath(ffj, kv.Key);
+					string path_dest = path_savefolder + '/' + Path.GetFileName(path_font);
+					File.Copy(path_font, path_dest, true);
+
+					string fontname = FaceVariant.GetPostScriptName(ffj, kv.Key);
+					/*string format = "";
+					switch(Path.GetExtension(path_font))
+					{
+						case ".ttf":
+							format = "truetype";
+							break;
+						case ".otf":
+							format = "";
+							break;
+						case ".woff":
+							format = "woff";
+							break;
+						case ".pfb":
+							format = "";
+							break;
+						default:
+							continue;
+					}*/
+
+					var face = FontFaceFamily.Create(ffj).LoadVariantFaceIO(kv.Key);
+					var italic = face._face.StyleFlags.HasFlag(StyleFlags.Italic);
+					var bold = face._face.StyleFlags.HasFlag(StyleFlags.Bold);
+					sb_css.Append($@"@font-face {{
+    font-family: '{fontname}';
+    src: url('{Path.GetFileName(path_font)}');
+    font-weight: {(bold ? "bold" : "normal")};
+    font-style: {(italic ? "italic" : "normal")};
+}}");
+					sb_html.Append($@"
+	<h1 style=""font-family: '{fontname}'"">The quick brown fox jumps over the lazy dog</h1>");
+				}
+
+				sb_html.Append(@"</body>
+</html>");
+				File.WriteAllText(path_savefolder + "webfont.css", sb_css.ToString());
+				File.WriteAllText(path_savefolder + "index.html", sb_html.ToString());
+				args[2].Call();
+			});
+
+			result = null;
+			return true;
+		}
+
 		public void Host_Capture2WTF(SciterValue[] args)
 		{
 			var x = args[0].Get(0);
@@ -180,8 +245,8 @@ namespace DesignArsenal.Hosting
 				{
 					try
 					{
-						var res = wb.UploadData("https://designarsenal.co/APIFD/WhatTheFont", imgbuff);
-						cbk.Call(new SciterValue(Encoding.UTF8.GetString(res)));
+						var res = wb.UploadData("https://designarsenal.com.br/APIFD/WhatTheFont", imgbuff);
+						cbk.Call(new SciterValue(System.Text.Encoding.UTF8.GetString(res)));
 					}
 					catch(Exception)
 					{

@@ -1,4 +1,6 @@
-﻿self#btn-menu.onClick = function() {
+﻿include "../lib_settings/settings.tis";
+
+self#btn-menu.onClick = function() {
 	self#mi-clearcache.text = "Clear cache";
 	this.popup(self#menu-main, Utils.popupAttachment());
 
@@ -23,7 +25,7 @@ if(view.Host_IsMidi())
 }
 
 self#mi-gopro.on("mousedown", function() {
-	Sciter.launch("http://designarsenal.co/Home/Pro");
+	Sciter.launch("http://designarsenal.com.br/Home/Pro");
 });
 self#mi-clearcache.onClick = function() {
 	view.Host_ClearCache();
@@ -31,6 +33,39 @@ self#mi-clearcache.onClick = function() {
 	this.closePopup();
 	view.msgbox(#information, "Cache cleared with success.", Consts.APPNAME);
 };
+
+var cur_dev_mode;
+var arr_selfs = [];
+
+function SetDevMode(mode) {
+	var el_btn = self#mi-devmode.$(button);
+	Settings.ns_data.devmode = el_btn.state.checked = mode;
+	Settings.StoreWork();
+
+	cur_dev_mode = mode;
+
+	for(var (i,el) in arr_selfs) {
+		if(mode)
+			el.attributes#devmode = true;
+		else
+		{
+			el.attributes.remove("devmode");
+			if(View.close_project_func)
+				View.close_project_func();
+		}
+	}
+}
+SetDevMode(!!Settings.ns_data.devmode);
+
+function RegisterDevmode() {
+	arr_selfs.push(this);
+	SetDevMode(cur_dev_mode);
+}
+
+self#mi-devmode.on("mouseup", function(evt) {
+	SetDevMode(!cur_dev_mode);
+	return true;
+});
 
 if(Utils.IsWindows && !Utils.InDBGView)
 {

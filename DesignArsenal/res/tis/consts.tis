@@ -26,11 +26,11 @@ namespace EAppExternal
 namespace Consts
 {
 	const APPNAME = "Design Arsenal";
-	const COLLECTIONS_DIR = System.path(#USER_APPDATA) + "/" + APPNAME + "/IconCollections/";
-	const PATTERNS_DIR = System.path(#USER_APPDATA) + "/" + APPNAME + "/Patterns/";
-	const FONTS_DIR = System.path(#USER_APPDATA) + "/" + APPNAME + "/Fonts/";
+	const FONTS_DIR = view.Host_Paths().fonts;
+	const ICONS_DIR = view.Host_Paths().icons;
+	const PATTERNS_DIR = view.Host_Paths().patterns;
 
-	const SITE_URL = "http://designarsenal.co/";
+	const SITE_URL = "http://designarsenal.com.br/";
 	const SERVER_ASSETS = "https://storagemvc.blob.core.windows.net/arsenal/";
 	const SERVER_APIGENERAL = "https://designarsenalmvc.azurewebsites.net/APIGeneral/";
 }

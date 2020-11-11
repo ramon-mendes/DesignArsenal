@@ -136,6 +136,11 @@ namespace DesignArsenal.Hosting
 			}
 		}
 
+		public SciterValue Host_Dbg(SciterValue[] args)
+		{
+			return null;
+		}
+
 #if OSX
 		public SciterValue Host_GetDisplayData()
 		{
@@ -171,6 +176,15 @@ namespace DesignArsenal.Hosting
 			sv["Sketch.DrawText"] = new SciterValue(args => Sketch.DrawText(args[0].Get(""), args[1].Get("")));
 			sv["Sketch.ApplyText"] = new SciterValue(args => Sketch.ApplyText(args[0].Get(""), args[1].Get("")));
 #endif
+			return true;
+		}
+
+		public bool Host_Paths(SciterElement el, SciterValue[] _, out SciterValue result)
+		{
+			result = new SciterValue();
+			result["fonts"] = new SciterValue(Consts.DirUserFiles_Fonts);
+			result["icons"] = new SciterValue(Consts.DirUserFiles_Icons);
+			result["patterns"] = new SciterValue(Consts.DirUserFiles_Pattenrs);
 			return true;
 		}
 

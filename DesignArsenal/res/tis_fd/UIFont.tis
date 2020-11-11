@@ -2,6 +2,13 @@
 {
 	var _shown_dic_font;
 
+	function ExportWebfont(family)
+	{
+		var dic_font = FontSource.FFJFromFamily(family); assert(dic_font);
+
+
+	}
+
 	function ShowFontByFamily(family)
 	{
 		var dic_store_font = Store._font2store[family];
@@ -94,6 +101,21 @@
 					ListUI.CreateFaceEntry(self#faces, dic_font, i);
 			};
 		}
+
+		// export webfont
+		self#export.onClick = function() {
+			var path = view.selectFolder("Where to create webfont?");
+			if(path)
+			{
+				self#overlay-msg.html = "Creating '" + family + "' webfont ...";
+				self#overlay-msg.show();
+
+				view.Host_ExportWebFont(path, family, function() {
+					self#overlay-msg.hide();
+				});
+			}
+			return;
+		};
 
 		// faces
 		self#faces.clear();

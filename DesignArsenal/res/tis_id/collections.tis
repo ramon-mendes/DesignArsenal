@@ -26,7 +26,7 @@ demo_created = false;
 
 if(!Utils.InDBGView)
 {
-	view.Host_SetupCollections(Consts.COLLECTIONS_DIR, !demo_created, function(arr_dirs, arr_count) {
+	view.Host_SetupCollections(Consts.ICONS_DIR, !demo_created, function(arr_dirs, arr_count) {
 		self#ui-collections.options.clear();
 		self#ui-collections.state.disabled = false;
 		for(var (i, dir) in arr_dirs)

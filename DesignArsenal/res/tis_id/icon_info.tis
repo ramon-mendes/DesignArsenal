@@ -21,6 +21,31 @@
 			}
 		}
 
+		/*self#ui-btn-add-sprite.onClick = function() {
+			UI.Proj.IconAddRmv(true, _obj_icon.hash);
+		};
+		self#ui-btn-rmv-sprite.onClick = function() {
+			UI.Proj.IconAddRmv(false, _obj_icon.hash);
+		};*/
+		self#ui-btn-usecopy.onClick = function() {
+			view.Host_CopySVGIconUse(UI.Proj.IconGetName(_obj_icon));
+		};
+		self#ui-btn-symbolcopy.onClick = function() {
+			if(UI.Proj._active)
+				view.Host_CopySVGIconSymbol(_obj_icon.hash, UI.Proj.IconGetName(_obj_icon));
+			else
+				view.Host_CopySVGIconSymbol(_obj_icon.hash);
+		};
+		self#ui-icon-name.onValueChanged = function() {
+			var name = self#ui-icon-name.value;
+			var correct = /^[A-Za-z0-9_-]+$/.test(name) && !UI.Proj.IsIconNameInUse(name, _obj_icon.hash);
+			self#ui-icon-name.state.incomplete = !correct;
+			if(correct)
+				UI.Proj.IconSetName(_obj_icon, name);
+			self#ui-btn-usecopy.state.disabled = !correct;
+		};
+
+
 		self#info-filename.$(icon).onClick = ::view.Host_RevealFile(_obj_icon.path);
 		self#info-collection.$(icon).onClick = ::ListCollection(_obj_icon.source.name);
 	}
@@ -55,7 +80,21 @@
 			self#info-area-col.update();
 		}
 
-		log(obj_icon.colored)
+		if(!UI.Proj._active)
+		{
+			self#tab-warn-activate.state.current = true;
+		}
+		else if(!UI.Proj.IconIsChecked(obj_icon.hash))
+		{
+			self#tab-btn-use.state.current = true;
+		}
+		else
+		{
+			self#tab-sprite.state.current = true;
+			self#ui-icon-name.value = UI.Proj.IconGetName(obj_icon);
+			self#ui-icon-name.onValueChanged();
+		}
+
 		self#icn-info.@.toggleClass("colored", obj_icon.colored);
 		self#icn-info.show();
 	}

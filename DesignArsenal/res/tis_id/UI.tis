@@ -59,7 +59,56 @@ namespace UI
 
 		// Section 2: collections
 		self#info-cols.onClick = function() {
-			view.Host_RevealDir(Consts.COLLECTIONS_DIR);
+			view.Host_RevealDir(Consts.ICONS_DIR);
+		};
+
+		// Section 3: projects
+		Proj.RelistProjects();
+
+		self#ui-projects.on("change", function() {
+			Proj.SelectProject(this.value);
+		});
+
+		self#btn-rmv-project.onClick = function() {
+			var res = view.msgbox(#question, "Do you really want to remove this project?", Consts.APPNAME, [#yes, #no]);
+			if(res == #yes)
+			{
+				var idx = self#ui-projects.value;
+				self#ui-projects.value = undefined;
+
+				Settings.ns_data.arr_projects.remove(idx);
+				Settings.StoreWork();
+				Proj.RelistProjects();
+				Proj.SelectProject(undefined);
+			}
+		};
+
+		self#btn-add-project.onClick = function() {
+			var title;
+			var res = view.msgbox(#information, "Name of the project: <br><input !text />", "New project", [#ok, #cancel], function(el_root) { el_root.$(input).state.focus = true; }, function(el_root, id) {
+				if(id==#ok)
+				{
+					title = el_root.$(input).value;
+					if(title.trim().length==0)
+						return false;
+				}
+				return true;
+			});
+
+			if(res!=#ok)
+				return true;
+
+			view.msgbox(#information, "Choose the directory where you want the generated .svg sprite to be saved.\n(Output file will be named 'icon-sprites.svg')", Consts.APPNAME);
+			var dir = view.selectFolder("SVG sprite output directory");
+			if(dir)
+				Proj.AddProj(title, dir);
+			return true;
+		};
+
+		self#btn-import-project.onClick = function() {
+			var path = view.selectFile(#open, "JSON file (*.json)|*.json|All Files (*.*)|*.*", "json");
+			if(path)
+				Proj.ImportJSON(URL.toPath(path));
 		};
 	}
 
@@ -88,6 +137,260 @@ namespace UI
 		self#btn-search-clear.hide();
 		self#back.hide();
 		self#toolbar.hide();
+	}
+
+	
+	namespace Proj
+	{
+		const SPRITE_JSON = "icon-sprites.json";
+		var _active;
+		var _idx;
+		var _obj;// { title, dir, svg_outdir, dic_icons[hash]=>name }
+		var _svg_output_path;
+		var _el_project = $(project);
+		var _arr_projects = [];
+		
+		function Setup()
+		{
+			// load projects from .json
+			for(var json_path in Settings.ns_data.arr_projects)
+			{
+				try {
+					var obj = JSON.parse(Utils.readFileText(json_path));
+					_arr_projects.push(obj);
+				} catch(e) {
+				}
+			}
+
+			self#ui-proj-eye.onClick = function() {
+				ListProject();
+			};
+			self#ui-proj-folder.onClick = function() {
+				view.Host_RevealFile(_svg_output_path);
+			};
+			self#ui-proj-move.onClick = function() {
+				ProjMoveSVGOutput();
+			};
+			self#ui-proj-close.onClick = function() {
+				CloseProject();
+			};
+		}
+
+		function CloseProject() {
+			SelectProject(undefined);
+			if(!_inhome)
+				ListUI.ResetViewAndLoad();
+		}
+		
+		function ImportJSON(path)
+		{
+			try
+			{
+				var json = Utils.readFileText(path);
+				json = JSON.parse(json);
+				assert(json.title);
+
+				Settings.ns_data.arr_projects.push(path);
+				Settings.StoreWork();
+
+				Proj.RelistProjects();
+				Proj.SelectProject(Settings.ns_data.arr_projects.length-1);
+
+				view.msgbox(#information, "Successfully imported project " + json.title, Consts.APPNAME);
+			} catch(e) {
+				view.msgbox(#information, "Could not import JSON file", Consts.APPNAME);
+			}
+		}
+
+		function AddProj(title, dir)
+		{
+			dir = Utils.FixRevealedDirName(dir);
+			
+			Settings.ns_data.arr_projects.push(dir + SPRITE_JSON);
+			Settings.StoreWork();
+
+			_arr_projects.push({
+				title: title,
+				dir: dir,
+				svg_outdir: ".",
+				dic_icons: {},
+			});
+
+			Proj.SelectProject(Settings.ns_data.arr_projects.length-1);// creates "icon-sprites.json"
+			Proj.RelistProjects();
+		}
+
+		function ProjMoveSVGOutput()
+		{
+			var def_folder = view.Host_DirExists(_obj.dir) ? _obj.dir : "";
+			var newdir = view.selectFolder("Select new SVG sprite output folder", def_folder);
+			if(newdir)
+			{
+				newdir = Utils.FixRevealedDirName(newdir);
+				Settings.ns_data.arr_projects[_idx] = newdir + SPRITE_JSON;
+				_obj.dir = newdir;
+				_obj.svg_outdir = ".";
+				Settings.StoreWork();
+
+				SelectProject(_idx);// creates .json
+			}
+		}
+
+		function SelectProject(idx)
+		{
+			if(idx===undefined)
+			{
+				_active = false;
+				self#btn-rmv-project.state.disabled = true;
+				self#ui-projects.value = undefined;
+				_el_project.state.current = false;
+			} else {
+				_active = true;
+				_idx = idx;
+				_obj = _arr_projects[idx];
+				if(_obj.svg_outdir==".")
+					_svg_output_path = _obj.dir + "/icon-sprites.svg";
+				else
+					_svg_output_path = _obj.svg_outdir + "/icon-sprites.svg";
+
+				// delete not found icon hashes
+				for(var (hash,v) in _obj.dic_icons.clone())
+				{
+					if(!isource.IconHashExists(hash))
+					{
+						log("deleting " + hash);
+						delete _obj.dic_icons[hash];
+					}
+				}
+
+				RegenerateSVGSprite();
+
+				self#btn-rmv-project.state.disabled = false;
+				self#ui-projects.value = idx;
+				
+				_el_project.state.current = false;
+				self.post(function() {
+					_el_project.state.current = true;
+					_el_project.$(.name).text = _obj.title;
+					_el_project.$(.icount).text = "(" + _obj.dic_icons.length + " icons)";
+				});
+			}
+		}
+
+		function RelistProjects()
+		{
+			self#ui-projects.options.clear();
+			self#ui-projects.state.disabled = false;
+
+			_arr_projects = [];
+
+			for(var i = 0; i < Settings.ns_data.arr_projects.length; i++)
+			{
+				var path = Settings.ns_data.arr_projects[i];
+
+				try {
+					var obj = JSON.parse(Utils.readFileText(path));
+					obj.dir = view.Host_PathDir(path);
+
+					_arr_projects.push(obj);
+
+					self#ui-projects.options.$append(<option value={i}>{obj.title}</option>);
+				} catch(e) {
+					Growl("Couldn't load icon projet at '" + path + "'", #error);
+					Settings.ns_data.arr_projects.remove(i--);
+				}
+			}
+
+
+			if(Settings.ns_data.arr_projects.length == 0)
+				self#ui-projects.state.disabled = true;
+		}
+
+		function IsIconNameInUse(name, hash)
+		{
+			for(var (k,v) in _obj.dic_icons)
+			{
+				if(v == name && k != hash)
+					return true;
+			}
+			return false;
+		}
+
+		function IconAddRmv(add, obj_icon)// generates icon ID when adding
+		{
+			if(!_active)
+			{
+				Growl("Please, activate a project at home screen for adding icons to it.")
+				return false;
+			}
+
+			if(add)
+			{
+				function CreateIconID()
+				{
+					var name = obj_icon.arr_tags[0];
+					name = name.replace(".svg", "");
+					name = name.replace(" ", "-");
+
+					while(IsIconNameInUse(name, ""))
+					{
+						var regx = /-[0-9]+$/.exec(name);
+						if(regx == null)
+							name = name + "-1";
+						else
+						{
+							var i = regx[0].substr(1).toInteger() + 1;
+							name = name.substring(0, name.length - regx[0].length) + "-" + i;
+						}
+					}
+					return name;
+				}
+
+				_obj.dic_icons[obj_icon.hash] = CreateIconID();
+			} else {
+				delete _obj.dic_icons[obj_icon.hash];
+			}
+
+			_el_project.$(.icount).text = "(" + _obj.dic_icons.length + " icons)";
+			
+			log("Saved SVG sprite project with " + _obj.dic_icons.length + " icons")
+			Settings.StoreWork();
+			RegenerateSVGSprite();
+			return true;
+		}
+
+		function IconIsChecked(hash)
+		{
+			return !!_obj.dic_icons[hash];
+		}
+
+		function IconGetName(obj_icon)
+		{
+			return _obj.dic_icons[obj_icon.hash];
+		}
+		function IconSetName(obj_icon, name)
+		{
+			_obj.dic_icons[obj_icon.hash] = name;
+			Settings.StoreWork();
+			RegenerateSVGSprite();
+		}
+
+		function ListProject()
+		{
+			self#ui-search.Clear();
+			self#ui-search.AddTag("project icons: " + _obj.title);
+
+			isource.ResetByProj(_obj.dic_icons);
+			ListUI.ResetViewAndLoad();
+		}
+
+		function RegenerateSVGSprite()
+		{
+			if(_obj.dic_icons.length == 0)// new obj, no .json exists yet
+				view.Host_GenerateSVGSprite(_obj)
+			else
+				self.timer(1000, ::view.Host_GenerateSVGSprite(_obj));
+		}
 	}
 }
 
@@ -178,7 +481,10 @@ namespace ListUI
 function Setup()
 {
 	UI.Setup();
+	UI.Proj.Setup();
 	UI.SetupHome();
 	ListUI.Setup();
 	IconInfo.Setup();
+
+	View.close_project_func = UI.Proj.CloseProject;
 }

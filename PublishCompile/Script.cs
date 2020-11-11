@@ -4,6 +4,8 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using DesignArsenal;
 
 partial class Script
@@ -22,7 +24,7 @@ partial class Script
 		Environment.CurrentDirectory = CWD;
 
 		string exe_test;
-		if(true)
+		if(false)
 		{
 			GitPush();
 			exe_test = BuildAndDeploy();
@@ -31,15 +33,29 @@ partial class Script
 			Console.WriteLine("### RUN + TESTS (WAITS FOR EXIT) ###");
 			SpawnProcess(exe_test, "-test");
 		} else {
-			_upload_output = CWD + "ReleaseInfo/Latest/DesignArsenal.zip";
+			_upload_output = CWD + "DesignArsenal.exe";
 		}
 
 		// Copy to DB
-		Console.WriteLine("### UPLOAD");
+		/*Console.WriteLine("### UPLOAD");
 		if(Environment.OSVersion.Platform == PlatformID.Win32NT)
 			File.Copy(_upload_output, @"D:\Dropbox\Apps\DesignArsenalWIN.zip", true);
 		else
-			File.Copy(_upload_output, @"/Users/midiway/Dropbox/Apps/DesignArsenalOSX.zip", true);
+			File.Copy(_upload_output, @"/Users/midiway/Dropbox/Apps/DesignArsenalOSX.zip", true);*/
+
+		// Copy to Azure Storage
+		BlobServiceClient blobServiceClient = new BlobServiceClient("DefaultEndpointsProtocol=https;AccountName=midistorage;AccountKey=s5CGWLkZVCDat5vYMz0ZBeHVzUaHEcsEGiLipnGdTTAFUVQn0VP1+xWZo5xwdWXZ8YXf9Whhx3q9EUWasqvV/Q==;EndpointSuffix=core.windows.net");
+		var containerClient = blobServiceClient.GetBlobContainerClient("designarsenal");
+
+		// Get a reference to a blob
+		var uploadFileName = Environment.OSVersion.Platform == PlatformID.Win32NT ? "DesignArsenalWIN.exe" : "DesignArsenalOSX.zip";
+		BlobClient blobClient = containerClient.GetBlobClient(uploadFileName);
+
+		// Open the file and upload its data
+		using(var file = File.OpenRead(_upload_output))
+		{
+			var r = blobClient.UploadAsync(file, true).Result;
+		}
 
 		// Save version
 		Console.WriteLine("### UPDATE INFO");
@@ -77,7 +93,7 @@ partial class Script
 		else
 		{
 			string how = "Clean,Build";
-			SpawnProcess(@"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe",
+			SpawnProcess(@"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild.exe",
 				    CWD + $"..\\{APPNAME}\\{APPNAME}Windows.csproj /t:{how} /p:Configuration={CONFIG} /p:Platform=x64");
 
 			#region Pack
