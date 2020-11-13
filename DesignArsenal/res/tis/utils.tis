@@ -1,4 +1,19 @@
-﻿Utils.FixRevealedDirName = function(dir) {
+﻿function PerformFileDrag(path, hash, on_complete, el)
+{
+	var (x, y) = view.cursorLocation();
+
+	if(Utils.IsWindows)
+	{
+		var res = view.performDrag(el, { file: path }, #any);
+		on_complete(res);
+	} else {
+		view.Host_StartDnD(path, x, y, undefined, function() {
+			on_complete(true);
+		});
+	}
+}
+
+Utils.FixRevealedDirName = function(dir) {
 	dir = URL.toPath(dir).replace("+", " ");// TODO: remove this replace
 	if(dir[dir.length-1] != '/')
 		dir = dir + "/";

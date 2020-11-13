@@ -1,4 +1,16 @@
-﻿namespace EIconKind
+﻿function Host() {
+	try
+	{
+		view.Host_Paths();
+		return view;
+	}
+	catch(e)
+	{
+		return view.parent;
+	}
+}
+
+namespace EIconKind
 {
 	const LIBRARY = 0;
 	const COLLECTION = 1;
@@ -26,9 +38,9 @@ namespace EAppExternal
 namespace Consts
 {
 	const APPNAME = "Design Arsenal";
-	const FONTS_DIR = view.Host_Paths().fonts;
-	const ICONS_DIR = view.Host_Paths().icons;
-	const PATTERNS_DIR = view.Host_Paths().patterns;
+	const FONTS_DIR = Host().Host_Paths().fonts;
+	const ICONS_DIR = Host().Host_Paths().icons;
+	const PATTERNS_DIR = Host().Host_Paths().patterns;
 
 	const SITE_URL = "http://designarsenal.com.br/";
 	const SERVER_ASSETS = "https://storagemvc.blob.core.windows.net/arsenal/";

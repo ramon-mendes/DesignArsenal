@@ -1,4 +1,6 @@
-﻿class IconBehavior : Element
+﻿include "../tis/utils.tis";
+
+class IconBehavior : Element
 {
 	var captured = false;
 
@@ -73,21 +75,6 @@
 			}, el_this.$(svg));
 
 			return true;
-		}
-	}
-
-	function PerformFileDrag(path, hash, on_complete, el)
-	{
-		var (x, y) = view.cursorLocation();
-
-		if(Utils.IsWindows)
-		{
-			var res = view.performDrag(el, { file: path }, #any);
-			on_complete(res);
-		} else {
-			view.Host_StartDnD(path, x, y, undefined, function() {
-				on_complete(true);
-			});
 		}
 	}
 }

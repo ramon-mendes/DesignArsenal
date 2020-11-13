@@ -41,12 +41,21 @@ namespace ListUI
 			return true;
 		});
 
-		self#list.on("mousedown", "div.item", function(evt) {
+		self#list.on("click", "div.item", function(evt) {
 			if(evt.mainButton)
 				Previewer.Show(this);
 			else if(evt.propButton)
 				ShowMenuPattern(this.data, evt);
 		});
+
+		self#list.onMouse = function(evt){
+			if(evt.type == Event.MOUSE_DRAG_REQUEST && evt.target.$is(div.item))
+			{
+				var fp = evt.target.data.fspath;
+				log(fp);
+				return true;
+			}
+		}
 
 		self#scroller.onScroll = function(evt) {
 			var scroll_bot = self#scroller.box(#height, #content);
