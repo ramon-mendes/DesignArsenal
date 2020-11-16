@@ -70,7 +70,7 @@ class IconBehavior : Element
 			var icon = this.icon;
 			var hash = icon.hash;
 			var path = view.Host_SaveTempSVG(hash, !!self.@#black);
-			PerformFileDrag(path, hash, function(res) {
+			PerformFileDrag(path, function(res) {
 				el_this.state.hover = false;
 			}, el_this.$(svg));
 

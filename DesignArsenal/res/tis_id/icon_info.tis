@@ -17,7 +17,7 @@ namespace IconInfo
 				var sz = evt.target.text.toInteger();
 				var img = new Image(sz, sz, self#icn-info.$(div));
 				var path = view.Host_SavePNG(_obj_icon.arr_tags[0], img.toBytes());
-				PerformFileDrag(path, _obj_icon.hash, function() {}, evt.target);
+				PerformFileDrag(path, function() {}, evt.target);
 				evt.target.state.hover = false;
 				return true;
 			}

@@ -1,4 +1,4 @@
-﻿function PerformFileDrag(path, hash, on_complete, el)
+﻿function PerformFileDrag(path, on_complete, el)
 {
 	var (x, y) = view.cursorLocation();
 

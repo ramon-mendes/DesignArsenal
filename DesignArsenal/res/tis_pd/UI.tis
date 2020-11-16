@@ -1,3 +1,5 @@
+include "../tis/utils.tis"
+
 namespace UI
 {
 	var _in_search = false;
@@ -30,6 +32,41 @@ namespace ListUI
 	var _dir_listed;
 	var _apps_expando = view.Host_AppsExpando();
 
+	function ConvertToPng(data)
+	{
+		var fspath = data.fspath;
+		if(data.issvg || data.scale)
+		{
+			var el_img = self#bg-copier.$(div);
+			var (w, h);
+			el_img.style#background-image = "url(file://" + fspath + ")";
+			if(data.scale)
+			{
+				el_img.style#background-size = String.$({data.scale_sw}px {data.scale_sh}px);
+				el_img.style#width = px(data.scale_sw);
+				el_img.style#height = px(data.scale_sh);
+				w = data.scale_sw;
+				h = data.scale_sh;
+				el_img.update();
+			}
+			else
+			{
+				el_img.style#background-size = undefined;
+				el_img.update();
+				w = el_img.style.backgroundImageWidth;
+				h = el_img.style.backgroundImageHeight;
+				el_img.style#width = px(w);
+				el_img.style#height = px(h);
+			}
+			var img = new Image(w.toInteger(), h.toInteger(), self#bg-copier);
+			var bytes = img.toBytes(#png);
+			fspath = view.Host_TmpPath() + ".png";
+			bytes.save(fspath);
+		}
+		return fspath;
+	}
+
+
 	function Setup()
 	{
 		self.timer(1000, function() {
@@ -41,7 +78,7 @@ namespace ListUI
 			return true;
 		});
 
-		self#list.on("click", "div.item", function(evt) {
+		self#list.on("mouseup", "div.item", function(evt) {
 			if(evt.mainButton)
 				Previewer.Show(this);
 			else if(evt.propButton)
@@ -51,8 +88,17 @@ namespace ListUI
 		self#list.onMouse = function(evt){
 			if(evt.type == Event.MOUSE_DRAG_REQUEST && evt.target.$is(div.item))
 			{
-				var fp = evt.target.data.fspath;
-				log(fp);
+				var fspath = ConvertToPng(evt.target.data);
+
+				self#bg-2000.$(div).style#background-image = "url(file://" + fspath + ")";
+				self#bg-2000.$(div).update();
+				var img = new Image(2000, 2000, self#bg-2000);
+
+				var bytes = img.toBytes(#png);
+				fspath = view.Host_TmpPath() + ".png";
+				bytes.save(fspath);
+
+				PerformFileDrag(fspath, function() {}, evt.target);
 				return true;
 			}
 		}
@@ -68,70 +114,33 @@ namespace ListUI
 
 		self#menu-pattern.on("click", "li", function(evt) {
 			var data = self#menu-pattern.data;
-			var fspath = data.fspath;
-
-			function ConvertToPng()
-			{
-				if(data.issvg || data.scale)
-				{
-					var el_img = self#bg-copier.$(div);
-					var (w, h);
-					el_img.style#background-image = "url(file://" + fspath + ")";
-					if(data.scale)
-					{
-						el_img.style#background-size = String.$({data.scale_sw}px {data.scale_sh}px);
-						el_img.style#width = px(data.scale_sw);
-						el_img.style#height = px(data.scale_sh);
-						w = data.scale_sw;
-						h = data.scale_sh;
-						el_img.update();
-					}
-					else
-					{
-						el_img.style#background-size = undefined;
-						el_img.update();
-						w = el_img.style.backgroundImageWidth;
-						h = el_img.style.backgroundImageHeight;
-						el_img.style#width = px(w);
-						el_img.style#height = px(h);
-					}
-					var img = new Image(w.toInteger(), h.toInteger(), self#bg-copier);
-					var bytes = img.toBytes(#png);
-					fspath = view.Host_TmpPath() + ".png";
-					bytes.save(fspath);
-				}
-			}
 
 			switch(evt.target.@#cmd)
 			{
 				case "psshape":
-					ConvertToPng();
-					_apps_expando["Photoshop.DrawPatternShape"](fspath);
+					_apps_expando["Photoshop.DrawPatternShape"](ConvertToPng(data));
 					break;
 				case "skshape":
-					ConvertToPng();
-					_apps_expando["Sketch.CreateFillRect"](fspath);
+					_apps_expando["Sketch.CreateFillRect"](ConvertToPng(data));
 					break;
 				case "skapply":
-					ConvertToPng();
-					_apps_expando["Sketch.ApplyFill"](fspath);
+					_apps_expando["Sketch.ApplyFill"](ConvertToPng(data));
 					break;
 
 				case "copyfile":
 					if(Utils.IsWindows)
-						view.clipboard(#put, { file: fspath });
+						view.clipboard(#put, { file: data.fspath });
 					else
-						view.Host_CopyFile(fspath);
+						view.Host_CopyFile(data.fspath);
 					break;
 
 				case "copypng":
-					ConvertToPng();
-					view.Host_CopyPNG(fspath);
+					view.Host_CopyPNG(ConvertToPng(data));
 					break;
 
 				case "copy2000":
 					{
-						ConvertToPng();
+						var fspath = ConvertToPng(data);
 
 						self#bg-2000.$(div).style#background-image = "url(file://" + fspath + ")";
 						self#bg-2000.$(div).update();

@@ -55,5 +55,10 @@ namespace DesignArsenal.Hosting
 			result = null;
 			return true;
 		}
+
+		public SciterValue Host_SaveTmpPNG(SciterValue[] args)
+		{
+			return null;
+		}
 	}
 }
