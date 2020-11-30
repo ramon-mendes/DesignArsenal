@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using SciterSharp;
 
 namespace DesignArsenal
@@ -53,6 +54,10 @@ namespace DesignArsenal
 #if OSX
 			AppKit.NSPasteboard.GeneralPasteboard.ClearContents();
 			AppKit.NSPasteboard.GeneralPasteboard.SetDataForType("file://" + path, AppKit.NSPasteboard.NSPasteboardTypeFileUrl);
+#else
+			var col = new System.Collections.Specialized.StringCollection();
+			col.Add(path);
+			Clipboard.SetFileDropList(col);
 #endif
 		}
 

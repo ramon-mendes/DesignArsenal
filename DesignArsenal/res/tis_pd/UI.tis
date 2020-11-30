@@ -128,10 +128,7 @@ namespace ListUI
 					break;
 
 				case "copyfile":
-					if(Utils.IsWindows)
-						view.clipboard(#put, { file: data.fspath });
-					else
-						view.Host_CopyFile(data.fspath);
+					view.Host_CopyFile(data.fspath);
 					break;
 
 				case "copypng":

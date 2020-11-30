@@ -44,6 +44,7 @@ partial class Script
 			File.Copy(_upload_output, @"/Users/midiway/Dropbox/Apps/DesignArsenalOSX.zip", true);*/
 
 		// Copy to Azure Storage
+		Console.WriteLine("### UPLOAD ###");
 		BlobServiceClient blobServiceClient = new BlobServiceClient("DefaultEndpointsProtocol=https;AccountName=midistorage;AccountKey=s5CGWLkZVCDat5vYMz0ZBeHVzUaHEcsEGiLipnGdTTAFUVQn0VP1+xWZo5xwdWXZ8YXf9Whhx3q9EUWasqvV/Q==;EndpointSuffix=core.windows.net");
 		var containerClient = blobServiceClient.GetBlobContainerClient("designarsenal");
 
