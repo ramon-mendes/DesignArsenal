@@ -19,7 +19,7 @@ partial class Script
 		if(Environment.OSVersion.Platform == PlatformID.Win32NT)
 			CWD = Path.GetFullPath(Environment.CurrentDirectory + "/../../../ReleaseInfo/");
 		else
-			CWD = "/Users/midiway/Documents/DesignArsenal/";
+			CWD = Path.GetFullPath(Environment.CurrentDirectory + "/../../../");
 
 		Environment.CurrentDirectory = CWD;
 
