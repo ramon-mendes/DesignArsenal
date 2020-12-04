@@ -147,11 +147,11 @@ namespace ListUI
 					break;
 
 				case "reveal":
-					view.Host_RevealFile(fspath);
+					view.Host_RevealFile(data.fspath);
 					break;
 
 				case "delete":
-					view.Host_DeleteFile(fspath);
+					view.Host_DeleteFile(data.fspath);
 					break;
 			}
 		});

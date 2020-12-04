@@ -68,6 +68,7 @@ namespace DesignArsenal
 			var dataObject = new System.Windows.Forms.DataObject();
 			var img = new System.Drawing.Bitmap(path);
 			dataObject.SetImage(img);
+
 			try
 			{
 				System.Windows.Forms.Clipboard.SetDataObject(dataObject, true, 100, 10);
