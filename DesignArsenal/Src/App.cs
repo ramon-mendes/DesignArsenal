@@ -87,7 +87,16 @@ namespace DesignArsenal
 			AppHost.SetupPage("index.html");
 			AppWnd.Show(false);
 
-			WindowSidebar.ShowPopup();
+			new Thread(() =>
+			{
+				Thread.Sleep(300);
+				AppHost.InvokePost(() =>
+				{
+					WindowSidebar.ShowPopup();
+					WindowSidebar.HidePopup();
+					WindowSidebar.ShowPopup();
+				});
+			}).Start();
 #endif
 		}
 

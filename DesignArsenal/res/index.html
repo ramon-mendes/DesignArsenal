@@ -85,7 +85,8 @@
 			view.move(x, y, w, h);
 			view.windowState = View.WINDOW_SHOWN;
 			self#osx-arrow.style#margin-left = px(offx_arrow*2);
-			
+			//log("off: " + offx_arrow)
+
 			View_FocusIt();
 		}
 
@@ -137,8 +138,8 @@
 		{
 			Utils.emulateResizeWnd(self#vresizer, 2);
 		}
-	
-</script>
+
+	</script>
 
 	<script type="text/tiscript">
 		ShowFrame(0);

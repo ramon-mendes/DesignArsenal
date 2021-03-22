@@ -79,7 +79,7 @@
     <Reference Include="Xamarin.Mac" />
     <Reference Include="System.Xml" />
     <Reference Include="SciterSharpOSX">
-      <HintPath>..\..\SciterSharp\SciterSharp\bin\Release\SciterSharpOSX.dll</HintPath>
+      <HintPath>..\packages\SciterSharpOSX.2.0.84\lib\xamarinmac20\SciterSharpOSX.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -170,11 +170,11 @@
     <None Include="res\tis_id\icon_behavior.tis" />
     <None Include="res\tis_id\icon_info.tis" />
     <None Include="res\tis_pd\UI.tis" />
-    <None Include="res\tis_pd\consts.tis" />
     <None Include="res\tis_pd\dirlist.tis" />
     <None Include="res\tis_pd\previewer.tis" />
     <None Include="res\tis_pd\sliderpicker.tis" />
     <None Include="res\tis\utils.tis" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchiveResource.cs" />

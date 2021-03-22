@@ -1,6 +1,7 @@
 ﻿#if OSX
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -143,7 +144,11 @@ namespace DesignArsenal.Hosting
 			                        new SciterValue(w),
 			                       	new SciterValue(h),
 			                        new SciterValue(offx_arrow));
-
+			Debug.WriteLine(pos.X);
+			Debug.WriteLine(pos.Y);
+			Debug.WriteLine(w);
+			Debug.WriteLine(h);
+			Debug.WriteLine(offx_arrow);
 			//CoreFoundation.DispatchQueue.MainQueue.DispatchAsync(() => {
 			//});
 		}

@@ -27,10 +27,10 @@ namespace DesignArsenal
 		//public static readonly string APP_DIR_SLASH = APP_DIR.Replace('\\', '/');
         public static readonly string LOG_FILE = DirUserData + "log.txt";
 
-		public static readonly string DirUserFiles = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + AppName + "\\";
-		public static readonly string DirUserFiles_Fonts = DirUserFiles + "Fonts\\";
-		public static readonly string DirUserFiles_Icons = DirUserFiles + "Icons\\";
-		public static readonly string DirUserFiles_Pattenrs = DirUserFiles + "Patterns\\";
+		public static readonly string DirUserFiles = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/" + AppName + "/";
+		public static readonly string DirUserFiles_Fonts = DirUserFiles + "Fonts/";
+		public static readonly string DirUserFiles_Icons = DirUserFiles + "Icons/";
+		public static readonly string DirUserFiles_Pattenrs = DirUserFiles + "Patterns/";
 
 		public const string SERVER_ASSETS = "https://storagemvc.blob.core.windows.net/arsenal/";
 

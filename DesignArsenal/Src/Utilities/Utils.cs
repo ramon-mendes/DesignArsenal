@@ -9,7 +9,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+#if WINDOWS
 using System.Windows.Forms;
+#endif
 using SciterSharp;
 
 namespace DesignArsenal
