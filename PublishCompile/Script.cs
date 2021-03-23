@@ -69,7 +69,7 @@ partial class Script
 
 	static string BuildAndDeploy()
 	{
-		_upload_output = CWD + "/DesignArsenal.zip";
+		_upload_output = CWD + "/DesignArsenal.exe";
 
 		Console.WriteLine("### BUILD ###");
 		if(Environment.OSVersion.Platform == PlatformID.Unix)
@@ -159,11 +159,6 @@ partial class Script
 			}
 			Directory.Move(WORK_DIR, OUT_DIR);
 			#endregion
-
-			// ZIP
-			if(File.Exists(_upload_output))
-				File.Delete(_upload_output);
-			ZipFile.CreateFromDirectory(OUT_DIR, _upload_output);
 
 			return OUT_DIR + APPNAME_EXE;
 		}
