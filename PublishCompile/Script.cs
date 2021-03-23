@@ -139,7 +139,8 @@ partial class Script
 			SpawnProcess(CWD + @"ConfuserEx_bin\Confuser.CLI.exe", $"-noPause {CONFUSE_PROJ}");
 			File.Copy(CONFUSE_OUTDIR + APPNAME_EXE, WORK_DIR + APPNAME_EXE, true);
 
-			// Generate installer
+			// Generate installer -- https://jrsoftware.org/isdl.php#stable
+			// Plz, add to PATH: C:\Program Files (x86)\Inno Setup 6
 			SpawnProcess("iscc", "installer.iss");
 
 			// Get version / Rename dir
