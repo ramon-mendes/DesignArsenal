@@ -94,7 +94,7 @@ partial class Script
 		else
 		{
 			string how = "Clean,Build";
-			string msbuild = @"C:\Program Files(x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe";
+			string msbuild = @"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe";
 			Debug.Assert(File.Exists(msbuild));
 			//string msbuild = @"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild.exe";
 			SpawnProcess(msbuild,
