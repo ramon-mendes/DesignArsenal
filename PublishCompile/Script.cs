@@ -35,6 +35,7 @@ partial class Script
 		} else {
 			_upload_output = CWD + "DesignArsenal.exe";
 		}
+		Debug.Assert(File.Exists(_upload_output));
 
 		// Copy to DB
 		/*Console.WriteLine("### UPLOAD");
