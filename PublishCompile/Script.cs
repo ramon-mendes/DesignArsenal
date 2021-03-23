@@ -45,8 +45,8 @@ partial class Script
 
 		// Copy to Azure Storage
 		Console.WriteLine("### UPLOAD ###");
-		BlobServiceClient blobServiceClient = new BlobServiceClient("DefaultEndpointsProtocol=https;AccountName=midistorage;AccountKey=s5CGWLkZVCDat5vYMz0ZBeHVzUaHEcsEGiLipnGdTTAFUVQn0VP1+xWZo5xwdWXZ8YXf9Whhx3q9EUWasqvV/Q==;EndpointSuffix=core.windows.net");
-		var containerClient = blobServiceClient.GetBlobContainerClient("designarsenal");
+		BlobServiceClient blobServiceClient = new BlobServiceClient("DefaultEndpointsProtocol=https;AccountName=storagemvc;AccountKey=vjSJ9PJL/2XXHr05vlGGuv7tDK5LN8MeQVo9lnI+KFUiZEuZ7eyWOlTNIv7JQatVUH3j6wy/UTzksTx+dEEO+A==;EndpointSuffix=core.windows.net");
+		var containerClient = blobServiceClient.GetBlobContainerClient("arsenal");
 
 		// Get a reference to a blob
 		var uploadFileName = Environment.OSVersion.Platform == PlatformID.Win32NT ? "DesignArsenalWIN.exe" : "DesignArsenalOSX.zip";

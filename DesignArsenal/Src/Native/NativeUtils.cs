@@ -135,6 +135,8 @@ namespace DesignArsenal.Native
 		{
 			get
 			{
+				//Debug.Assert(false);
+
 				if(IsUacEnabled)
 				{
 					IntPtr tokenHandle;

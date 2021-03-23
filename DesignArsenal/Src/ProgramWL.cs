@@ -77,7 +77,7 @@ namespace DesignArsenal
 					return 0;
 				}
 
-				if(UacHelper.IsProcessElevated)
+				//if(UacHelper.IsProcessElevated)
 				{
 					if(args[0].StartsWith("-perm-install:"))
 					{
@@ -97,6 +97,7 @@ namespace DesignArsenal
 					}
 				}
 #endif
+				return -1;
 			}
 			#endregion
 
