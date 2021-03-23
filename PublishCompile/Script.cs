@@ -95,7 +95,7 @@ partial class Script
 		{
 			string how = "Clean,Build";
 			//SpawnProcess(@"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild.exe",
-			SpawnProcess(@"C:\Program Files(x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin",
+			SpawnProcess(@"C:\Program Files(x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe",
 					CWD + $"..\\{APPNAME}\\{APPNAME}Windows.csproj /t:{how} /p:Configuration={CONFIG} /p:Platform=x64");
 
 			#region Pack
