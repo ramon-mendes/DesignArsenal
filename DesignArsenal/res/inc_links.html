@@ -75,7 +75,10 @@
 						{
 							title: "DeviantArt",
 							desc: "World's largest online social community for artists and art enthusiasts, allowing people to connect through the creation and sharing of art",
-							link: "https://www.deviantart.com/"
+							link: "https://www.deviantart.com/",
+							title: "blush",
+							desc: "Tell your story with illustrations",
+							link: "https://blush.design/"
 						}
 					]
 				}
@@ -134,7 +137,7 @@
 					if(!self#overlay-link.setup)
 					{
 						self#overlay-link.setup = true;
-						
+
 						self#overlay-link.$(form).on("~keydown", function(evt) {
 							if(evt.keyCode == Event.VK_RETURN)
 							{
@@ -192,7 +195,7 @@
 
 				el_top.$append(<h2>{data.title}</h2>);
 				el_top.$append(<div .desc>{data.desc}</text>);
-				
+
 				var thumb_url = (Utils.InDBGView ? "http://api.screenshotlayer.com/api/capture?access_key=05b5c230a4b29c97c286a5151563ebcf&viewport=1440x900&width=250&url=" : "thumb://")
 					+ URL.encodeParam(data.link);
 				el.$append(<img src="{thumb_url}" .thumb />);
