@@ -49,6 +49,8 @@
 		});
 
 		self#ui-collections.on("change", function() {
+			if(!this.value)
+				return;
 			var name = this.value %~ "/";
 			self#ui-search.Clear();
 			self#ui-search.AddTag("Local font directory: " + name);
@@ -57,7 +59,11 @@
 			ListUI.ResetViewAndLoad();
 			ViewMainList();
 
-			self.timer(100, ::self#ui-collections.value = undefined);
+			self.timer(100, :{
+				self#ui-collections.options.$append(<option></option>);
+				self#ui-collections.value = undefined
+				self#ui-collections.options.last.remove();
+			});
 		});
 
 		/*self#area-wtf.onClick = function() {

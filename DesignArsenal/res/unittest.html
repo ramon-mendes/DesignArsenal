@@ -1,22 +1,25 @@
-<!-- OmniView:on, HtmlView:off -->
 <html>
 <head>
 	<style>
-		@import url(css/global.css);
-
-		main { height: 30px; }
+		main
+		{
+			height: 30px;
+		}
 	</style>
 
 	<script type="text/tiscript">
-		log("asd/dfg/hjk/asdasd" ~% '/');
+		$(select).on("change", function() {
+		  $(select).value = undefined;
+		});
 	</script>
 </head>
 
 <body>
-	test
-
-	<main>
-		<div #ui-search />
-	</main>
+	<select novalue=" ">
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+	</select>
 </body>
 </html>
