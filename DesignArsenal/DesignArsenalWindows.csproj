@@ -526,9 +526,9 @@
     <Content Include="res\lib_poptip\lib_poptip.css" />
     <Content Include="res\lib_poptip\unittest.html" />
     <Content Include="res\lib_settings\unittest.html" />
-    <Content Include="sciter.dll">
+    <None Include="sciter.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
     <Content Include="scripts\packfolder.exe" />
   </ItemGroup>
   <ItemGroup>
