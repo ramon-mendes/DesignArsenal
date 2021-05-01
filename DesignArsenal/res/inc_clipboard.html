@@ -1,0 +1,339 @@
+﻿<!-- OmniView:on -->
+<html>
+<head>
+	<style>
+		@import url(css/global.css);
+
+		body
+		{
+			margin: 0;
+			background: url(img/grain.png) white repeat;
+		}
+
+		header
+		{
+			border-top: solid 1px #CED4D8;
+			border-bottom: solid 1px #CED4D8;
+			padding: 2px 4px;
+
+			color: #8a8a8a;
+			font-size: 12px;
+		}
+		#clip-list
+		{
+			size: *;
+			overflow-y: scroll-indicator;
+		}
+		#clip-list:empty
+		{
+			flow: horizontal;
+			vertical-align: middle;
+			horizontal-align: center;
+			content: "This list is empty";
+			color: silver;
+			font-style: italic;
+		}
+
+		.item
+		{
+			flow: horizontal;
+			padding: 1px 8px;
+			vertical-align: middle;
+			height: 1.8em;
+		}
+		.item .txt
+		{
+			display: block;
+			width: *;
+			height: *;
+			line-height: 24px;
+			text-overflow: ellipsis;
+			text-wrap: none;
+			overflow: hidden;
+			font-size: 12.5px;
+		}
+
+		.item .dt { font-size: 10px; text-wrap: none; color: gray; }
+		.item:nth-child(2n) { background: #EAEAEA; }
+		.item:current { background: #484560; color: white; }
+
+		#notebook { flow: horizontal; height: *; }
+		#notebook main { size: 2*; }
+
+		#list
+		{
+			size: *;
+			overflow-y: scroll-indicator;
+		}
+		#list:empty
+		{
+			flow: horizontal;
+			vertical-align: middle;
+			horizontal-align: center;
+			content: "This list is empty";
+			color: silver;
+			font-style: italic;
+		}
+
+		#list .item
+		{
+			padding: 2px 3px;
+			border-bottom: dotted 1px #d4d4d4;
+			max-height: 1.4em;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			vertical-align: text-top;
+		}
+		#list .item:current
+		{
+			background: #365f70 url(img/grain.png);
+			border-color: #365f70;
+			color: white;
+		}
+
+		pre
+		{
+			font-size: 11px;
+			background: url(img/grain.png);
+			padding: 2px 4px;
+			margin: 0;
+		}
+
+		#editor
+		{
+			size: *;
+			border-left: solid 1px #CED4D8;
+			behavior: textarea;
+			white-space: pre-wrap;
+			font-family: monospace;
+			padding: 4px 6px;
+			cursor: text;
+			overflow-y: scroll-indicator;
+		}
+	</style>
+
+	<script type="text/tiscript">
+		include "lib_settings/settings.tis";
+
+		var arr_clips = [];
+
+		View.View_OnClipboardChange = function() {
+			var txt = view.clipboard(#get, #text);
+			if(txt)
+			{
+				if(arr_clips.length && txt == arr_clips.first.txt)
+					return;
+
+				// save
+				var dt = new Date();
+				arr_clips.unshift({ dt: dt, txt: txt });
+
+				// and now we can humanize txt
+				txt = txt.replace("\n", "¶");
+				var hr_dt = dt.toString("%e %b");
+				self#clip-list.$prepend(<div .item><span .txt>{txt}</span><span .dt>{hr_dt}</span></div>);
+			}
+		};
+
+		if(false)
+		{
+			view.clipboard(#put, "Sapien elit in malesuada semper mi, fermentum.");
+			View.View_OnClipboardChange();
+			view.clipboard(#put, "In malesuada semper mi, id sollicitudin urna fermentum ut fusce varius nisl.");
+			View.View_OnClipboardChange();
+			view.clipboard(#put, "Malesuada semper mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum.");
+			View.View_OnClipboardChange();
+			view.clipboard(#put, "Semper mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel.");
+			View.View_OnClipboardChange();
+			view.clipboard(#put, "Mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel pretium tellus.");
+			View.View_OnClipboardChange();
+		}
+
+		self#clip-list.on("click", ".item", function(evt) {
+			this.state.current = true;
+		});
+
+		function CopySelected() {
+			var el = self#clip-list.$(:current);
+			var idx = el.index;
+			self#clip-list.insert(el, 0);
+			self#clip-list.scrollTo(0, 0, true);
+
+			var data = arr_clips.splice(idx, 1)[0];
+			arr_clips.unshift(data);
+			view.Host_CopyText(data.txt);
+			Settings.StoreWork();
+		}
+
+		self#clip-list.on("dblclick", ".item", function(evt) {
+			CopySelected();
+		});
+
+		self#clip-list.on("keydown", function(evt) {
+			if(evt.keyCode == Event.VK_RETURN)
+		{
+				CopySelected();
+		log(123)
+		}
+			else if(evt.keyCode == Event.VK_DOWN || evt.keyCode == Event.VK_UP)
+			{
+				var el = self#clip-list.$(:current);
+				if(!el)
+				{
+					if(self#clip-list.first)
+					{
+						self#clip-list.first.state.current = true;
+						self#clip-list.first.scrollToView();
+					}
+				} else {
+					var offset = evt.keyCode == Event.VK_DOWN ? 1 : -1;
+					var idx = el.index + offset;
+					idx = idx.limit(0, self#clip-list.length-1);
+					self#clip-list[idx].state.current = true;
+					self#clip-list[idx].scrollToView();
+				}
+			}
+			else if(evt.keyCode == Event.VK_U) {
+				var el = self#clip-list.$(:current);
+				var merge = "";
+				for(var i = 0; i <= el.index; i++)
+				{
+					var data = arr_clips[i];
+					var txt = data.txt;
+					merge += txt + "\n";
+				}
+				view.Host_CopyText(merge);
+			}
+			else if(evt.keyCode == Event.VK_L) {
+				var el = self#clip-list.$(:current);
+				if(el)
+				{
+					var data = arr_clips[el.index];
+					Sciter.launch(data.txt);
+				}
+			}
+		});
+	</script>
+
+	<script type="text/tiscript">
+		if(true)
+		{
+			Settings.ns_data.arr_notes = [
+				//{ txt: "Для некоммерческого использования" },
+				//{ txt: "HW9S-PDTN-T5MA-HPXE" },
+				{ txt: "Z81kl6=MyI[]" },
+				{ txt: "randommailnoprob@mailinator.com" },
+				{ txt: "https://www.mailinator.com/v3/index.jsp?zone=public&query=randommailnoprob#/#inboxpane" },
+			];
+			Settings.StoreWork();
+		}
+
+		var _arr_data;
+		var _cur_dataobj;
+		var _cur_el;
+
+		function AddNote(dataobj) {
+			// humanize txt
+			var el = self#list.$append(<div .item />);
+			el.SetText = function(txt) {
+				txt = txt.replace("\r", "");
+				txt = txt.replace("\n", "¶");
+				txt = txt.htmlEscape();
+				this.html = txt;
+			};
+			el.SetText(dataobj.txt);
+			el.data = dataobj;
+			return el;
+		}
+
+		function SetupNotes(arr_data) {
+			_arr_data = arr_data;
+			for(var dataobj in _arr_data)
+				AddNote(dataobj);
+		}
+		SetupNotes(Settings.ns_data.arr_notes);
+
+		function CopyNote() {
+			view.clipboard(#put, _cur_dataobj.txt);
+			view.Host_Hide();
+		}
+
+		self#list.on("click", ".item", function(evt) {
+			_cur_el = this;
+			_cur_el.state.current = true;
+			_cur_dataobj = _cur_el.data;
+
+			self.post(::self#editor.value = _cur_dataobj.txt);
+		});
+
+		self#list.on("dblclick", ".item", function(evt) {
+			CopyNote();
+		});
+
+		self#list.on("keydown", function(evt) {
+			var ctrl;
+			var none = !evt.commandKey && !evt.ctrlKey && !evt.shiftKey && !evt.altKey
+			if(Utils.IsWindows)
+				ctrl = evt.ctrlKey && !evt.shiftKey && !evt.altKey;
+			else
+				ctrl = evt.commandKey && !evt.shiftKey && !evt.altKey;
+
+			var del = evt.keyCode == (Utils.IsWindows ? Event.VK_DELETE : Event.VK_BACK);
+			if(!ctrl && del && _cur_el) {
+				_arr_data.removeByValue(_cur_dataobj);
+				_cur_el.remove();
+				Settings.StoreWork();
+				_cur_el = _cur_dataobj = undefined;
+				self#editor.value = undefined;
+			}
+			else if(ctrl && evt.keyCode == Event.VK_N) {
+				var dataobj = _arr_data.push({ txt: "" });
+				Settings.StoreWork();
+				var el = AddNote(dataobj);
+
+				self.post(::el.sendEvent("click"));
+				el.scrollToView();
+			}
+			else if(evt.keyCode == Event.VK_RETURN) {
+				CopyNote();
+			}
+			else if(evt.keyCode == Event.VK_DOWN || evt.keyCode == Event.VK_UP)
+			{
+				var el = self#list.$(:current);
+				if(!el)
+				{
+					if(self#list.first)
+						el = self#list.first;
+				} else {
+					var offset = evt.keyCode == Event.VK_DOWN ? 1 : -1;
+					var idx = el.index + offset;
+					idx = idx.limit(0, self#list.length-1);
+					el = self#list[idx];
+				}
+
+				if(el)
+					el.sendEvent("click");
+			}
+		});
+
+		self#editor.onValueChanged = function() {
+			_cur_el.SetText(this.value);
+			_cur_dataobj.txt = this.value;
+			Settings.StoreWork();
+		};
+	</script>
+</head>
+
+<body>
+	<header>Clipboard monitor</header>
+	<div #clip-list .list />
+	<header>Notebook</header>
+	<div #notebook>
+		<main>
+			<div #list .list />
+			<pre>Dbl-click: copy, DEL: rmv, CTRL+N: new note</pre>
+		</main>
+		<div #editor />
+	</div>
+</body>
+</html>

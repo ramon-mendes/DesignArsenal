@@ -48,6 +48,13 @@
 		function ShowFrame(idx)
 		{
 			self#btn-frames[idx].state.current = true;
+			LoadFrame(idx);
+
+			View_FocusIt();
+		}
+
+		function LoadFrame(idx)
+		{
 			var el_frm = $$(frame)[idx];
 			if(!el_frm.loaded)
 			{
@@ -56,8 +63,6 @@
 			}
 
 			el_frm.state.current = true;
-
-			View_FocusIt();
 		}
 
 		self#btn-frames.on("click", "button", :evt:ShowFrame(this.index));
@@ -142,6 +147,7 @@
 	</script>
 
 	<script type="text/tiscript">
+		ShowFrame(3);
 		ShowFrame(0);
 		if(!Utils.InDBGView)
 			Ion.Setup();
@@ -197,6 +203,7 @@
 				<button poptip="Fonts" popnow><icon .icon-fontsize-1 /></button>
 				<button poptip="Icons" popnow><icon .icon-flag-filled /></button>
 				<button poptip="Fills" popnow><icon .icon-picture /></button>
+				<button poptip="Clipboard monitor"><icon .icon-paste /></button>
 				<!--<button poptip="Gradients" popnow><icon .icon-gradient_24px /></button>-->
 				<!--<button poptip="Illustrations" popnow><icon .icon-picture /></button>-->
 				<button poptip="Links" popnow><icon .icon-link /></button>
@@ -207,11 +214,11 @@
 			<frame data-src="inc_fd.html" />
 			<frame data-src="inc_id.html" />
 			<frame data-src="inc_pd.html" />
-			
+			<frame data-src="inc_clipboard.html" />
 			<frame data-src="inc_links.html" />
 		</frames>
 	</div>
 
 	<div #vresizer />
 </body>
-</html>
+<!--</html>-->

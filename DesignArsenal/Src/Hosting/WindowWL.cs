@@ -6,6 +6,7 @@ using SciterSharp;
 using PInvoke;
 using DesignArsenal.Native;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace DesignArsenal.Hosting
 {
@@ -13,6 +14,10 @@ namespace DesignArsenal.Hosting
 	{
 		private static NotifyIcon _ni;
 		private GlobalHotkeys _hotkey1 = new GlobalHotkeys();
+
+		[DllImport("user32.dll", SetLastError = true)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		static extern bool AddClipboardFormatListener(IntPtr hwnd);
 
 		public Window()
 		{
@@ -50,6 +55,10 @@ namespace DesignArsenal.Hosting
 			};
 
 			_hotkey1.RegisterGlobalHotKey((int)Keys.D, GlobalHotkeys.MOD_CONTROL | GlobalHotkeys.MOD_SHIFT, wnd._hwnd);
+
+			// clipboard listener
+			bool res = AddClipboardFormatListener(_hwnd);
+			Debug.Assert(res);
 		}
 
 		private void ShowIt()
@@ -68,27 +77,37 @@ namespace DesignArsenal.Hosting
 			_ni.Dispose();
 		}
 
-		protected override bool ProcessWindowMessage(IntPtr hwnd, uint msg, IntPtr wParam, IntPtr lParam, ref IntPtr lResult)
+		protected override bool ProcessWindowMessage(IntPtr hwnd, uint umsg, IntPtr wParam, IntPtr lParam, ref IntPtr lResult)
 		{
-			if(msg == (uint) User32.WindowMessage.WM_SHOWWINDOW)
+			User32.WindowMessage msg = (User32.WindowMessage)umsg;
+			switch(msg)
 			{
-				Icon = Properties.Resources.icon;
-			}
-			else if(msg == (uint)User32.WindowMessage.WM_HOTKEY)
-			{
-				if(wParam.ToInt32() == _hotkey1.HotkeyID)
-				{
-					if(IsVisible && User32.GetForegroundWindow() == _hwnd)
+				case User32.WindowMessage.WM_SHOWWINDOW:
+					Icon = Properties.Resources.icon;
+					break;
+
+				case User32.WindowMessage.WM_HOTKEY:
+					if(wParam.ToInt32() == _hotkey1.HotkeyID)
 					{
-						Close();
+						if(IsVisible && User32.GetForegroundWindow() == _hwnd)
+						{
+							Close();
+						}
+						else
+						{
+							ShowIt();
+						}
 					}
-					else
+					break;
+
+				case User32.WindowMessage.WM_CLIPBOARDUPDATE:
+					App.AppHost.InvokePost(() =>
 					{
-						ShowIt();
-					}
-				}
+						App.AppHost.CallFunction("View.View_OnClipboardChange");
+					});
+					break;
 			}
-			return base.ProcessWindowMessage(hwnd, msg, wParam, lParam, ref lResult);
+			return base.ProcessWindowMessage(hwnd, umsg, wParam, lParam, ref lResult);
 		}
 
 		[DllImport("user32.dll")]

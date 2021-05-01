@@ -120,17 +120,6 @@ namespace DesignArsenal.Hosting
 			return true;
 		}
 
-		public bool Host_CopyText(SciterElement el, SciterValue[] args, out SciterValue result)
-		{
-#if WINDOWS
-			//DnDWindows.CopyFormattedText(args[0].Get(""), args[1].Get(""), args[2].Get(""), () => args[3].Call());
-#else
-            //DnDOSX.DoCopy(args[0].Get(""), args[1].Get(""), args[2].Get(""), () => args[3].Call());
-#endif
-			result = null;
-			return true;
-		}
-
 		public bool Host_ExportFont(SciterElement el, SciterValue[] args, out SciterValue result)
 		{
 			Task.Run(() =>
