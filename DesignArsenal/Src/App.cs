@@ -29,7 +29,7 @@ namespace DesignArsenal
 		public static Host AppHost { get; private set; }
 		public static bool InTest { get; private set; }
 
-		public static void Run(bool in_test)
+		public static void Run(bool in_test, bool hide)
 		{
 			Console.WriteLine("Sciter " + SciterX.Version);
 			Console.WriteLine("SciterSharp " + LibVersion.AssemblyVersion);
@@ -54,7 +54,7 @@ namespace DesignArsenal
 			Debug.WriteLine($"{tooktime}ms to start");
 
 			if(true)
-				CreateApp();
+				CreateApp(hide);
 			else
 				CreateUnittest();
 
@@ -69,7 +69,7 @@ namespace DesignArsenal
 #endif
 		}
 
-		public static void CreateApp()
+		public static void CreateApp(bool hide = false)
 		{
 			Stopwatch sw = new Stopwatch();
 			sw.Start();
@@ -79,7 +79,7 @@ namespace DesignArsenal
 			AppHost = new Host(AppWnd);
 
 			AppHost.SetupPage("index.html");
-			AppWnd.Show();
+			AppWnd.Show(!hide);
 #else
 			AppWnd = new WindowSidebar();
 			AppHost = new Host(AppWnd);

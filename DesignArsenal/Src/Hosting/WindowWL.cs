@@ -14,6 +14,7 @@ namespace DesignArsenal.Hosting
 	{
 		private static NotifyIcon _ni;
 		private GlobalHotkeys _hotkey1 = new GlobalHotkeys();
+		private GlobalHotkeys _hotkey2 = new GlobalHotkeys();
 
 		[DllImport("user32.dll", SetLastError = true)]
 		[return: MarshalAs(UnmanagedType.Bool)]
@@ -55,6 +56,7 @@ namespace DesignArsenal.Hosting
 			};
 
 			_hotkey1.RegisterGlobalHotKey((int)Keys.D, GlobalHotkeys.MOD_CONTROL | GlobalHotkeys.MOD_SHIFT, wnd._hwnd);
+			_hotkey2.RegisterGlobalHotKey((int)Keys.X, GlobalHotkeys.MOD_CONTROL | GlobalHotkeys.MOD_SHIFT, wnd._hwnd);
 
 			// clipboard listener
 			bool res = AddClipboardFormatListener(_hwnd);
@@ -96,6 +98,18 @@ namespace DesignArsenal.Hosting
 						else
 						{
 							ShowIt();
+						}
+					}
+					if(wParam.ToInt32() == _hotkey2.HotkeyID)
+					{
+						if(IsVisible && User32.GetForegroundWindow() == _hwnd)
+						{
+							Close();
+						}
+						else
+						{
+							ShowIt();
+							CallFunction("ShowFrame", new SciterValue(3));
 						}
 					}
 					break;

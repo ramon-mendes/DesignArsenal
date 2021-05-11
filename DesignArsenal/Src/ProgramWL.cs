@@ -28,8 +28,6 @@ namespace DesignArsenal
 		[STAThread]
 		static int Main(string[] args)
 		{
-
-
 #if WINDOWS
 			// Sciter needs this for drag'n'drop support; STAThread is required for OleInitialize succeess
 			int oleres = PInvokeWindows.OleInitialize(IntPtr.Zero);
@@ -61,10 +59,15 @@ namespace DesignArsenal
 
 			#region Args handling
 			bool arg_in_test = false;
+			bool arg_hide = false;
 
 			if(args.Length != 0 && args[0] == "-test")
 			{
 				arg_in_test = true;
+			}
+			else if(args.Length != 0 && args[0] == "-hide")
+			{
+				arg_hide = true;
 			}
 			else if(args.Length != 0)
 			{
@@ -113,7 +116,7 @@ namespace DesignArsenal
 				SciterSharp.MessageBox.Show(IntPtr.Zero, e.ExceptionObject.ToString(), "FUCK");
 			};*/
 
-			App.Run(arg_in_test);
+			App.Run(arg_in_test, arg_hide);
 
 			SingleInstance.Release();
 
