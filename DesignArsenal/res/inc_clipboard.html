@@ -169,12 +169,16 @@
 			CopySelected();
 		});
 
+		self.on("keydown", function(evt) {
+			if(evt.keyCode == Event.VK_ESCAPE)
+				view.Host_Hide();
+		});
+
 		self#clip-list.on("keydown", function(evt) {
 			if(evt.keyCode == Event.VK_RETURN)
-		{
+			{
 				CopySelected();
-		log(123)
-		}
+			}
 			else if(evt.keyCode == Event.VK_DOWN || evt.keyCode == Event.VK_UP)
 			{
 				var el = self#clip-list.$(:current);

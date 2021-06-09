@@ -4,7 +4,6 @@
 
 	function attached()
 	{
-	console.count();
 		var in_slider_drag;
 		var el_sliderpicker = this;
 
