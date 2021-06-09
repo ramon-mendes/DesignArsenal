@@ -54,6 +54,8 @@ function ResetSettings(force = false)
 		Settings.ns_data.arr_collections = [];
 	if(!Settings.ns_data.dic_favorites || force)
 		Settings.ns_data.dic_favorites = {};
+	if(!Settings.ns_data.arr_notes || force)
+		Settings.ns_data.arr_notes = [];
 }
 
 if(!View["settings-" + Settings.cNAME])

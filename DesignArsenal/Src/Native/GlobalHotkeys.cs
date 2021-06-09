@@ -47,7 +47,7 @@ namespace DesignArsenal.Native
 				Handle = handle;
 
 				// use the GlobalAddAtom API to get a unique ID (as suggested by MSDN)
-				string atomName = Thread.CurrentThread.ManagedThreadId.ToString("X8") + GetType().FullName;
+				string atomName = Thread.CurrentThread.ManagedThreadId.ToString("X8") + GetType().FullName + Guid.NewGuid();
 				HotkeyID = GlobalAddAtom(atomName);
 				HotkeyID--;
 				if(HotkeyID == 0)

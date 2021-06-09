@@ -170,6 +170,7 @@
     <Compile Include="Src\Hosting\DnDOSX.cs" />
     <Compile Include="Src\Hosting\Host.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Src\Hosting\HostClipboard.cs" />
     <Compile Include="Src\Hosting\HostFD.cs" />
     <Compile Include="Src\Hosting\HostID.cs" />
     <Compile Include="Src\Hosting\HostIL.cs" />
@@ -379,6 +380,7 @@
     <Compile Include="Src\Svg\SvgXML.cs" />
     <Compile Include="Src\Utilities\SKIconCode.cs" />
     <Compile Include="Src\Utilities\Utils.cs" />
+    <None Include="res\tis_pd\sliderpicker.tis" />
     <None Include="Src\SharpFont\SharpFont.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -482,6 +484,7 @@
     <Content Include="res\img\icon-illustrator.svg" />
     <Content Include="res\img\icon-photoshop.svg" />
     <Content Include="res\img\icon-sketch.svg" />
+    <Content Include="res\img\icon-xd.svg" />
     <Content Include="res\img\loaders\busy.gif" />
     <Content Include="res\img\loaders\loader.png" />
     <Content Include="res\img\loaders\loading.png" />
@@ -493,6 +496,7 @@
     <Content Include="res\img\pat1.png" />
     <Content Include="res\img\pat2.png" />
     <Content Include="res\img\picker.png" />
+    <Content Include="res\img\pomodoro.png" />
     <Content Include="res\img\slider_handles.png" />
     <Content Include="res\img\subheader_bg.png" />
     <Content Include="res\img\SVGlogo.png" />
@@ -502,6 +506,8 @@
     <Content Include="res\inc_illustrations.html" />
     <Content Include="res\inc_grads.html" />
     <Content Include="res\inc_photos.html" />
+    <None Include="res\inc_clipboard.html" />
+    <Content Include="res\inc_pomodoro.html" />
     <Content Include="res\ion_rsa.txt" />
     <Content Include="res\jsx\AI_ApplyFont.jsx" />
     <Content Include="res\jsx\AI_DrawText.jsx" />
@@ -526,9 +532,9 @@
     <Content Include="res\lib_poptip\lib_poptip.css" />
     <Content Include="res\lib_poptip\unittest.html" />
     <Content Include="res\lib_settings\unittest.html" />
-    <Content Include="sciter.dll">
+    <None Include="sciter.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
     <Content Include="scripts\packfolder.exe" />
   </ItemGroup>
   <ItemGroup>

@@ -60,7 +60,7 @@ home { style-set: Home; }
 		margin-left: 15px;
 	}
 
-	#ui-collections em { float: right; }
+	#ui-collections em {  }
 
 
 	select

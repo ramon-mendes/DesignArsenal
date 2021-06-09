@@ -91,14 +91,14 @@
 		<div #home-scroller>
 			<section>
 				<p>Flat icon packs:</p>
-				<select #ui-packsel as="integer" novalue="" />
+				<select #ui-packsel as="integer" novalue=" " />
 			</section>
 
 			<section>
 				<hflow>
 					<div style="width: *">
 						<p>Your icon collections:</p>
-						<select #ui-collections as="integer" disabled novalue="" />
+						<select #ui-collections as="integer" disabled novalue=" " />
 					</div>
 
 					<div style="width: *">
@@ -114,7 +114,7 @@
 			<section #section-iconsprites>
 				<p>Activate SVG sprite project:</p>
 				<hflow .txt>
-					<select #ui-projects as="integer" disabled novalue="" />
+					<select #ui-projects as="integer" disabled novalue=" " />
 					<widget .btn-red disabled #btn-rmv-project>Remove</widget>
 					<widget .btn-blue #btn-add-project><icon .icon-plus />Add new</widget>
 					<widget .btn-blue #btn-import-project><icon .icon-plus />Import JSON</widget>
