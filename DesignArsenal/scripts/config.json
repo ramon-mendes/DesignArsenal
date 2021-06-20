@@ -305,5 +305,9 @@
 "uid":"53c977df16b09e3f7700a27ec90c43dc",
 "css":"stopwatch",
 "code":59445,
-"src":"mfglabs"}],
+"src":"mfglabs"},{
+"uid":"5717236f6134afe2d2a278a5c9b3927a",
+"css":"play-circled",
+"code":61764,
+"src":"fontawesome"}],
 "outdir":"../res/css/iconfont"}

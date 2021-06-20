@@ -1,6 +1,6 @@
 @font-face
 {
-	font-family: idrop-966103;
+	font-family: idrop-616557;
 	font-style: normal;
 	src: url(idrop.ttf);
 }
@@ -8,7 +8,7 @@
 i[class*=icon-]
 {
 	display: inline-block;
-	font-family: idrop-966103;
+	font-family: idrop-616557;
 	font-size: 1.20em;
 	font-style: normal;
 }
@@ -79,6 +79,7 @@ i.icon-angle-down { content: '\f107'; }
 i.icon-folder-empty { content: '\f114'; }
 i.icon-folder-open-empty { content: '\f115'; }
 i.icon-code { content: '\f121'; }
+i.icon-play-circled { content: '\f144'; }
 i.icon-link-ext-alt { content: '\f14c'; }
 i.icon-trash-1 { content: '\f1f8'; }
 i.icon-font-awesome { content: '\f2b4'; }
