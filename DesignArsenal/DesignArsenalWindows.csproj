@@ -173,7 +173,6 @@
     <Compile Include="Src\Hosting\HostClipboard.cs" />
     <Compile Include="Src\Hosting\HostFD.cs" />
     <Compile Include="Src\Hosting\HostID.cs" />
-    <Compile Include="Src\Hosting\HostPM.cs" />
     <Compile Include="Src\Hosting\HostIL.cs" />
     <Compile Include="Src\Hosting\HostPD.cs" />
     <Compile Include="Src\Hosting\WindowWL.cs" />
@@ -429,8 +428,6 @@
     <Content Include="Resources\icon.ico" />
     <Content Include="Resources\icon_menubar.png" />
     <None Include="Resources\icon_taskbar.png" />
-    <Content Include="res\audio\timer_goes_off.wav" />
-    <Content Include="res\audio\timer_start.wav" />
     <Content Include="res\css\fonts.css" />
     <Content Include="res\dlg_about.html" />
     <Content Include="res\activate.html" />
@@ -510,7 +507,6 @@
     <Content Include="res\inc_grads.html" />
     <Content Include="res\inc_photos.html" />
     <None Include="res\inc_clipboard.html" />
-    <Content Include="res\inc_pomodoro.html" />
     <Content Include="res\ion_rsa.txt" />
     <Content Include="res\jsx\AI_ApplyFont.jsx" />
     <Content Include="res\jsx\AI_DrawText.jsx" />
