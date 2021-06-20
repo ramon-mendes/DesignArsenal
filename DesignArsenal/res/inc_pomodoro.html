@@ -36,8 +36,7 @@
 		var time_left;
 
 		self#btn-start.onClick = function() {
-			var audio = view.audio("audio/timer_start.wav");
-			audio.play();
+			view.Host_PlaySound("audio/timer_start.wav");
 
 			time_left = 35*60;
 
@@ -55,8 +54,7 @@
 		};
 
 		function OnTimeEnd() {
-			var audio = view.audio("audio/timer_goes_off.wav");
-			audio.play();
+			view.Host_PlaySound("audio/timer_goes_off.wav");
 		}
 	</script>
 </head>
